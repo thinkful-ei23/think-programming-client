@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { Route, withRouter } from 'react-router-dom';
+
+import HeaderBar from './components/header-bar';
 import LandingPage from './components/landing';
 import Dashboard from './components/dashboard';
 import { refreshAuthToken } from './actions/auth';
@@ -37,7 +39,8 @@ export class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" component={LandingPage} />
+          <HeaderBar />
+          <Route exact path="/" component={LandingPage} />
 
         <Route exact path="/dashboard" component={Dashboard} />
       </div>
