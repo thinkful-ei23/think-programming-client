@@ -4,13 +4,14 @@ import thunk from 'redux-thunk';
 import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const store = createStore(
     combineReducers({
         form: formReducer,
         auth: authReducer
-    }),
-    applyMiddleware(thunk)
+    }), composeWithDevTools(
+    applyMiddleware(thunk))
 );
 
 // Hydrate the authToken from localStorage if it exist
