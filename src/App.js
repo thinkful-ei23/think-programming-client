@@ -4,8 +4,9 @@ import './App.css';
 import { Route, withRouter } from 'react-router-dom';
 
 import HeaderBar from './components/header-bar';
-import LandingPage from './components/landing';
+import LandingPage from './components/landing-page';
 import Dashboard from './components/dashboard';
+import RegisterPage from './components/registration-page';
 import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -43,6 +44,7 @@ export class App extends React.Component {
           <Route exact path="/" component={LandingPage} />
 
         <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/register" component={RegisterPage} />
       </div>
     );
   }
