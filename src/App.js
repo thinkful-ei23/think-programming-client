@@ -4,7 +4,7 @@ import './App.css';
 import { Route, withRouter } from 'react-router-dom';
 
 import HeaderBar from './components/header-bar';
-import LandingPage from './components/landing';
+import LandingPage from './components/landing-page';
 import Dashboard from './components/dashboard';
 import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
