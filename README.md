@@ -1,6 +1,6 @@
 # Think Programming - CLIENT
 
-[Demo Think Programming Here](https:///)
+[Demo Think Programming Here](https://think-programming-client.herokuapp.com/)
 
 [Think Programming Client Github](https://github.com/thinkful-ei23/think-programming-server)
 
