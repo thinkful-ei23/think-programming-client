@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
+import Projects from './projects';
+
 class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
         <h1>Dashboard</h1>
+        <Projects />
       </div>
     );
   }
