@@ -7,6 +7,7 @@ import HeaderBar from './components/header-bar';
 import LandingPage from './components/landing-page';
 import Dashboard from './components/dashboard';
 import RegisterPage from './components/registration-page';
+
 import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
