@@ -14,22 +14,22 @@ class GameRoom extends Component {
         challengerFinished: false
       }
 	this.socket = io(API_BASE_URL_SOCKET);
-  this.socket.on('TYPING', (incomming) => {
-    if (incomming.username === this.props.username) {
-      this.setState({ myTyping: incomming.input });
+  this.socket.on('TYPING', (incoming) => {
+    if (incoming.username === this.props.username) {
+      this.setState({ myTyping: incoming.input });
     } else {
-      this.setState({ challengerTyping: incomming.input })
+      this.setState({ challengerTyping: incoming.input })
     }
   });
-  this.socket.on('FINISHED', (incomming) => {
+  this.socket.on('FINISHED', (incoming) => {
     console.log('sent')
-    if (incomming.username === this.props.username) {
-      this.setState({ 
+    if (incoming.username === this.props.username) {
+      this.setState({
         meFinished: true,
-        challengerFinished: false 
+        challengerFinished: false
       });
     } else {
-      this.setState({ 
+      this.setState({
         meFinished: false,
         challengerFinished: true })
     }
@@ -38,7 +38,7 @@ class GameRoom extends Component {
   sendMessage(e){
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
-  sendFinshed() {
+  sendFinished() {
 
     this.socket.emit('FINISHED', { username: this.props.username });
   }
@@ -48,7 +48,7 @@ render() {
     winner = this.props.username;
   }
   if (this.state.challengerFinished) {
-    
+
     winner = 'Challenger';
   }
   console.log(this.state.challengerFinished)
@@ -62,7 +62,7 @@ render() {
       <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
       <h4>Player 2</h4>
       <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} rows="4" cols="50"/>
-      <button className='finished-button' onClick={() => this.sendFinshed()}>Finished</button>
+      <button className='finished-button' onClick={() => this.sendFinished()}>Finished</button>
     </div>
 		)
 	}
