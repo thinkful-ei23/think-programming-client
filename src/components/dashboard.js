@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './requires-login';
-import Projects from './projects';
+import Projects from './game-room';
 
 class Dashboard extends Component {
   render() {
