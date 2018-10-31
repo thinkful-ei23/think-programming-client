@@ -1,7 +1,67 @@
-.landing {
+body {
+  font-family: 'Lora', serif;
+  height: 100%;
+ }
+ 
+ h1, h2, .btn.aboutus {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+ }
+
+
+.landing, .home {
+  display: grid;
+  min-height: 100vh;
+  margin: 0;
   text-align: center;
 }
 
-img {
+.landing img {
+  margin-top: 5em;
   width: 200px;
+  margin: auto;
 }
+
+.btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  display: inline-block;
+  background: #03C6F7;
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 2em;
+  margin: 0.5em;
+  border-radius: 30px;
+}
+
+.btn:hover {
+  background: #1E5163;
+  transition: 0.3s;
+}
+
+.whoarewe {
+  margin: auto;
+}
+
+.directory {
+  padding: 2em;
+  margin: auto;
+}
+
+
+.btn.aboutus {
+  background: #fff;
+  color: #2A2A2C;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 1em 1.5em;
+}
+
+.btn.aboutus:hover {
+  background: #1E5163;
+  transition: 0.3s;
+  color: #fff;
+  border: none;
+}
+

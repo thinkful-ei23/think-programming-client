@@ -18,7 +18,7 @@ class LoginPage extends React.Component {
     return (
       <div className="home">
         <h2 className='login-h2'>Login</h2>
-          <div className='login-error'>{loginError}</div>
+          <div className='login-error'>{loginError}</div>  
           <LoginForm /> 
           <Link to="/">Back</Link>
       </div>

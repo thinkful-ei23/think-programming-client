@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { clearAuth } from '../actions/auth';
 import{ clearAuthToken } from "../local-storage";
 
+import tplogo from './images/logo/TP-logo.jpg';
+import './header-bar.css';
+
 class HeaderBar extends Component {
     logOut() {
         this.props.dispatch(clearAuth());
@@ -18,7 +21,7 @@ class HeaderBar extends Component {
         }
         return (
             <div className="header-bar">
-                <h1>Think Programming</h1>
+                <img src={tplogo} className="header-bar-img" alt="Think Programming Logo" />
                 {logOutButton}
             </div>
         );
