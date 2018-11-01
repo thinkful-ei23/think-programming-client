@@ -7,6 +7,7 @@ import './game-room.css';
 import { fetchQuestions  } from '../actions/questions';
 import { enterGameRoom } from '../actions/game-room';
 
+import './styles/game-room.css';
 class GameRoom extends Component {
   constructor(props) {
     super(props);
@@ -105,13 +106,15 @@ render() {
   return (
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
-      <h2>GameRoom</h2>
+      <h1>GameRoom</h1>
+      <h2>{this.props.match.params.value}</h2>
       <h3>{questionTitle}</h3>
       <p>{question}</p>
       <div>{winner} Finished!</div>
-      <h4>Player 1</h4>
-      <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
       <h4>Player 2</h4>
+      <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
+      <button type="button">Sit</button>
+      <h4>Player 1</h4>
       <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} rows="4" cols="50"/>
       <button type="button" onClick={this.sendSitOrStand}>{sitOrLeave}</button>
       <button className='finished-button' onClick={() => this.sendFinished()}>Finished</button>

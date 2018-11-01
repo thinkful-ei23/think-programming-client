@@ -14,6 +14,7 @@ class Dashboard extends Component {
     return (
       <div className="dashboard">
         <h1>Dashboard</h1>
+        <h2>Programming Game Rooms</h2>
         {rooms}
       </div>
     );

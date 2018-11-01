@@ -1,0 +1,32 @@
+input[type=text], 
+input[type=password] {
+  width: auto;
+  padding: 10px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 1px solid #aeaeae;
+  border-radius: 2px;
+}
+
+.back {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.7em;
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.5em 2em;
+  margin: 1em 0;
+  border-radius: 30px;
+  color: #2A2A2C;
+}
+
+.back:hover {
+  color: #1E5163;
+  transition: 0.3s;
+}
+
+label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+}
+

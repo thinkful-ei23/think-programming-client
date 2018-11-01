@@ -1,0 +1,8 @@
+.about-us {
+  display: grid;
+  grid-template-columns: repeat(3);
+  grid-auto-rows: minmax(100px, auto);
+  min-height: 100vh;
+  margin: 0;
+  text-align: center;
+}

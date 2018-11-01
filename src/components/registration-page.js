@@ -1,13 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
+
+import './styles/registration-page.css';
+import tplogo from './images/logo/TP-logo.jpg';
 
 class RegistrationPage extends React.Component {
     // If we are logged in (which happens automatically when registration
     // is successful) redirect to the user's dashboard
-    render() {
+  render() {
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
     }
@@ -17,13 +20,16 @@ class RegistrationPage extends React.Component {
     }
     return (
       <div className="home">
-        <h2 className='registration-h2'>Registration</h2>
-          <div className='registration-error'>{registrationError}</div>
-          <RegistrationForm /> 
-          <Link to="/">Login</Link>
+        <div className='login-h2'>
+          <img src={tplogo} alt="Think Programming" />
+          <h2>Let's Register!</h2>
+        </div>
+        <RegistrationForm /> 
+
+        <div className='registration-error'>{registrationError}</div>
       </div>
     );
-    }
+  }
 }
 
 const mapStateToProps = state => ({
