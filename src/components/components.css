@@ -10,7 +10,8 @@ body {
  }
 
 
-.landing, .home {
+.landing
+{
   display: grid;
   min-height: 100vh;
   margin: 0;
@@ -64,4 +65,5 @@ body {
   color: #fff;
   border: none;
 }
+
 
