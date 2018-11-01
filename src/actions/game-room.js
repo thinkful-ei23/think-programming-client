@@ -1,5 +1,5 @@
 export const ENTER_GAMEROOM = 'ENTER_GAMEROOM';
-export const enterGameroom = roomNumber => ({
+export const enterGameRoom = roomNumber => ({
   type: ENTER_GAMEROOM,
   roomNumber
 });
