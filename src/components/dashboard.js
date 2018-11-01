@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
-// import GameRoom from './game-room';
-
 
 class Dashboard extends Component {
   render() {
