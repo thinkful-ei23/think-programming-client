@@ -67,7 +67,8 @@ render() {
   return (
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
-      <h2>GameRoom</h2>
+      <h1>GameRoom</h1>
+      <h2>{this.props.match.params.value}</h2>
       <h3>{questionTitle}</h3>
       <p>{question}</p>
       <div>{winner} Finished!</div>
