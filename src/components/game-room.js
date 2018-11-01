@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import './game-room.css';
@@ -44,10 +45,11 @@ class GameRoom extends Component {
     this.socket.emit('FINISHED', { username: this.props.username });
   }
 componentDidMount() {
-    this.props.dispatch(fetchQuestions('jsQuestions'));
+    this.props.dispatch(fetchQuestions(this.props.match.params.value));
 }
 
 render() {
+  console.log()
     let winner = '';
   if (this.state.meFinished) {
     winner = this.props.username;
@@ -56,11 +58,15 @@ render() {
 
     winner = 'Challenger';
   }
-  console.log(this.state.challengerFinished)
+  let questionTitle = '';
+  if (this.props.questions[0] !== undefined & this.props.questions[0] !== null) {
+  questionTitle = this.props.questions[0].title;  
+  }
   return (
     <div className="game-room">
+      <Link to='/dashboard'>Dashboard</Link>
       <h2>GameRoom</h2>
-      <h3>Function isOldEnoughToVote</h3>
+      <h3>{questionTitle}</h3>
       <p>Write a function called "isOldEnoughToVote". Given a number, in this case an age, 'isOldEnoughToVote' returns whether a person of this given age is old enough to legally vote in the United States. Notes:* The legal voting age in the United States is 18.</p>
       <div>{winner} Finished!</div>
       <h4>Player 1</h4>
