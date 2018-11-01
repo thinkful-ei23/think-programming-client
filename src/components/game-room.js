@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import './game-room.css';
-import { fetchQuestions  } from '../actions/gameroom';
+import { fetchQuestions  } from '../actions/questions';
 
 class GameRoom extends Component {
   constructor(props) {
@@ -83,7 +83,7 @@ render() {
 
 const mapStateToProps = state => ({
     username: state.auth.currentUser.username,
-    questions: state.gameRoom.questions
+    questions: state.questions.questions
 });
 
 export default (connect(mapStateToProps)(GameRoom));
