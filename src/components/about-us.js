@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './about-us.css';
+import './styles/about-us.css';
 
 export default function AboutUs() {
   return (

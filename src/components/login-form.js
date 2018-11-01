@@ -3,10 +3,10 @@ import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { login } from '../actions/auth';
 import { required, nonEmpty } from '../validators';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-import './login-form.css';
+import './styles/login-form.css';
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
