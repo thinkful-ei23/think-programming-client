@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 // Styling
-import './components.css';
+import './styles/landing-page.css';
 import logo from './images/logo/TP-title-logo.jpg'
 
 class LandingPage extends Component {

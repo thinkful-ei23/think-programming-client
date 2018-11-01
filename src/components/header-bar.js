@@ -4,7 +4,7 @@ import { clearAuth } from '../actions/auth';
 import{ clearAuthToken } from "../local-storage";
 
 import tplogo from './images/logo/TP-logo.jpg';
-import './header-bar.css';
+import './styles/header-bar.css';
 
 class HeaderBar extends Component {
     logOut() {

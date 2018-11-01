@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
-import './game-room.css';
 import { fetchQuestions  } from '../actions/gameroom';
 
+import './styles/game-room.css';
 class GameRoom extends Component {
   constructor(props) {
     super(props);

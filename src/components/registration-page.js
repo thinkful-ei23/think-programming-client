@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
 
-import './registration-page.css';
+import './styles/registration-page.css';
 import tplogo from './images/logo/TP-logo.jpg';
 
 class RegistrationPage extends React.Component {
