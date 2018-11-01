@@ -5,10 +5,9 @@ body {
  
  h1, h2, .btn.aboutus {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
  }
-
 
 .landing {
   display: grid;
