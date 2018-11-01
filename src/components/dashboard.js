@@ -4,18 +4,26 @@ import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
 // import GameRoom from './game-room';
 
+import './styles/dashboard.css';
 
 class Dashboard extends Component {
   render() {
     let questionTypes = [ 'jsQuestions', 'htmlQuestions', 'cssQuestions', 'dsaQuestions' ];
     let rooms = questionTypes.map((questionType, i) => {
-      return <div className={`room-link-container-${i}`} key={i} ><Link key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>{questionType}</Link></div>;
+      return (
+        <div className={`room-link-container-${i}`} key={i}>
+          <Link key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>
+            {questionType}
+          </Link>
+        </div>
+      );
     });
     return (
       <div className="dashboard">
-        <h1>Dashboard</h1>
-        <h2>Programming Game Rooms</h2>
-        {rooms}
+        <h2>Challenge Rooms</h2>
+        <div className="gamerooms">
+          {rooms}
+        </div>
       </div>
     );
   }
