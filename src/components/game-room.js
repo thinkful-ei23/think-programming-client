@@ -74,8 +74,10 @@ render() {
       <div>{winner} Finished!</div>
       <h4>Player 2</h4>
       <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
+      <button type="button">Sit</button>
       <h4>Player 1</h4>
       <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} rows="4" cols="50"/>
+      <button type="button">Sit</button>
       <button className='finished-button' onClick={() => this.sendFinished()}>Finished</button>
     </div>
 		)
