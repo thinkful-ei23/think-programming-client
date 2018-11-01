@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
-import { fetchQuestions  } from '../actions/gameroom';
+import './game-room.css';
+import { fetchQuestions  } from '../actions/questions';
+import { enterGameRoom } from '../actions/game-room';
 
 import './styles/game-room.css';
 class GameRoom extends Component {
   constructor(props) {
     super(props);
       this.state = {
+        meSitting: false,
+        players: 0,
         myTyping: '',
         challengerTyping: '',
         meFinished: false,
@@ -24,7 +28,6 @@ class GameRoom extends Component {
     }
   });
   this.socket.on('FINISHED', (incoming) => {
-    console.log('sent')
     if (incoming.username === this.props.username) {
       this.setState({
         meFinished: true,
@@ -36,12 +39,45 @@ class GameRoom extends Component {
         challengerFinished: true })
     }
   });
+  this.socket.on('SIT', (incoming) => {
+    let currentPlayers = this.state.players;
+    if (incoming.username === this.props.username) {
+      this.setState({
+        meSitting: true,
+        players: currentPlayers += 1
+      });
+    } else {
+      this.setState({
+        players: currentPlayers += 1 
+      })
+    }
+  });
+  this.socket.on('LEAVE', (incoming) => {
+    let currentPlayers = this.state.players;
+    if (incoming.username === this.props.username) {
+      this.setState({
+        meSitting: false,
+        players: currentPlayers -= 1
+      });
+    } else {
+      this.setState({
+        players: currentPlayers -= 1 
+      })
+    }
+  });
   }
   sendMessage(e){
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
+  sendSitOrStand = (props) => {
+    console.log(this.state)
+    if (this.state.meSitting === false) {
+      this.socket.emit('SIT', { username: this.props.username });
+    } else {
+      this.socket.emit('LEAVE', { username: this.props.username })
+    }
+  }
   sendFinished() {
-
     this.socket.emit('FINISHED', { username: this.props.username });
   }
 componentDidMount() {
@@ -49,7 +85,6 @@ componentDidMount() {
 }
 
 render() {
-  console.log()
     let winner = '';
   if (this.state.meFinished) {
     winner = this.props.username;
@@ -64,6 +99,10 @@ render() {
   questionTitle = this.props.questions[0].title;
   question = this.props.questions[0].question;
   }
+  let sitOrLeave = 'Sit';
+  if (this.state.meSitting === true) {
+    sitOrLeave = 'Stand';
+  }
   return (
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
@@ -77,7 +116,7 @@ render() {
       <button type="button">Sit</button>
       <h4>Player 1</h4>
       <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} rows="4" cols="50"/>
-      <button type="button">Sit</button>
+      <button type="button" onClick={this.sendSitOrStand}>{sitOrLeave}</button>
       <button className='finished-button' onClick={() => this.sendFinished()}>Finished</button>
     </div>
 		)
@@ -86,7 +125,7 @@ render() {
 
 const mapStateToProps = state => ({
     username: state.auth.currentUser.username,
-    questions: state.gameRoom.questions
+    questions: state.questions.questions
 });
 
 export default (connect(mapStateToProps)(GameRoom));

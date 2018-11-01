@@ -2,7 +2,7 @@ import {
   FETCH_QUESTIONS_REQUEST,
   FETCH_QUESTIONS_SUCCESS,
   FETCH_QUESTIONS_ERROR
-} from '../actions/gameroom';
+} from '../actions/questions';
 
 const initialState = {
   questions: {},
@@ -10,7 +10,7 @@ const initialState = {
   error: null
 };
 
-export default function gameRoomReducer(state = initialState, action) {
+export default function queestionsReducer(state = initialState, action) {
   if (action.type === FETCH_QUESTIONS_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
