@@ -18,15 +18,17 @@ class GameRoom extends Component {
         meFinished: false,
         challengerFinished: false
       }
-	this.socket = io(API_BASE_URL_SOCKET);
-  this.socket.on('TYPING', (incoming) => {
+  this.socket = io(API_BASE_URL_SOCKET);
+  this.nsSocket = io(this.props.match.url);
+  
+  this.nsSocket.on('TYPING', (incoming) => {
     if (incoming.username === this.props.username) {
       this.setState({ myTyping: incoming.input });
     } else {
       this.setState({ challengerTyping: incoming.input })
     }
   });
-  this.socket.on('FINISHED', (incoming) => {
+  this.nsSocket.on('FINISHED', (incoming) => {
     if (incoming.username === this.props.username) {
       this.setState({
         meFinished: true,
@@ -38,7 +40,7 @@ class GameRoom extends Component {
         challengerFinished: true })
     }
   });
-  this.socket.on('SIT', (incoming) => {
+  this.nsSocket.on('SIT', (incoming) => {
     let currentPlayers = this.state.players;
     if (incoming.username === this.props.username) {
       this.setState({
@@ -51,7 +53,7 @@ class GameRoom extends Component {
       })
     }
   });
-  this.socket.on('LEAVE', (incoming) => {
+  this.nsSocket.on('STAND', (incoming) => {
     let currentPlayers = this.state.players;
     if (incoming.username === this.props.username) {
       this.setState({
@@ -73,7 +75,7 @@ class GameRoom extends Component {
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
-      this.socket.emit('LEAVE', { username: this.props.username })
+      this.socket.emit('STAND', { username: this.props.username })
     }
   }
   sendFinished() {
@@ -102,6 +104,7 @@ render() {
   if (this.state.meSitting === true) {
     sitOrLeave = 'Stand';
   }
+  console.log(this.props.match.url, typeof this.props.match.url)
   return (
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
