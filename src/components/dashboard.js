@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import requiresLogin from './requires-login';
-import Projects from './game-room';
+// import GameRoom from './game-room';
+
 
 class Dashboard extends Component {
   render() {
+    let questionTypes = [ 'jsQuestions', 'htmlQuestions', 'cssQuestions', 'dsaQuestions' ];
+    let rooms = questionTypes.map((questionType, i) => {
+      // return <div key={i}>{questionType}</div>
+      return <div className={`room-link-container-${i}`} key={i} ><Link key={i} to={`/gameroom${i}`} props={questionType}>{questionType}</Link></div>;
+    });
     return (
       <div className="dashboard">
         <h1>Dashboard</h1>
-        <Projects />
+        {rooms}
       </div>
     );
   }
