@@ -7,9 +7,9 @@ export const fetchQuestionsRequest = () => ({
 });
 
 export const FETCH_QUESTIONS_SUCCESS = 'FETCH_QUESTIONS_SUCCESS';
-export const fetchQuestionsSuccess = data => ({
+export const fetchQuestionsSuccess = questions => ({
   type: FETCH_QUESTIONS_SUCCESS,
-  data
+  questions
 });
 
 export const FETCH_QUESTIONS_ERROR = 'FETCH_QUESTIONS_ERROR';
@@ -18,10 +18,12 @@ export const fetchQuestionsError = error => ({
   error
 });
 
-export const fetchQuestions = () => (dispatch) => {
+export const fetchQuestions = questionType => dispatch => {
+  console.log('fetch attempted');
   dispatch(fetchQuestionsRequest());
-  return fetch (`${API_BASE_URL}/questions`, {
-    method: 'GET'
+  return fetch (`${API_BASE_URL}/gameroom/questions/${questionType}`, {
+    method: 'GET',
+    headers: {'content-type': 'application/json'}
   })
 
     .then(res => normalizeResponseErrors(res))

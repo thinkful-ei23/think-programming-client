@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import './game-room.css';
+import { fetchQuestions  } from '../actions/gameroom';
 
 class GameRoom extends Component {
   constructor(props) {
@@ -42,8 +43,12 @@ class GameRoom extends Component {
 
     this.socket.emit('FINISHED', { username: this.props.username });
   }
+componentDidMount() {
+    this.props.dispatch(fetchQuestions('jsQuestions'));
+}
+
 render() {
-  let winner = '';
+    let winner = '';
   if (this.state.meFinished) {
     winner = this.props.username;
   }
@@ -69,7 +74,8 @@ render() {
 }
 
 const mapStateToProps = state => ({
-    username: state.auth.currentUser.username
+    username: state.auth.currentUser.username,
+    questions: state.gameRoom.questions
 });
 
 export default (connect(mapStateToProps)(GameRoom));

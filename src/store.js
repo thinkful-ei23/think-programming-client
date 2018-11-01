@@ -4,9 +4,11 @@ import thunk from 'redux-thunk';
 
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import { loadAuthToken } from './local-storage';
+
 // Import Reducers
 import registrationReducer from './reducers/registration';
 import authReducer from './reducers/auth';
+import gameRoomReducer from './reducers/gameroom';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -14,7 +16,8 @@ const store = createStore(
     combineReducers({
         form: formReducer,
         registration: registrationReducer,
-        auth: authReducer
+        auth: authReducer,
+        gameRoom: gameRoomReducer
     }), composeWithDevTools(
     applyMiddleware(thunk))
 );
