@@ -50,10 +50,10 @@ export class App extends React.Component {
         <Route exact path="/aboutus" component={AboutUsPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-				<Route exact path="/gameroom0" component={GameRoom} />
-				<Route exact path="/gameroom1" component={GameRoom} />
-				<Route exact path="/gameroom2" component={GameRoom} />
-				<Route exact path="/gameroom3" component={GameRoom} />
+				<Route exact path="/gameroom0/:value" component={GameRoom} />
+				<Route exact path="/gameroom1/:value" component={GameRoom} />
+				<Route exact path="/gameroom2/:value" component={GameRoom} />
+				<Route exact path="/gameroom3/:value" component={GameRoom} />
       </div>
     );
   }

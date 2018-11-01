@@ -9,8 +9,7 @@ class Dashboard extends Component {
   render() {
     let questionTypes = [ 'jsQuestions', 'htmlQuestions', 'cssQuestions', 'dsaQuestions' ];
     let rooms = questionTypes.map((questionType, i) => {
-      // return <div key={i}>{questionType}</div>
-      return <div className={`room-link-container-${i}`} key={i} ><Link key={i} to={`/gameroom${i}`} props={questionType}>{questionType}</Link></div>;
+      return <div className={`room-link-container-${i}`} key={i} ><Link key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>{questionType}</Link></div>;
     });
     return (
       <div className="dashboard">
