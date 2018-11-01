@@ -1,5 +1,21 @@
+.header-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
 
 .header-bar-img {
   margin: 0.5em 1em;
   width:  40px;
+}
+
+.logout {
+  grid-column: 3;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.logout:hover {
+  background-color: #03C6F7;
 }
