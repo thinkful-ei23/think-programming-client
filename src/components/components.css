@@ -10,8 +10,7 @@ body {
  }
 
 
-.landing
-{
+.landing {
   display: grid;
   min-height: 100vh;
   margin: 0;
@@ -50,20 +49,16 @@ body {
   margin: auto;
 }
 
-
 .btn.aboutus {
   background: #fff;
-  color: #2A2A2C;
-  border: 1px solid #e6e6e6;
+  color: #333;
+  /* border: 1px solid #e7e7e7; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1em 1.5em;
 }
 
 .btn.aboutus:hover {
-  background: #1E5163;
+  background: rgb(0, 116, 158);
   transition: 0.3s;
   color: #fff;
-  border: none;
 }
-
-
