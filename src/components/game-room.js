@@ -59,15 +59,17 @@ render() {
     winner = 'Challenger';
   }
   let questionTitle = '';
+  let question = '';
   if (this.props.questions[0] !== undefined & this.props.questions[0] !== null) {
-  questionTitle = this.props.questions[0].title;  
+  questionTitle = this.props.questions[0].title;
+  question = this.props.questions[0].question;
   }
   return (
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
       <h2>GameRoom</h2>
       <h3>{questionTitle}</h3>
-      <p>Write a function called "isOldEnoughToVote". Given a number, in this case an age, 'isOldEnoughToVote' returns whether a person of this given age is old enough to legally vote in the United States. Notes:* The legal voting age in the United States is 18.</p>
+      <p>{question}</p>
       <div>{winner} Finished!</div>
       <h4>Player 1</h4>
       <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
