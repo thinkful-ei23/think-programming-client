@@ -1,8 +1,7 @@
 import {
-  FETCH_QUESTIONS_REQUEST,
-  FETCH_QUESTIONS_SUCCESS,
-  FETCH_QUESTIONS_ERROR
-} from '../actions/questions';
+  ENTER_GAMEROOM,
+  LEAVE_GAMEROOM
+} from '../actions/game-room';
 
 const initialState = {
   gameRoom0Count: 0,
@@ -13,14 +12,14 @@ const initialState = {
   error: null
 };
 
-export default function queestionsReducer(state = initialState, action) {
-  if (action.type === FETCH_QUESTIONS_REQUEST) {
+export default function gameRoomReducer(state = initialState, action) {
+  if (action.type === ENTER_GAMEROOM) {
+    let room = `gameRoom${action.roomNumber}Count`
     return Object.assign({}, state, {
-      loading: true,
-      error: null
+      room: 
     });
   }
-  else if (action.type === FETCH_QUESTIONS_SUCCESS) {
+  else if (action.type === LEAVE_GAMEROOM) {
     return Object.assign({}, state, {
       questions: action.questions,
       loading: false,
