@@ -8,7 +8,8 @@ import { loadAuthToken } from './local-storage';
 // Import Reducers
 import registrationReducer from './reducers/registration';
 import authReducer from './reducers/auth';
-import gameRoomReducer from './reducers/gameroom';
+import gameRoomReducer from './reducers/game-room';
+import questionsReducer from './reducers/questions';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -17,7 +18,8 @@ const store = createStore(
         form: formReducer,
         registration: registrationReducer,
         auth: authReducer,
-        gameRoom: gameRoomReducer
+        gameRoom: gameRoomReducer,
+        questions: questionsReducer
     }), composeWithDevTools(
     applyMiddleware(thunk))
 );
