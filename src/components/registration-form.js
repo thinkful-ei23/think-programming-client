@@ -1,5 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+import { Link, Redirect } from 'react-router-dom';
+
 import { registerUser } from '../actions/users';
 import { login } from '../actions/auth';
 import Input from './input';
@@ -30,20 +32,20 @@ export class RegistrationForm extends React.Component {
             name="username"
             validate={[required, nonEmpty, isTrimmed]}
         />
-          <label htmlFor="name">Name</label>
-          <Field
-              component={Input}
-              type="text"
-              name="name"
-              validate={[required, nonEmpty, isTrimmed]}
-          />
-          <label htmlFor="password">Password</label>
-            <Field
-                component={Input}
-                type="password"
-                name="password"
-                validate={[required, passwordLength, isTrimmed]}
-            />
+        <label htmlFor="name">Name</label>
+        <Field
+            component={Input}
+            type="text"
+            name="name"
+            validate={[required, nonEmpty, isTrimmed]}
+        />
+        <label htmlFor="password">Password</label>
+        <Field
+            component={Input}
+            type="password"
+            name="password"
+            validate={[required, passwordLength, isTrimmed]}
+        />
         <label htmlFor="passwordConfirm">Confirm password</label>
         <Field
           component={Input}
@@ -51,10 +53,12 @@ export class RegistrationForm extends React.Component {
           name="passwordConfirm"
           validate={[required, nonEmpty, matchesPassword]}
         />
+        <Link to="/" className="back">Back</Link>
         <button
           className='register-button'
           type="submit"
           disabled={this.props.pristine || this.props.submitting}
+          className="btn register"
         >
           Register
         </button>
