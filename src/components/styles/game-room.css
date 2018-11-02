@@ -1,7 +1,7 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 25% 30% 30%;
+  grid-template-rows: 5% 5% 5% 20% 30% 30%;
   height: 90vh;
 }
 
@@ -56,6 +56,11 @@
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 18px;
   margin-top: 0.4em;
+}
+
+.btn-new-room {
+  margin: 0, 2em;
+  padding: 0, 2em;
 }
 
 .btn-text-editor {

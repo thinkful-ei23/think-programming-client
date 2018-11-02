@@ -5,6 +5,8 @@ import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import { fetchQuestions  } from '../actions/questions';
 import { enterGameRoom } from '../actions/game-room';
+import requiresLogin from './requires-login';
+import './styles/game-room.css';
 
 import './styles/game-room.css';
 
@@ -21,10 +23,8 @@ class GameRoom extends Component {
         rooms: [],
         matched: false
       }
-      console.log(this.props.match.url.substring(10, this.props.match.url.length), 'match');
       this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
       this.socket.on('ROOMS', rooms => {
-        console.log(rooms)
         this.setState({rooms});
       })
       this.socket.on('NEW_ROOM', rooms => {
@@ -85,7 +85,6 @@ class GameRoom extends Component {
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
   sendSitOrStand = (props) => {
-    console.log(this.state)
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
@@ -123,7 +122,6 @@ render() {
   if (this.state.meSitting === true) {
     sitOrLeave = 'Stand';
   }
-  console.log('rooms', this.state.rooms)
 
   return (
     <div className="game-room">
@@ -131,21 +129,20 @@ render() {
         Back to Dashboard
       </Link>
       <h2>{this.props.match.params.value}</h2>
-      {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li>
+      {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
         {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
       </li>)}
-      <button onClick={e => this.createNewRoom()}>New Room</button>
+      <button onClick={e => this.createNewRoom()} className="btn-new-room">New Room</button>
       <div className="question-container">
         {this.state.matched && <h3>{questionTitle}</h3>}
         {this.state.matched && <p>{question}</p>}
-        <div>{winner} Finished!</div>
+        {this.state.matched && (this.state.meFinished === true || this.state.challengerFinished === true) && <div>{winner} Finished!</div>}
       </div>
       <div className="challenger-text-editor">
         <h4>Challenger's text editor</h4>
         <div className='challenger-typing-area'>
           {this.state.challengerTyping}
         </div>
-        <button type="button" className="btn-text-editor">Sit</button>
       </div>
       <div className="my-text-editor">
         <h4>My text editor</h4>
@@ -154,9 +151,9 @@ render() {
         <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
           {sitOrLeave}
         </button>
-        <button className='btn-finished' onClick={() => this.sendFinished()}>
+        {this.state.matched && <button className='btn-finished' onClick={() => this.sendFinished()}>
           Finished
-        </button>
+        </button>}
       </div>
     </div>
 		)
@@ -168,4 +165,4 @@ const mapStateToProps = state => ({
     questions: state.questions.questions
 });
 
-export default (connect(mapStateToProps)(GameRoom));
+export default requiresLogin()(connect(mapStateToProps)(GameRoom));
