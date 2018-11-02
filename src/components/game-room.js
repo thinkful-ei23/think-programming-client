@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
-// import './game-room.css';
 import { fetchQuestions  } from '../actions/questions';
 import { enterGameRoom } from '../actions/game-room';
 
@@ -16,12 +15,25 @@ class GameRoom extends Component {
         myTyping: '',
         challengerTyping: '',
         meFinished: false,
-        challengerFinished: false
+        challengerFinished: false,
+        rooms: [],
+        matched: false
       }
-      this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.location.pathname}`);
-  
+      console.log(this.props.match.url.substring(10, this.props.match.url.length), 'match');
+      this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
+      this.socket.on('ROOMS', rooms => {
+        console.log(rooms)
+        this.setState({rooms});
+      })
+      this.socket.on('NEW_ROOM', rooms => {
+        this.setState({rooms});
+      })
+      this.socket.on('MATCH', ({room, rooms}) => {
+        if(this.props.username === room.user1 || this.props.username === room.user2){
+          this.setState({matched: true, rooms});
+        }
+      })
       this.socket.on('TYPING', (incoming) => {
-        console.log(incoming)
         if (incoming.username === this.props.username) {
           this.setState({ myTyping: incoming.input });
         } else {
@@ -71,6 +83,7 @@ class GameRoom extends Component {
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
   sendSitOrStand = (props) => {
+    console.log(this.state)
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
@@ -83,7 +96,12 @@ class GameRoom extends Component {
 componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value));
 }
-
+createNewRoom(){
+  this.socket.emit('NEW_ROOM', this.props.username);
+}
+joinRoom(roomId){
+  this.socket.emit('JOIN_ROOM', {roomId, username: this.props.username});
+}
 render() {
     let winner = '';
   if (this.state.meFinished) {
@@ -107,8 +125,12 @@ render() {
     <div className="game-room">
       <Link to='/dashboard'>Dashboard</Link>
       <h2>GameRoom</h2>
-      <h3>{questionTitle}</h3>
-      <p>{question}</p>
+      {this.state.rooms.map((room, i) => <li>
+        {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
+      </li>)}
+      <button onClick={e => this.createNewRoom()}>New Room</button>
+      {this.state.matched && <h3>{questionTitle}</h3>}
+      {this.state.matched && <p>{question}</p>}
       <div>{winner} Finished!</div>
       <h4>Player 1</h4>
       <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
