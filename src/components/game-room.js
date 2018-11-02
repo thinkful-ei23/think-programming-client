@@ -6,6 +6,8 @@ import { API_BASE_URL_SOCKET } from '../config';
 import { fetchQuestions  } from '../actions/questions';
 import { enterGameRoom } from '../actions/game-room';
 
+import './styles/game-room.css';
+
 class GameRoom extends Component {
   constructor(props) {
     super(props);
@@ -122,6 +124,7 @@ render() {
     sitOrLeave = 'Stand';
   }
   console.log('rooms', this.state.rooms)
+
   return (
     <div className="game-room">
       <Link to='/dashboard' className="dashboard-link">
