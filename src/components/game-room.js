@@ -83,6 +83,7 @@ class GameRoom extends Component {
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
   sendSitOrStand = (props) => {
+    console.log('triggered')
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
@@ -126,14 +127,14 @@ render() {
         Back to Dashboard
       </Link>
       <h2>{this.props.match.params.value}</h2>
-      {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
+      {/* {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
         {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
-      </li>)}
-      <button onClick={e => this.createNewRoom()}>New Room</button>
+      </li>)} */}
+      {/* <button onClick={e => this.createNewRoom()}>New Room</button> */}
       <div className="question-container">
-        {this.state.matched && <h3>{questionTitle}</h3>}
-        {this.state.matched && <p>{question}</p>}
-        {this.state.matched && (this.state.meFinished === true || this.state.challengerFinished === true) && <div>{winner} Finished!</div>}
+        {this.state.players === 2 && <h3>{questionTitle}</h3>}
+        {this.state.players === 2 && <p>{question}</p>}
+        {this.state.players === 2 && (this.state.meFinished === true || this.state.challengerFinished === true) && <div>{winner} Finished!</div>}
       </div>
       <div className="challenger-text-editor">
         <h4>Challenger's text editor</h4>
