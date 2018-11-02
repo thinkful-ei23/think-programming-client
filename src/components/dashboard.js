@@ -9,11 +9,9 @@ class Dashboard extends Component {
     let questionTypes = [ 'jsQuestions', 'htmlQuestions', 'cssQuestions', 'dsaQuestions' ];
     let rooms = questionTypes.map((questionType, i) => {
       return (
-        <div className={`room-link-container-${i}`} key={i}>
-          <Link key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>
-            {questionType}
-          </Link>
-        </div>
+        <Link className={`room-link-container-${i}`} key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>
+          {questionType}
+        </Link>
       );
     });
     return (
