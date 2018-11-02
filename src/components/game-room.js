@@ -121,13 +121,14 @@ render() {
   if (this.state.meSitting === true) {
     sitOrLeave = 'Stand';
   }
+  console.log('rooms', this.state.rooms)
   return (
     <div className="game-room">
       <Link to='/dashboard' className="dashboard-link">
         Back to Dashboard
       </Link>
       <h2>{this.props.match.params.value}</h2>
-      {this.state.rooms.map((room, i) => <li>
+      {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li>
         {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
       </li>)}
       <button onClick={e => this.createNewRoom()}>New Room</button>
