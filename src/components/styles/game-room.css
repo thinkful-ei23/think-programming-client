@@ -1,5 +1,136 @@
+.game-room {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 5% 5% 25% 30% 30%;
+  height: 90vh;
+}
+
+.game-room h2, h4 {
+  margin: 0;
+  font-weight: 500;
+}
+
+.game-room h3 {
+  margin: 0.6em auto;
+}
+
+.dashboard-link { 
+  text-decoration: none;
+}
+
+.question-container {
+  text-align: center;
+  margin: 0 1em;
+}
+
+.question-container p {
+  text-align: left;
+  margin: 0 0.5em 1em 0.5em;
+}
+
+.challenger-text-editor {
+  margin: 0.5em;
+}
+
 .challenger-typing-area {
-  height: 100px;
-  width: 200px;
-  border: 1px solid black;
+  height: 60%;
+  /* width: 100%; */
+  border: 1px solid #fff;
+  background-color: #34495E;
+  color: #fff;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  margin-top: 0.4em;
+}
+
+.my-text-editor {
+  margin: 0.5em;
+}
+
+.my-typing-area {
+  height: 60%;
+  width: 100%;
+  border: 1px solid #fff;
+  background-color: #34495E;
+  color: #fff;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 18px;
+  margin-top: 0.4em;
+}
+
+.btn-text-editor {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+  font-weight: 800;
+  display: inline-block;
+  background: #fff;
+  color: #686F7A;
+  text-decoration: none;
+  border: 1px solid #686F7A;
+  padding: 0.7em 3em;
+  margin: 0.5em;
+}
+
+.btn-text-editor:hover {
+  color: #000;
+  border: 1px solid #000;
+
+}
+
+.btn-finished {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+  font-weight: 800;
+  display: inline-block;
+  background: #EC5252;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.7em 3em;
+  margin: 0.5em;
+}
+
+.finished-button:hover {
+  background: rgb(161, 52, 52);
+}
+
+
+@media (min-width: 1025px) {
+  .game-room {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 5% 5% 30% 60%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    grid-template-areas: 
+    "a a"
+    "b b"
+    "c c"
+    "d e";
+  }
+
+  .dashboard-link {
+    grid-area: a;
+  }
+
+  .game-room h2 {
+    grid-area: b;
+  }
+
+  .question-container {
+    grid-area: c;
+  }
+
+  .question-container > p {
+    margin: 4em;
+  }
+
+  .challenger-text-editor {
+    grid-area: d;  
+  }
+
+  .my-text-editor {
+    grid-area: e;
+  }
+
 }

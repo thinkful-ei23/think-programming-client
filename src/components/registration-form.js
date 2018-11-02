@@ -55,7 +55,6 @@ export class RegistrationForm extends React.Component {
         />
         <Link to="/" className="back">Back</Link>
         <button
-          className='register-button'
           type="submit"
           disabled={this.props.pristine || this.props.submitting}
           className="btn register"
