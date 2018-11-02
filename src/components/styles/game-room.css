@@ -1,7 +1,7 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 5% 20% 30% 30%;
+  grid-template-rows: 5% 5% 25% 30% 30%;
   height: 90vh;
 }
 
@@ -58,10 +58,13 @@
   margin-top: 0.4em;
 }
 
-.btn-new-room {
-  margin: 0, 2em;
-  padding: 0, 2em;
-}
+/* .btn-new-room {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+  font-weight: 800;
+  background: #fff;
+  color: #686F7A;
+} */
 
 .btn-text-editor {
   font-family: 'Montserrat', sans-serif;
@@ -110,6 +113,7 @@
     grid-template-areas: 
     "a a"
     "b b"
+    /* "f f" */
     "c c"
     "d e";
   }
@@ -121,6 +125,11 @@
   .game-room h2 {
     grid-area: b;
   }
+  
+  /* .btn-new-room {
+    grid-area: f;
+    margin: 0 1em;
+  } */
 
   .question-container {
     grid-area: c;
