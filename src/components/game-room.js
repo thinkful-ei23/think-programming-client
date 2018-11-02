@@ -155,7 +155,7 @@ class GameRoom extends Component {
           <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
             {sitOrLeave}
           </button>
-          {this.state.matched && <button className='btn-finished' onClick={() => this.sendFinished()}>
+          {this.state.players === 2 && <button className='btn-finished' onClick={() => this.sendFinished()}>
             Finished
           </button>}
         </div>
