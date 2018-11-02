@@ -6,7 +6,6 @@ import { API_BASE_URL_SOCKET } from '../config';
 import { fetchQuestions  } from '../actions/questions';
 import { enterGameRoom } from '../actions/game-room';
 
-import './styles/game-room.css';
 class GameRoom extends Component {
   constructor(props) {
     super(props);
@@ -16,54 +15,69 @@ class GameRoom extends Component {
         myTyping: '',
         challengerTyping: '',
         meFinished: false,
-        challengerFinished: false
+        challengerFinished: false,
+        rooms: [],
+        matched: false
       }
-	this.socket = io(API_BASE_URL_SOCKET);
-  this.socket.on('TYPING', (incoming) => {
-    if (incoming.username === this.props.username) {
-      this.setState({ myTyping: incoming.input });
-    } else {
-      this.setState({ challengerTyping: incoming.input })
-    }
-  });
-  this.socket.on('FINISHED', (incoming) => {
-    if (incoming.username === this.props.username) {
-      this.setState({
-        meFinished: true,
-        challengerFinished: false
-      });
-    } else {
-      this.setState({
-        meFinished: false,
-        challengerFinished: true })
-    }
-  });
-  this.socket.on('SIT', (incoming) => {
-    let currentPlayers = this.state.players;
-    if (incoming.username === this.props.username) {
-      this.setState({
-        meSitting: true,
-        players: currentPlayers += 1
-      });
-    } else {
-      this.setState({
-        players: currentPlayers += 1 
+      console.log(this.props.match.url.substring(10, this.props.match.url.length), 'match');
+      this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
+      this.socket.on('ROOMS', rooms => {
+        console.log(rooms)
+        this.setState({rooms});
       })
-    }
-  });
-  this.socket.on('LEAVE', (incoming) => {
-    let currentPlayers = this.state.players;
-    if (incoming.username === this.props.username) {
-      this.setState({
-        meSitting: false,
-        players: currentPlayers -= 1
-      });
-    } else {
-      this.setState({
-        players: currentPlayers -= 1 
+      this.socket.on('NEW_ROOM', rooms => {
+        this.setState({rooms});
       })
-    }
-  });
+      this.socket.on('MATCH', ({room, rooms}) => {
+        if(this.props.username === room.user1 || this.props.username === room.user2){
+          this.setState({matched: true, rooms});
+        }
+      })
+      this.socket.on('TYPING', (incoming) => {
+        if (incoming.username === this.props.username) {
+          this.setState({ myTyping: incoming.input });
+        } else {
+          this.setState({ challengerTyping: incoming.input })
+        }
+      });
+      this.socket.on('FINISHED', (incoming) => {
+        if (incoming.username === this.props.username) {
+          this.setState({
+            meFinished: true,
+            challengerFinished: false
+          });
+        } else {
+          this.setState({
+            meFinished: false,
+            challengerFinished: true })
+        }
+      });
+      this.socket.on('SIT', (incoming) => {
+        let currentPlayers = this.state.players;
+        if (incoming.username === this.props.username) {
+          this.setState({
+            meSitting: true,
+            players: currentPlayers += 1
+          });
+        } else {
+          this.setState({
+            players: currentPlayers += 1 
+          })
+        }
+      });
+      this.socket.on('STAND', (incoming) => {
+        let currentPlayers = this.state.players;
+        if (incoming.username === this.props.username) {
+          this.setState({
+            meSitting: false,
+            players: currentPlayers -= 1
+          });
+        } else {
+          this.setState({
+            players: currentPlayers -= 1 
+          })
+        }
+      });
   }
   sendMessage(e){
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
@@ -73,7 +87,7 @@ class GameRoom extends Component {
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
-      this.socket.emit('LEAVE', { username: this.props.username })
+      this.socket.emit('STAND', { username: this.props.username })
     }
   }
   sendFinished() {
@@ -82,7 +96,12 @@ class GameRoom extends Component {
 componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value));
 }
-
+createNewRoom(){
+  this.socket.emit('NEW_ROOM', this.props.username);
+}
+joinRoom(roomId){
+  this.socket.emit('JOIN_ROOM', {roomId, username: this.props.username});
+}
 render() {
     let winner = '';
   if (this.state.meFinished) {
@@ -104,18 +123,19 @@ render() {
   }
   return (
     <div className="game-room">
-
       <Link to='/dashboard' className="dashboard-link">
         Back to Dashboard
       </Link>
       <h2>{this.props.match.params.value}</h2>
-
+      {this.state.rooms.map((room, i) => <li>
+        {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
+      </li>)}
+      <button onClick={e => this.createNewRoom()}>New Room</button>
       <div className="question-container">
-        <h3>{questionTitle}</h3>
-        <p>{question}</p>
+        {this.state.matched && <h3>{questionTitle}</h3>}
+        {this.state.matched && <p>{question}</p>}
         <div>{winner} Finished!</div>
       </div>
-        
       <div className="challenger-text-editor">
         <h4>Challenger's text editor</h4>
         <div className='challenger-typing-area'>
@@ -123,7 +143,6 @@ render() {
         </div>
         <button type="button" className="btn-text-editor">Sit</button>
       </div>
-      
       <div className="my-text-editor">
         <h4>My text editor</h4>
         <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
@@ -135,7 +154,6 @@ render() {
           Finished
         </button>
       </div>
-    
     </div>
 		)
 	}
