@@ -34,8 +34,26 @@ body {
   border-radius: 30px;
 }
 
+.btn-dark {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  display: inline-block;
+  background: #1E5163;
+  color: white;
+  text-decoration: none;
+  padding: 0.8em 2em;
+  margin: 0.5em;
+  border-radius: 30px;
+}
+
 .btn:hover {
   background: #1E5163;
+  transition: 0.3s;
+}
+
+.btn-dark:hover {
+  background: #fff;
+  color: #555361;
   transition: 0.3s;
 }
 

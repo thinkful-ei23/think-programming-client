@@ -123,21 +123,37 @@ render() {
   }
   return (
     <div className="game-room">
-      <Link to='/dashboard'>Dashboard</Link>
-      <h2>GameRoom</h2>
+      <Link to='/dashboard' className="dashboard-link">
+        Back to Dashboard
+      </Link>
+      <h2>{this.props.match.params.value}</h2>
       {this.state.rooms.map((room, i) => <li>
         {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
       </li>)}
       <button onClick={e => this.createNewRoom()}>New Room</button>
-      {this.state.matched && <h3>{questionTitle}</h3>}
-      {this.state.matched && <p>{question}</p>}
-      <div>{winner} Finished!</div>
-      <h4>Player 1</h4>
-      <div className='challenger-typing-area'>{this.state.challengerTyping}</div>
-      <h4>Player 2</h4>
-      <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} rows="4" cols="50"/>
-      <button type="button" onClick={this.sendSitOrStand}>{sitOrLeave}</button>
-      <button className='finished-button' onClick={() => this.sendFinished()}>Finished</button>
+      <div className="question-container">
+        {this.state.matched && <h3>{questionTitle}</h3>}
+        {this.state.matched && <p>{question}</p>}
+        <div>{winner} Finished!</div>
+      </div>
+      <div className="challenger-text-editor">
+        <h4>Challenger's text editor</h4>
+        <div className='challenger-typing-area'>
+          {this.state.challengerTyping}
+        </div>
+        <button type="button" className="btn-text-editor">Sit</button>
+      </div>
+      <div className="my-text-editor">
+        <h4>My text editor</h4>
+        <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
+
+        <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
+          {sitOrLeave}
+        </button>
+        <button className='btn-finished' onClick={() => this.sendFinished()}>
+          Finished
+        </button>
+      </div>
     </div>
 		)
 	}
