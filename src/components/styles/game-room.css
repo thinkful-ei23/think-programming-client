@@ -102,7 +102,7 @@
 }
 
 
-@media (min-width: 1025px) {
+@media (min-width: 768px) {
   .game-room {
     display: grid;
     grid-template-columns: 1fr 1fr;
