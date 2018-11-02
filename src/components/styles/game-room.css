@@ -58,6 +58,14 @@
   margin-top: 0.4em;
 }
 
+/* .btn-new-room {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9em;
+  font-weight: 800;
+  background: #fff;
+  color: #686F7A;
+} */
+
 .btn-text-editor {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.9em;
@@ -105,6 +113,7 @@
     grid-template-areas: 
     "a a"
     "b b"
+    /* "f f" */
     "c c"
     "d e";
   }
@@ -116,6 +125,11 @@
   .game-room h2 {
     grid-area: b;
   }
+  
+  /* .btn-new-room {
+    grid-area: f;
+    margin: 0 1em;
+  } */
 
   .question-container {
     grid-area: c;

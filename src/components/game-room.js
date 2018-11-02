@@ -8,6 +8,8 @@ import { enterGameRoom } from '../actions/game-room';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 
+import './styles/game-room.css';
+
 class GameRoom extends Component {
   constructor(props) {
     super(props);
@@ -93,69 +95,73 @@ class GameRoom extends Component {
   sendFinished() {
     this.socket.emit('FINISHED', { username: this.props.username });
   }
-componentDidMount() {
+  componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value));
-}
-createNewRoom(){
-  this.socket.emit('NEW_ROOM', this.props.username);
-}
-joinRoom(roomId){
-  this.socket.emit('JOIN_ROOM', {roomId, username: this.props.username});
-}
-render() {
-    let winner = '';
-  if (this.state.meFinished) {
-    winner = this.props.username;
   }
-  if (this.state.challengerFinished) {
+  createNewRoom(){
+    this.socket.emit('NEW_ROOM', this.props.username);
+  }
+  joinRoom(roomId){
+    this.socket.emit('JOIN_ROOM', {roomId, username: this.props.username});
+  }
 
-    winner = 'Challenger';
-  }
-  let questionTitle = '';
-  let question = '';
-  if (this.props.questions[0] !== undefined & this.props.questions[0] !== null) {
-  questionTitle = this.props.questions[0].title;
-  question = this.props.questions[0].question;
-  }
-  let sitOrLeave = 'Sit';
-  if (this.state.meSitting === true) {
-    sitOrLeave = 'Stand';
-  }
-  return (
-    <div className="game-room">
-      <Link to='/dashboard' className="dashboard-link">
-        Back to Dashboard
-      </Link>
-      <h2>{this.props.match.params.value}</h2>
-      {/* {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
-        {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
-      </li>)} */}
-      {/* <button onClick={e => this.createNewRoom()}>New Room</button> */}
-      <div className="question-container">
-        {this.state.players === 2 && <h3>{questionTitle}</h3>}
-        {this.state.players === 2 && <p>{question}</p>}
-        {this.state.players === 2 && (this.state.meFinished === true || this.state.challengerFinished === true) && <div>{winner} Finished!</div>}
-      </div>
-      <div className="challenger-text-editor">
-        <h4>Challenger's text editor</h4>
-        <div className='challenger-typing-area'>
-          {this.state.challengerTyping}
+  render() {
+    let winner = '';
+    if (this.state.meFinished) {
+      winner = this.props.username;
+    }
+    if (this.state.challengerFinished) {
+
+      winner = 'Challenger';
+    }
+    let questionTitle = '';
+    let question = '';
+    if (this.props.questions[0] !== undefined & this.props.questions[0] !== null) {
+    questionTitle = this.props.questions[0].title;
+    question = this.props.questions[0].question;
+    }
+    let sitOrLeave = 'Sit';
+    if (this.state.meSitting === true) {
+      sitOrLeave = 'Stand';
+    }
+
+    return (
+      <div className="game-room">
+        <Link to='/dashboard' className="dashboard-link">
+          Back to Dashboard
+        </Link>
+        <h2>{this.props.match.params.value}</h2>
+        {/* {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
+          {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
+        </li>)}
+        <button onClick={e => this.createNewRoom()} className="btn-new-room">New Room</button>
+        </li>)} */}
+        {/* <button onClick={e => this.createNewRoom()}>New Room</button> */}
+        <div className="question-container">
+          {this.state.players === 2 && <h3>{questionTitle}</h3>}
+          {this.state.players === 2 && <p>{question}</p>}
+          {this.state.players === 2 && (this.state.meFinished === true || this.state.challengerFinished === true) && <div>{winner} Finished!</div>}
+        </div>
+        <div className="challenger-text-editor">
+          <h4>Challenger's text editor</h4>
+          <div className='challenger-typing-area'>
+            {this.state.challengerTyping}
+          </div>
+        </div>
+        <div className="my-text-editor">
+          <h4>My text editor</h4>
+          <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
+
+          <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
+            {sitOrLeave}
+          </button>
+          {this.state.matched && <button className='btn-finished' onClick={() => this.sendFinished()}>
+            Finished
+          </button>}
         </div>
       </div>
-      <div className="my-text-editor">
-        <h4>My text editor</h4>
-        <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
-
-        <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
-          {sitOrLeave}
-        </button>
-        {this.state.matched && <button className='btn-finished' onClick={() => this.sendFinished()}>
-          Finished
-        </button>}
-      </div>
-    </div>
-		)
-	}
+    )
+  }
 }
 
 const mapStateToProps = state => ({
