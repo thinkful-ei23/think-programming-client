@@ -1,12 +1,21 @@
 .dashboard {
   display: grid;
   grid-template-columns: repeat(3);
-  grid-auto-rows: minmax(100px, auto);
+  grid-auto-rows: minmax(50px, auto);
+
 }
 
-.dashboard h2 {
-  margin: auto;
+.dashboard > h2 {
+  margin: auto 0;
   padding: auto;
+  text-align: center;
+
+}
+
+.dashboard > h4 {
+  margin: auto 0;
+  padding: 0 2em;
+  text-align: right;
 }
 
 .gamerooms {
@@ -35,5 +44,5 @@
 .room-link-container-2:hover,
 .room-link-container-3:hover {
   background-color: #1AD6FB;
-  transition: 0.5s;
+  transition: 1s;
 }
