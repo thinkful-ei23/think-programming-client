@@ -1,5 +1,5 @@
 # Think Programming - CLIENT
-
+![Think Programing Logo](https://github.com/thinkful-ei23/think-programming-client/blob/master/src/components/images/logo/TP-title-logo.jpg?raw=true)
 [Demo Think Programming Here](https://think-programming-client.herokuapp.com/)
 
 [Think Programming Client Github](https://github.com/thinkful-ei23/think-programming-server)
