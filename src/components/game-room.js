@@ -4,10 +4,7 @@ import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import { fetchQuestions  } from '../actions/questions';
-import { enterGameRoom } from '../actions/game-room';
 import requiresLogin from './requires-login';
-import './styles/game-room.css';
-
 import './styles/game-room.css';
 
 class GameRoom extends Component {
@@ -24,17 +21,6 @@ class GameRoom extends Component {
         matched: false
       }
       this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
-      this.socket.on('ROOMS', rooms => {
-        this.setState({rooms});
-      })
-      this.socket.on('NEW_ROOM', rooms => {
-        this.setState({rooms});
-      })
-      this.socket.on('MATCH', ({room, rooms}) => {
-        if(this.props.username === room.user1 || this.props.username === room.user2){
-          this.setState({matched: true, rooms});
-        }
-      })
       this.socket.on('TYPING', (incoming) => {
         if (incoming.username === this.props.username) {
           this.setState({ myTyping: incoming.input });
@@ -85,7 +71,6 @@ class GameRoom extends Component {
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   }
   sendSitOrStand = (props) => {
-    console.log('triggered')
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
@@ -98,13 +83,6 @@ class GameRoom extends Component {
   componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value));
   }
-  createNewRoom(){
-    this.socket.emit('NEW_ROOM', this.props.username);
-  }
-  joinRoom(roomId){
-    this.socket.emit('JOIN_ROOM', {roomId, username: this.props.username});
-  }
-
   render() {
     let winner = '';
     if (this.state.meFinished) {
@@ -131,12 +109,6 @@ class GameRoom extends Component {
           Back to Dashboard
         </Link>
         <h2>{this.props.match.params.value}</h2>
-        {/* {this.state.rooms !== undefined && this.state.rooms.map((room, i) => <li key={i}>
-          {room.id} | {room.user1} <button key={i} onClick={e => this.joinRoom(room.id)}>Join</button>
-        </li>)}
-        <button onClick={e => this.createNewRoom()} className="btn-new-room">New Room</button>
-        </li>)} */}
-        {/* <button onClick={e => this.createNewRoom()}>New Room</button> */}
         <div className="question-container">
           {this.state.players === 2 && <h3>{questionTitle}</h3>}
           {this.state.players === 2 && <p>{question}</p>}
