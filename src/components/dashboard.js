@@ -38,7 +38,7 @@ class Dashboard extends Component {
       coders = 'Coders';
     }
     return (
-      <div className="dashboard">
+      <div className="dashboard fade">
         <h2>Challenge Rooms</h2>
         <h4>{this.state.totalUserCount} {coders} Online</h4>
         <div className="gamerooms">

@@ -18,5 +18,6 @@
 }
 
 .logout:hover {
-  background-color: #03C6F7;
+  background-color: #dddddd;
+  transition: 1s;
 }
