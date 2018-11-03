@@ -4,7 +4,7 @@
 
 [Demo Here](https://think-programming-client.herokuapp.com/)
 
-[Think Programming Server Github](https://github.com/thinkful-ei23/think-programming-server)
+[Github Server](https://github.com/thinkful-ei23/think-programming-server)
 
 ## What Are We
 A spot to challenge another coding enthusiest in a language or programing category to come up with the fastest and cleanest correct code.  When two players are ready, a question appears and a text area becomes activated allowing you to type your answer.  But watch out becuase you can see each others code as it being written!  
