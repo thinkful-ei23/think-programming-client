@@ -6,11 +6,11 @@ import './styles/dashboard.css';
 
 class Dashboard extends Component {
   render() {
-    let questionTypes = [ 'jsQuestions', 'htmlQuestions', 'cssQuestions', 'dsaQuestions' ];
-    let rooms = questionTypes.map((questionType, i) => {
+    let questionTypes = [ ['jsQuestions','JavaScript'], ['htmlQuestions', 'HTML'], ['cssQuestions', 'CSS'], ['dsaQuestions', 'Data Structures & Algorithms' ]];
+    let rooms = questionTypes.map((questionArray, i) => {
       return (
-        <Link className={`room-link-container-${i}`} key={i} to={`/gameroom${i}/${questionType}`} params={{questionType}}>
-          {questionType}
+        <Link className={`room-link-container-${i}`} key={i} to={`/gameroom${i}/${questionArray[0]}`}>
+          {questionArray[1]}
         </Link>
       );
     });
