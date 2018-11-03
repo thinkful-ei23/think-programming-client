@@ -19,7 +19,6 @@ export const fetchQuestionsError = error => ({
 });
 
 export const fetchQuestions = questionType => dispatch => {
-  console.log('fetch attempted');
   dispatch(fetchQuestionsRequest());
   return fetch (`${API_BASE_URL}/gameroom/questions/${questionType}`, {
     method: 'GET',
