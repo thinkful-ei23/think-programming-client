@@ -1,9 +1,37 @@
 .about-us {
   display: grid;
   grid-template-columns: repeat(3);
-  grid-auto-rows: minmax(100px, auto);
-  min-height: 100vh;
-  margin: 0;
+  grid-auto-rows: minmax(150px, auto);
+  margin: 0 1em;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
+}
+
+.about-us-header > h2{
+  border: 10px solid #2BD9FC;
+  padding: 0.5em 1em;
+}
+
+.about-us-content {
+  width: 70%;
+  margin: auto;
+}
+
+.about-us-content > p {
+  margin: auto;
+  text-align: left;
+}
+
+.about-us > .back {
+  margin: auto;
+  background: #fff;
+  color: #666;
+  border: 1px solid #666;
+  border-radius: 0;
+}
+
+.about-us > .back:hover  {
+  color: #000;
+  border: 1px solid #000;
+  transition: 1s;
 }
