@@ -51,7 +51,7 @@ When done click finish to lock the challengers text area and make them check you
 
 ### Developers
 
-| <img src="https://avatars0.githubusercontent.com/u/33415107?s=400&v=4" width="100px;"/> | <img src="https://avatars3.githubusercontent.com/u/39195676?s=400&v=4" width="100px;"/> | <img src="https://avatars1.githubusercontent.com/u/38868844?s=400&v=4" width="100px;"/> | <img src="https://avatars1.githubusercontent.com/u/38868844?s=400&v=4" width="100px;"/> |
+| <img src="https://avatars0.githubusercontent.com/u/33415107?s=400&v=4" width="100px;"/> | <img src="https://avatars3.githubusercontent.com/u/39195676?s=400&v=4" width="100px;"/> | <img src="https://avatars1.githubusercontent.com/u/38868844?s=400&v=4" width="100px;"/> | <img src="https://avatars0.githubusercontent.com/u/32793713?s=400&v=4" width="100px;"/> |
 | :----: | :----: | :----: | :----: |
 | [Timothy Dao](https://github.com/JacobMacInnis) | [Jacob MacInnis](https://github.com/JacobMacInnis) | [Jeff Maxwell](https://github.com/maxjeffwell) | [Jon Sung](https://github.com/jonsung89) |
 
