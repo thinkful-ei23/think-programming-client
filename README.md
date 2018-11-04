@@ -50,10 +50,9 @@ When done click finish to lock the challengers text area and make them check you
 * Heroku
 
 ### Developers
-* Timothy Dao
-* Jacob MacInnis
-* Jeff Maxwell
-* Jon Sung
-<iframe src="http://githubbadge.appspot.com/timster788" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe> <iframe src="http://githubbadge.appspot.com/jacobmacinnis" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
-<iframe src="http://githubbadge.appspot.com/maxjeffwell" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
-<iframe src="http://githubbadge.appspot.com/jonsung89" style="border: 0;height: 142px;width: 200px;overflow: hidden;" frameBorder="0"></iframe>
+
+| [<img src="https://avatars0.githubusercontent.com/u/33415107?s=400&v=4" width="100px;"/><br /><sub><b>Timothy Dao</b></sub>](https://github.com/timster788)<br /> | [<img src="https://avatars3.githubusercontent.com/u/39195676?s=400&v=4" width="100px;"/><br /><sub><b>Jacob MacInnis</b></sub>](https://github.com/JacobMacInnis)<br /> | [<img src="https://avatars1.githubusercontent.com/u/38868844?s=400&v=4" width="100px;"/><br /><sub><b>Jeff Maxwell</b></sub>](https://github.com/maxjeffwell)<br /> | [<img src="https://avatars0.githubusercontent.com/u/32793713?s=400&v=4" width="100px;"/><br /><sub><b>Jon Sung</b></sub>](https://github.com/jonsung89)<br />
+
+
+
+
