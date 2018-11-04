@@ -11,9 +11,9 @@
 
 <p align="center">
 	<strong>
-		<a href="https://github.com/thinkful-ei23/think-programming-server">GitHub Server</a>
+		<a href="https://github.com/thinkful-ei23/think-programming-server" target="_blank">GitHub Server</a>
 		•
-		<a href="https://think-programming-client.herokuapp.com/">Demo Here</a>
+		<a href="https://think-programming-client.herokuapp.com/" target="_blank">Demo Here</a>
     </strong>
 </p>
 
