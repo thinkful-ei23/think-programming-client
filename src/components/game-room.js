@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import io from "socket.io-client";
 import { API_BASE_URL_SOCKET } from '../config';
 import { fetchQuestions  } from '../actions/questions';
+import { inGameRoom } from '../actions/game-room';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 
@@ -48,7 +49,7 @@ class GameRoom extends Component {
           this.setState({
             meSitting: true
           });
-        } 
+        }; 
       });
 
       this.socket.on('STAND', incoming => {
@@ -107,8 +108,14 @@ class GameRoom extends Component {
     this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
     this.getPlayerArray();
   };
+  componentDidUpdate() {
+    this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
+  }
   componentWillUnmount() {
-    this.leaveGame();
+    return Promise.all([this.leaveGame()])
+    .then(() => {
+      this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
+    });
   };
 // Socket Methods
   getPlayerArray() {
