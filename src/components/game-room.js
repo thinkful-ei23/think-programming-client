@@ -94,7 +94,7 @@ class GameRoom extends Component {
       this.socket.emit('STAND', { username: this.props.username });
     };
   };
-  Finished() {
+  sendFinished() {
     this.socket.emit('FINISHED', { username: this.props.username });
   };
   // HERE IS THE RENDER METHOD
@@ -143,7 +143,7 @@ class GameRoom extends Component {
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>
-          <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
+          <textarea className='my-typing-area' type="text" onChange={e => this.sendTyping(e)} placeholder="Type your code here"/>
 
           <button type="button" onClick={this.sitStand} className="btn-text-editor">
             {sitOrLeave}
