@@ -1,7 +1,7 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 25% 5% 20% 25%;
+  grid-template-rows: 5% 5% 25% 14% 20% 25%;
   height: 100vh;
 }
 
@@ -30,15 +30,65 @@
 
 .winner {
   padding: 0 0.5em;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .winner p {
+  grid-column: 1;
   text-align: center;
-  background-color: #2BD9FC;
+  font-size: 1.3em;
+  font-weight: bold;
   margin: auto;
   padding: auto;
   text-transform: uppercase;
+  color: #34495E
 }
+
+.verify-buttons {
+  grid-column: 2;
+  margin: auto;
+  text-align: right;
+}
+
+.approve-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  font-weight: 800;
+  display: inline-block;
+  background: #EC5252;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.5em 1.8em;
+  margin: 0.25em 0.5em;
+  border-radius: 5px;
+}
+
+.approve-button:hover {
+  background: rgb(161, 52, 52);
+  transition: 1s;
+}
+
+.deny-button {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  font-weight: 800;
+  display: inline-block;
+  background: #fff;
+  color: #686F7A;
+  text-decoration: none;
+  border: 1px solid #686F7A;
+  padding: 0.5em 1.5em;
+  margin: 0.25em 0.5em;
+  border-radius: 5px;
+}
+
+.deny-button:hover {
+  color: #000;
+  border: 1px solid #000;
+  transition: 1s;
+}
+
 
 .challenger-text-editor {
   margin: 0.5em;
@@ -87,7 +137,6 @@
 .btn-text-editor:hover {
   color: #000;
   border: 1px solid #000;
-
 }
 
 .btn-finished {
@@ -102,7 +151,7 @@
   margin: 0.5em;
 }
 
-.finished-button:hover {
+.btn-finished:hover {
   background: rgb(161, 52, 52);
 }
 
@@ -111,7 +160,7 @@
   .game-room {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 5% 5% 30% 5% 60%;
+    grid-template-rows: 5% 5% 30% 10% 60%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
@@ -130,11 +179,6 @@
   .game-room h2 {
     grid-area: b;
   }
-  
-  /* .btn-new-room {
-    grid-area: f;
-    margin: 0 1em;
-  } */
 
   .question-container {
     grid-area: c;
@@ -147,6 +191,16 @@
   .winner {
     grid-area: f;
     margin: 0 0.5em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .winner p {
+    grid-column: 2;
+  }
+
+  .winner .verify-buttons {
+    grid-column: 3;
   }
 
   .challenger-text-editor {
