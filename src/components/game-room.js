@@ -8,6 +8,7 @@ import requiresLogin from './requires-login';
 import './styles/game-room.css';
 
 class GameRoom extends Component {
+  // HERE IS THE CONSTRUCTOR
   constructor(props) {
     super(props);
       this.state = {
@@ -18,6 +19,7 @@ class GameRoom extends Component {
         meFinished: false,
         challengerFinished: false,
       };
+      
       this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
 
       this.socket.on('TYPING', incoming => {
@@ -27,12 +29,15 @@ class GameRoom extends Component {
           this.setState({ challengerTyping: incoming.input });
         };
       });
+
       this.socket.on('PLAYERS', playerArray => {
         this.setState({ playerArray });
       });
+
       this.socket.on('LEAVE_GAME', playerArray => {
         this.setState({ playerArray });
       });
+
       this.socket.on('SIT', incoming => {
         if ( incoming.username === this.props.username ) {
           this.setState({
@@ -40,6 +45,7 @@ class GameRoom extends Component {
           });
         } 
       });
+
       this.socket.on('STAND', incoming => {
         if (incoming.username === this.props.username) {
           this.setState({
@@ -47,6 +53,7 @@ class GameRoom extends Component {
           });
         };
       });
+
       this.socket.on('FINISHED', incoming => {
         if (incoming.username === this.props.username) {
           this.setState({
@@ -60,34 +67,39 @@ class GameRoom extends Component {
         };
       });
   };
-  getPlayerArray() {
-    this.socket.emit('PLAYERS', { username: this.props.username });
-  };
-  sendMessage(e){
-    this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
-  };
-  sendSitOrStand = (props) => {
-    if (this.state.meSitting === false) {
-      this.socket.emit('SIT', { username: this.props.username });
-    } else {
-      this.socket.emit('STAND', { username: this.props.username });
-    };
-  };
-  sendFinished() {
-    this.socket.emit('FINISHED', { username: this.props.username });
-  };
-  leaveGame() {
-    this.socket.emit('LEAVE_GAME', this.props.username);
-    this.getPlayerArray();
-  }
+  // HERE ARE THE METHODS
+  // Life Cycle - Methods
   componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value));
     this.getPlayerArray();
   };
   componentWillUnmount() {
     this.leaveGame();
+  };
+// Socket Methods
+  getPlayerArray() {
+    this.socket.emit('PLAYERS', { username: this.props.username });
+  };
+  leaveGame() {
+    this.socket.emit('LEAVE_GAME', this.props.username);
+    this.getPlayerArray();
   }
+  sendTyping(e){
+    this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
+  };
+  SitStand() {
+    if (this.state.meSitting === false) {
+      this.socket.emit('SIT', { username: this.props.username });
+    } else {
+      this.socket.emit('STAND', { username: this.props.username });
+    };
+  };
+  Finished() {
+    this.socket.emit('FINISHED', { username: this.props.username });
+  };
+  // HERE IS THE RENDER METHOD
   render() {
+    // Variable Logic for rendering
     let winner = '';
     if (this.state.meFinished) {
       winner = this.props.username;
@@ -133,7 +145,7 @@ class GameRoom extends Component {
           <h4>My text editor</h4>
           <textarea className='my-typing-area' type="text" onChange={e => this.sendMessage(e)} placeholder="Type your code here"/>
 
-          <button type="button" onClick={this.sendSitOrStand} className="btn-text-editor">
+          <button type="button" onClick={this.sitStand} className="btn-text-editor">
             {sitOrLeave}
           </button>
           {this.state.playerArray.length > 1 && <button className='btn-finished' onClick={() => this.sendFinished()}>
