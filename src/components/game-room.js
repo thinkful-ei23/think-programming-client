@@ -114,9 +114,17 @@ class GameRoom extends Component {
       questionTitle = 'Press Sit to Claim a Spot';
       question = '0 players are sitting.';
     } else if (this.state.playerArray.length === 1 && this.state.meSitting === false) {
-      questionTitle = `${this.state.playerArray[0]} is ready to play.  Press Sit to Join`
+      questionTitle = `${this.state.playerArray[0]} is ready to play.  Press Sit to Join`;
+      question = '';
     } else if (this.state.playerArray.length === 1 && this.state.meSitting === true) {
-      questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`
+      questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`;
+      question = '';
+    } else if (this.state.meFinished) {
+      questionTitle = `${this.props.username} is Finished. Waiting For Challenger To Check Your Answer`;
+      question = '';
+    } else if (this.state.challengerFinished) {
+      questionTitle = 'Your Challenger has finshed. Approve or Deny their Answer';
+      question = '';
     } else if (this.props.questions !== undefined & this.props.questions !== null) {
     questionTitle = this.props.questions.title;
     question = this.props.questions.question;
@@ -134,7 +142,6 @@ class GameRoom extends Component {
         <div className="question-container">
           <h3>{questionTitle}</h3>
           <p>{question}</p>
-          {(this.state.meFinished || this.state.challengerFinished) && <div>{winner} Finished!</div> }
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
