@@ -134,13 +134,15 @@ class GameRoom extends Component {
         <div className="question-container">
           <h3>{questionTitle}</h3>
           <p>{question}</p>
-          {(this.state.meFinished || this.state.challengerFinished) && <div>{winner} Finished!</div> }
         </div>
+
+        <div className="winner">
+          {(this.state.meFinished || this.state.challengerFinished) && <p>{winner} Finished!</p>}
+        </div>
+
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
-          <div className='challenger-typing-area'>
-            {this.state.challengerTyping}
-          </div>
+          <textarea className='challenger-typing-area' readOnly value={this.state.challengerTyping}></textarea>
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>

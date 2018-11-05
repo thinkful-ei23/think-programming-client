@@ -1,8 +1,8 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 25% 30% 30%;
-  height: 90vh;
+  grid-template-rows: 5% 5% 25% 5% 20% 25%;
+  height: 100vh;
 }
 
 .game-room h2, h4 {
@@ -28,19 +28,32 @@
   margin: 0 0.5em 1em 0.5em;
 }
 
+.winner {
+  padding: 0 0.5em;
+}
+
+.winner p {
+  text-align: center;
+  background-color: #2BD9FC;
+  margin: auto;
+  padding: auto;
+  text-transform: uppercase;
+}
+
 .challenger-text-editor {
   margin: 0.5em;
 }
 
 .challenger-typing-area {
   height: 60%;
-  /* width: 100%; */
   border: 1px solid #fff;
   background-color: #34495E;
   color: #fff;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 18px;
   margin-top: 0.4em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .my-text-editor {
@@ -57,14 +70,6 @@
   font-size: 18px;
   margin-top: 0.4em;
 }
-
-/* .btn-new-room {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 0.9em;
-  font-weight: 800;
-  background: #fff;
-  color: #686F7A;
-} */
 
 .btn-text-editor {
   font-family: 'Montserrat', sans-serif;
@@ -106,15 +111,15 @@
   .game-room {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 5% 5% 30% 60%;
+    grid-template-rows: 5% 5% 30% 5% 60%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 15px;
     grid-template-areas: 
     "a a"
     "b b"
-    /* "f f" */
     "c c"
+    "f f"
     "d e";
   }
 
@@ -137,6 +142,11 @@
 
   .question-container > p {
     margin: 4em;
+  }
+
+  .winner {
+    grid-area: f;
+    margin: 0 0.5em;
   }
 
   .challenger-text-editor {
