@@ -87,7 +87,7 @@ class GameRoom extends Component {
   sendTyping(e){
     this.socket.emit('TYPING', { username: this.props.username, input: e.currentTarget.value });
   };
-  SitStand() {
+  sitStand = () => {
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
