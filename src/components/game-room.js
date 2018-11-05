@@ -70,7 +70,7 @@ class GameRoom extends Component {
   // HERE ARE THE METHODS
   // Life Cycle - Methods
   componentDidMount() {
-    this.props.dispatch(fetchQuestions(this.props.match.params.value));
+    this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
     this.getPlayerArray();
   };
   componentWillUnmount() {
