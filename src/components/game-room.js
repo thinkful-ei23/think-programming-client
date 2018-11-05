@@ -194,16 +194,16 @@ class GameRoom extends Component {
       this.state.playerArray.length === 1 &&
       this.state.meSitting === true
     ) {
-      questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`;
+      questionTitle = `Hi ${this.state.playerArray[0]}! Waiting for Challenger To Join`;
       question = '';
     } else if (this.state.meFinished) {
       questionTitle = `${
         this.props.username
-      } is Finished. Waiting For Challenger To Check Your Answer`;
+      } is Finished. Waiting For Challenger To Check Answer`;
       question = '';
     } else if (this.state.challengerFinished) {
       questionTitle =
-        'Your Challenger has finshed. Approve or Deny their Answer';
+        'Challenger Has Finshed. Approve or Deny Their Answer';
       question = '';
     } else if (
       (this.props.questions !== undefined) &
