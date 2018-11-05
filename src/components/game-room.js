@@ -19,6 +19,7 @@ class GameRoom extends Component {
       meSitting: false,
       playerArray: [],
       myTyping: '',
+      meTyping: '',
       challengerTyping: '',
       meFinished: false,
       challengerFinished: false,
@@ -162,6 +163,7 @@ class GameRoom extends Component {
   };
   onTyping(e) {
     console.log('change', e);
+    this.setState({meTyping: e})
     this.socket.emit('TYPING', {
       username: this.props.username,
       input: e
@@ -259,7 +261,7 @@ class GameRoom extends Component {
           <h4>My text editor</h4>
           {/* <textarea className='my-typing-area' type="text" onChange={e => this.sendTyping(e)} placeholder="Type your code here"/> */}
           <AceEditor
-            value={this.state.myTyping}
+            value={this.state.meTyping}
             onChange={e => this.onTyping(e)}
             mode="javascript"
             theme="solarized_dark"
