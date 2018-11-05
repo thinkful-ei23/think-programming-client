@@ -36,7 +36,11 @@ class GameRoom extends Component {
       });
 
       this.socket.on('LEAVE_GAME', playerArray => {
-        this.setState({ playerArray });
+        return Promise.all([this.setState({ playerArray, currentQuestionIndex: 0 })
+        ])
+        .then(() => {
+          this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
+        });
       });
 
       this.socket.on('SIT', incoming => {
@@ -66,6 +70,35 @@ class GameRoom extends Component {
             meFinished: false,
             challengerFinished: true });
         };
+      });
+      this.socket.on('RESET', incoming => {
+        this.setState({
+          meFinished: false,
+          challengerFinished: false,
+          currentQuestionIndex: 0
+        });
+      });
+      this.socket.on('WRONG', incoming => {
+        if (this.state.meFinished) {
+          this.setState({
+            meFinished: false
+          });
+        } else if (this.state.challengerFinished) {
+          this.setState({
+            challengerFinished: false
+          });
+        };
+      });
+      this.socket.on('APPROVE', newIndex => {
+        return Promise.all([this.setState({
+          currentQuestionIndex: newIndex,
+          meFinished: false,
+          challengerFinished: false
+          })
+        ])
+        .then(() => {
+          this.props.dispatch(fetchQuestions(this.props.match.params.value, newIndex));
+        });
       });
   };
   // HERE ARE THE METHODS
@@ -98,6 +131,15 @@ class GameRoom extends Component {
   sendFinished() {
     this.socket.emit('FINISHED', { username: this.props.username });
   };
+  sendReset = () => {
+    this.socket.emit('RESET', this.props.username);
+  };
+  sendDeny = () => {
+    this.socket.emit('WRONG', this.props.username);
+  };
+  sendApprove = () => {
+    this.socket.emit('APPROVE', this.state.currentQuestionIndex)
+  };
   // HERE IS THE RENDER METHOD
   render() {
     // Variable Logic for rendering
@@ -114,9 +156,17 @@ class GameRoom extends Component {
       questionTitle = 'Press Sit to Claim a Spot';
       question = '0 players are sitting.';
     } else if (this.state.playerArray.length === 1 && this.state.meSitting === false) {
-      questionTitle = `${this.state.playerArray[0]} is ready to play.  Press Sit to Join`
+      questionTitle = `${this.state.playerArray[0]} is ready to play.  Press Sit to Join`;
+      question = '';
     } else if (this.state.playerArray.length === 1 && this.state.meSitting === true) {
-      questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`
+      questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`;
+      question = '';
+    } else if (this.state.meFinished) {
+      questionTitle = `${this.props.username} is Finished. Waiting For Challenger To Check Your Answer`;
+      question = '';
+    } else if (this.state.challengerFinished) {
+      questionTitle = 'Your Challenger has finshed. Approve or Deny their Answer';
+      question = '';
     } else if (this.props.questions !== undefined & this.props.questions !== null) {
     questionTitle = this.props.questions.title;
     question = this.props.questions.question;
@@ -135,11 +185,13 @@ class GameRoom extends Component {
           <h3>{questionTitle}</h3>
           <p>{question}</p>
         </div>
-
         <div className="winner">
           {(this.state.meFinished || this.state.challengerFinished) && <p>{winner} Finished!</p>}
+          {this.state.challengerFinished && <div className='verify-buttons'>
+            <button className='approve-button' onClick={this.sendApprove}>Correct</button>
+            <button className='deny-button' onClick={this.sendDeny}>Try Again</button>
+          </div>}
         </div>
-
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
           <textarea className='challenger-typing-area' readOnly value={this.state.challengerTyping}></textarea>
@@ -148,10 +200,10 @@ class GameRoom extends Component {
           <h4>My text editor</h4>
           <textarea className='my-typing-area' type="text" onChange={e => this.sendTyping(e)} placeholder="Type your code here"/>
 
-          <button type="button" onClick={this.sitStand} className="btn-text-editor">
+          {(this.state.meFinished === false && this.state.challengerFinished === false) && <button type="button" onClick={this.sitStand} className="btn-text-editor">
             {sitOrLeave}
-          </button>
-          {this.state.playerArray.length > 1 && <button className='btn-finished' onClick={() => this.sendFinished()}>
+          </button>}
+          {this.state.playerArray.length > 1 && (this.state.meFinished === false && this.state.challengerFinished === false) && <button className='btn-finished' onClick={() => this.sendFinished()}>
             Finished
           </button>}
         </div>
