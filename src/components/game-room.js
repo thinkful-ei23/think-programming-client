@@ -187,10 +187,12 @@ class GameRoom extends Component {
         </div>
         <div className="winner">
           {(this.state.meFinished || this.state.challengerFinished) && <p>{winner} Finished!</p>}
-          {this.state.challengerFinished && <div className='verify-buttons'>
-            <button className='approve-button' onClick={this.sendApprove}>Correct</button>
-            <button className='deny-button' onClick={this.sendDeny}>Try Again</button>
-          </div>}
+          {this.state.challengerFinished && 
+            <div className='verify-buttons'>
+              <button className='approve-button' onClick={this.sendApprove}>Approve</button>
+              <button className='deny-button' onClick={this.sendDeny}>Try Again</button>
+            </div>
+          }
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
