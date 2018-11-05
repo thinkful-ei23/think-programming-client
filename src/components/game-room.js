@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import { API_BASE_URL_SOCKET } from '../config';
-import { fetchQuestions } from '../actions/questions';
+import { fetchQuestions  } from '../actions/questions';
+import { inGameRoom } from '../actions/game-room';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 import 'brace/mode/javascript';
@@ -50,15 +51,14 @@ class GameRoom extends Component {
         this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
       });
     });
-
-    this.socket.on('SIT', incoming => {
-      if (incoming.username === this.props.username) {
-        this.setState({
-          meSitting: true
-        });
-      }
-    });
-
+      this.socket.on('SIT', incoming => {
+        if ( incoming.username === this.props.username ) {
+          this.setState({
+            meSitting: true
+          });
+        };
+      });
+   
     this.socket.on('STAND', incoming => {
       if (incoming.username === this.props.username) {
         this.setState({
@@ -117,11 +117,17 @@ class GameRoom extends Component {
   componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
     this.getPlayerArray();
-  }
+  };
+  componentDidUpdate() {
+    this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
+  };
   componentWillUnmount() {
-    this.leaveGame();
-  }
-  // Socket Methods
+    return Promise.all([this.leaveGame()])
+    .then(() => {
+      this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
+    });
+  };
+// Socket Methods
   getPlayerArray() {
     this.socket.emit('PLAYERS', { username: this.props.username });
   }
@@ -221,19 +227,13 @@ class GameRoom extends Component {
           <p>{question}</p>
         </div>
         <div className="winner">
-          {(this.state.meFinished || this.state.challengerFinished) && (
-            <p>{winner} Finished!</p>
-          )}
-          {this.state.challengerFinished && (
-            <div className="verify-buttons">
-              <button className="approve-button" onClick={this.sendApprove}>
-                Correct
-              </button>
-              <button className="deny-button" onClick={this.sendDeny}>
-                Try Again
-              </button>
+          {(this.state.meFinished || this.state.challengerFinished) && <p>{winner} Finished!</p>}
+          {this.state.challengerFinished && 
+            <div className='verify-buttons'>
+              <button className='approve-button' onClick={this.sendApprove}>Approve</button>
+              <button className='deny-button' onClick={this.sendDeny}>Try Again</button>
             </div>
-          )}
+          }
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
