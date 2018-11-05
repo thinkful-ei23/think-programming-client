@@ -19,14 +19,11 @@ export const fetchQuestionsError = error => ({
 });
 
 export const fetchQuestions = (questionType, num) => dispatch => {
-  let newQuestion = {questionType, num}
   dispatch(fetchQuestionsRequest());
-  return fetch (`${API_BASE_URL}/gameroom/questions`, {
+  return fetch (`${API_BASE_URL}/gameroom/questions?question=${questionType}&num=${num}`, {
     method: 'GET',
-    headers: {'content-type': 'application/json'},
-    body: JSON.stringify(newQuestion)
+    headers: {'content-type': 'application/json'}
   })
-
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(res => dispatch(fetchQuestionsSuccess(res)))

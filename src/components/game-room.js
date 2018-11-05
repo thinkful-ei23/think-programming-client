@@ -18,6 +18,7 @@ class GameRoom extends Component {
         challengerTyping: '',
         meFinished: false,
         challengerFinished: false,
+        currentQuestionIndex: 0
       };
       
       this.socket = io.connect(`${API_BASE_URL_SOCKET}${this.props.match.url.substring(10,this.props.match.url.length)}`);
@@ -116,9 +117,9 @@ class GameRoom extends Component {
       questionTitle = `${this.state.playerArray[0]} is ready to play.  Press Sit to Join`
     } else if (this.state.playerArray.length === 1 && this.state.meSitting === true) {
       questionTitle = `Hi ${this.state.playerArray[0]} Waiting for Challenger`
-    } else if (this.props.questions[0] !== undefined & this.props.questions[0] !== null) {
-    questionTitle = this.props.questions[0].title;
-    question = this.props.questions[0].question;
+    } else if (this.props.questions !== undefined & this.props.questions !== null) {
+    questionTitle = this.props.questions.title;
+    question = this.props.questions.question;
     }
     let sitOrLeave = 'Sit';
     if (this.state.meSitting === true) {
