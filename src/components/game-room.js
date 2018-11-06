@@ -239,37 +239,29 @@ class GameRoom extends Component {
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
-          {/* <textarea
-            className="challenger-typing-area"
-            readOnly
-            value={this.state.challengerTyping}
-          /> */}
           <AceEditor
             value={this.state.challengerTyping}
-            // onChange={e => this.onTyping(e)}
             mode="javascript"
             readOnly={true}
             theme="solarized_dark"
-            height="60%"
-            // height="800px"
-            fontSize="18px"
-            // defaultValue="//No es6, sorry. 💣"
+            width="100%"
+            height="80%"
+            fontSize="16px"
+            tabSize="2"
             editorProps={{ $blockScrolling: true }}
           />
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>
-          {/* <textarea className='my-typing-area' type="text" onChange={e => this.sendTyping(e)} placeholder="Type your code here"/> */}
           <AceEditor
             value={this.state.meTyping}
             onChange={e => this.onTyping(e)}
             mode="javascript"
             theme="solarized_dark"
             width="100%"
-            height="60%"
-            // height="800px"
-            fontSize="18px"
-            // defaultValue="//No es6, sorry. 💣"
+            height="80%"
+            fontSize="16px"
+            tabSize="2"
             editorProps={{ $blockScrolling: true }}
           />
           {this.state.meFinished === false &&

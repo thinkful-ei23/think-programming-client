@@ -1,8 +1,8 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 25% 14% 20% 25%;
-  height: 100vh;
+  grid-template-rows: 5% 5% 25% 14% 20% 23%;
+  height: 90vh;
 }
 
 .game-room h2, h4 {
@@ -91,34 +91,11 @@
 
 
 .challenger-text-editor {
-  margin: 0.5em;
-}
-
-.challenger-typing-area {
-  height: 60%;
-  border: 1px solid #fff;
-  background-color: #34495E;
-  color: #fff;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 18px;
-  margin-top: 0.4em;
-  width: 100%;
-  box-sizing: border-box;
+  margin: 0.5em 0.5em 0 0.5em;
 }
 
 .my-text-editor {
-  margin: 0.5em;
-}
-
-.my-typing-area {
-  height: 60%;
-  width: 100%;
-  border: 1px solid #fff;
-  background-color: #34495E;
-  color: #fff;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  font-size: 18px;
-  margin-top: 0.4em;
+  margin: 0.5em 0.5em 0 0.5em;
 }
 
 .btn-text-editor {
