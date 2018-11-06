@@ -11,7 +11,7 @@ class Dashboard extends Component {
     super(props);
       this.state = {
         totalUserCount: 0,
-        allUsers: {jsPlayers: [], htmlPlayers: [], cssPlayers: [], dsaPlayers: []}
+        allUsers: {}
       }
     this.socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
     

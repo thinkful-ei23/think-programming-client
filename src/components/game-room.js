@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import { API_BASE_URL_SOCKET } from '../config';
-import brace from 'brace';
+// import brace from 'brace';
 import AceEditor from 'react-ace';
 import { fetchQuestions  } from '../actions/questions';
 import { inGameRoom } from '../actions/game-room';
@@ -239,20 +239,28 @@ class GameRoom extends Component {
               <button className='deny-button' onClick={this.sendDeny}>Try Again</button>
             </div>
           }
-        </div>
-        <div className="challenger-text-editor">
-          <h4>Challenger's text editor</h4>
-          <AceEditor
-            value={this.state.challengerTyping}
-            mode="javascript"
-            readOnly={true}
-            theme="solarized_dark"
-            width="100%"
-            height="80%"
-            fontSize="16px"
-            tabSize="2"
-            editorProps={{ $blockScrolling: true }}
-          />
+          <div className="finish-button-column">
+            {this.state.meFinished === false &&
+              this.state.challengerFinished === false && (
+                <button
+                  type="button"
+                  onClick={this.sitStand}
+                  className="btn-text-editor"
+                >
+                  {sitOrLeave}
+                </button>
+              )}
+            {this.state.playerArray.length > 1 &&
+              (this.state.meFinished === false &&
+                this.state.challengerFinished === false) && (
+                <button
+                  className="btn-finished"
+                  onClick={() => this.sendFinished()}
+                >
+                  Finished
+                </button>
+              )}
+          </div>
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>
@@ -262,31 +270,25 @@ class GameRoom extends Component {
             mode="javascript"
             theme="solarized_dark"
             width="100%"
-            height="80%"
+            height="70%"
             fontSize="16px"
-            tabSize="2"
+            tabSize={2}
             editorProps={{ $blockScrolling: true }}
           />
-          {this.state.meFinished === false &&
-            this.state.challengerFinished === false && (
-              <button
-                type="button"
-                onClick={this.sitStand}
-                className="btn-text-editor"
-              >
-                {sitOrLeave}
-              </button>
-            )}
-          {this.state.playerArray.length > 1 &&
-            (this.state.meFinished === false &&
-              this.state.challengerFinished === false) && (
-              <button
-                className="btn-finished"
-                onClick={() => this.sendFinished()}
-              >
-                Finished
-              </button>
-            )}
+        </div>
+        <div className="challenger-text-editor">
+          <h4>Challenger's text editor</h4>
+          <AceEditor
+            value={this.state.challengerTyping}
+            mode="javascript"
+            readOnly={true}
+            theme="solarized_dark"
+            width="100%"
+            height="70%"
+            fontSize="16px"
+            tabSize={2}
+            editorProps={{ $blockScrolling: true }}
+          />
         </div>
       </div>
     );
