@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import brace from 'brace';
-import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import { API_BASE_URL_SOCKET } from '../config';
+import brace from 'brace';
+import AceEditor from 'react-ace';
 import { fetchQuestions  } from '../actions/questions';
 import { inGameRoom } from '../actions/game-room';
 import requiresLogin from './requires-login';
@@ -147,7 +147,7 @@ class GameRoom extends Component {
       this.socket.emit('SIT', { username: this.props.username });
     } else {
       this.socket.emit('STAND', { username: this.props.username });
-    }
+    };
   };
   sendFinished() {
     this.socket.emit('FINISHED', { username: this.props.username });
@@ -168,7 +168,7 @@ class GameRoom extends Component {
       username: this.props.username,
       input: e
     });
-  }
+  };
   // HERE IS THE RENDER METHOD
   render() {
     // Variable Logic for rendering
@@ -178,7 +178,7 @@ class GameRoom extends Component {
     }
     if (this.state.challengerFinished) {
       winner = 'Challenger';
-    }
+    };
     let questionTitle = '';
     let question = '';
     if (this.state.playerArray.length < 1) {
@@ -213,11 +213,11 @@ class GameRoom extends Component {
     ) {
       questionTitle = this.props.questions.title;
       question = this.props.questions.question;
-    }
+    };
     let sitOrLeave = 'Sit';
     if (this.state.meSitting === true) {
       sitOrLeave = 'Stand';
-    }
+    };
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -295,8 +295,8 @@ class GameRoom extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 const mapStateToProps = state => ({
   username: state.auth.currentUser.username,
