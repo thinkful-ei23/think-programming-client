@@ -7,6 +7,7 @@ import brace from 'brace';
 import AceEditor from 'react-ace';
 import { fetchQuestions  } from '../actions/questions';
 import { inGameRoom } from '../actions/game-room';
+import { fetchAnswers } from '../actions/answers';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 import 'brace/mode/javascript';
@@ -150,8 +151,11 @@ class GameRoom extends Component {
     };
   };
   sendFinished() {
+    let room = this.props.match.url.substring(
+      10);
     this.socket.emit('FINISHED', { username: this.props.username });
-  }
+    this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex));
+  };
   sendReset = () => {
     this.socket.emit('RESET', this.props.username);
   };
@@ -162,7 +166,6 @@ class GameRoom extends Component {
     this.socket.emit('APPROVE', this.state.currentQuestionIndex);
   };
   onTyping(e) {
-    console.log('change', e);
     this.setState({meTyping: e})
     this.socket.emit('TYPING', {
       username: this.props.username,

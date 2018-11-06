@@ -10,6 +10,7 @@ import registrationReducer from './reducers/registration';
 import authReducer from './reducers/auth';
 import gameRoomReducer from './reducers/game-room';
 import questionsReducer from './reducers/questions';
+import answersReducer from './reducers/answers';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -19,7 +20,8 @@ const store = createStore(
         registration: registrationReducer,
         auth: authReducer,
         gameRoom: gameRoomReducer,
-        questions: questionsReducer
+        questions: questionsReducer,
+        answers: answersReducer
     }), composeWithDevTools(
     applyMiddleware(thunk))
 );
