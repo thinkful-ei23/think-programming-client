@@ -32,11 +32,21 @@
   border: 1px solid #dddddd;
 }
 
+.room-title {
+  display: block;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
 .gamerooms a {
   display: block;
   text-align: center;
   text-decoration: none;
   color: #000;
+}
+
+.gamerooms p {
+  margin: auto;
 }
 
 .room-link-container-0:hover,

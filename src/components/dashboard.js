@@ -40,7 +40,7 @@ class Dashboard extends Component {
     let rooms = questionTypes.map((questionArray, i) => {
       return (
         <Link className={`room-link-container-${i}`} key={i} to={`/gameroom${i}/${questionArray[0]}`}>
-          {questionArray[1]}: {this.state.allUsers[questionArray[2]] ? this.state.allUsers[questionArray[2]].length : 0} Of 2 Players Ready
+          <p><span className="room-title">{questionArray[1]}</span><span className="users-ready">{this.state.allUsers[questionArray[2]] ? this.state.allUsers[questionArray[2]].length : 0} of 2 Players Ready</span></p>
         </Link>
       );
     });
