@@ -11,14 +11,17 @@ class Dashboard extends Component {
     super(props);
       this.state = {
         totalUserCount: 0,
-        allUsers: {}
+        allUsers: {jsPlayers: [], htmlPlayers: [], cssPlayers: [], dsaPlayers: []}
       }
     this.socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
+    
     this.socket.on('USERS', userArray => {
       let totalUsers = userArray.length;
       this.setState({totalUserCount: totalUsers});
     });
+    
     this.socket.on('ALL_PLAYERS', incomingRoomObject => {
+      console.log('getAllUsers')
       this.setState({allUsers: incomingRoomObject})
     });
   }
@@ -30,9 +33,6 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     this.sendNewUser();
-    this.getAllUsers();
-  }
-  componentDidUpdate() {
     this.getAllUsers();
   }
   render() {
