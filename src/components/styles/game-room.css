@@ -1,8 +1,35 @@
+
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 25% 14% 20% 23%;
-  height: 90vh;
+  grid-template-rows: 5% 5% 25% 14% 25% 25%;
+  margin: 0 auto;
+  padding: 5px;
+  height: 100vh;
+  grid-template-areas: 
+  "a"
+  "b"
+  "c"
+  "f"
+  "d"
+  "e";
+}
+
+.my-text-editor {
+  grid-area: d;
+}
+
+.challenger-text-editor {
+  grid-area: e;  
+}
+
+.dashboard-link { 
+  text-decoration: none;
+  grid-area: a;
+}
+
+.game-room h2 {
+  grid-area: b;
 }
 
 .game-room h2, h4 {
@@ -14,11 +41,8 @@
   margin: 0.6em auto;
 }
 
-.dashboard-link { 
-  text-decoration: none;
-}
-
 .question-container {
+  grid-area: c;
   text-align: center;
   margin: 0 1em;
 }
@@ -29,6 +53,7 @@
 }
 
 .winner {
+  grid-area: f;
   padding: 0 0.5em;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -89,14 +114,22 @@
   transition: 1s;
 }
 
-
-.challenger-text-editor {
-  margin: 0.5em 0.5em 0 0.5em;
+.finish-button-column {
+  grid-column: 1;
+  margin: auto;
+  text-align: left;
 }
 
 .my-text-editor {
+  grid-area: d;
   margin: 0.5em 0.5em 0 0.5em;
 }
+
+.challenger-text-editor {
+  grid-area: e;
+  margin: 0.5em 0.5em 0 0.5em;
+}
+
 
 .btn-text-editor {
   font-family: 'Montserrat', sans-serif;
@@ -107,8 +140,9 @@
   color: #686F7A;
   text-decoration: none;
   border: 1px solid #686F7A;
-  padding: 0.7em 3em;
-  margin: 0.5em;
+  padding: 0.5em 2.5em;
+  margin: 0.25em 0.5em;
+  border-radius: 5px;
 }
 
 .btn-text-editor:hover {
@@ -124,8 +158,9 @@
   background: #EC5252;
   color: #FFFFFF;
   text-decoration: none;
-  padding: 0.7em 3em;
-  margin: 0.5em;
+  padding: 0.5em 1.8em;
+  margin: 0.25em 0.5em;
+  border-radius: 5px;
 }
 
 .btn-finished:hover {
@@ -180,12 +215,12 @@
     grid-column: 3;
   }
 
-  .challenger-text-editor {
-    grid-area: d;  
+  .my-text-editor {
+    grid-area: d;
   }
 
-  .my-text-editor {
-    grid-area: e;
+  .challenger-text-editor {
+    grid-area: e;  
   }
 
 }
