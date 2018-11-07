@@ -1,20 +1,20 @@
 import {
-  REGISTER_USER_REQUEST,
-  REGISTER_USER_ERROR
-} from '../actions/users';
+  CREATE_USERSTATS_REQUEST,
+  CREATE_USERSTATS_ERROR
+} from '../actions/userStats';
 
 const initialState = {
   loading: false,
   error: null
 };
 
-export default function registrationReducer(state = initialState, action) {
-  if (action.type === REGISTER_USER_REQUEST) {
+export default function userStatsReducer(state = initialState, action) {
+  if (action.type === CREATE_USERSTATS_REQUEST) {
       return Object.assign({}, state, {
           loading: true,
           error: null
       });
-  } else if (action.type === REGISTER_USER_ERROR) {
+  } else if (action.type === CREATE_USERSTATS_ERROR) {
       return Object.assign({}, state, {
           loading: false,
           error: action.error

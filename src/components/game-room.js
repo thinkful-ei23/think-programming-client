@@ -5,11 +5,17 @@ import io from 'socket.io-client';
 import { API_BASE_URL_SOCKET } from '../config';
 // import brace from 'brace';
 import AceEditor from 'react-ace';
+// IMPORT ACTIONS
 import { fetchQuestions  } from '../actions/questions';
 import { inGameRoom } from '../actions/game-room';
+import { fetchAnswers } from '../actions/answers';
+import { sendJudgment } from '../actions/judgement';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 import 'brace/mode/javascript';
+import 'brace/mode/css';
+import 'brace/mode/html';
+import 'brace/mode/markdown';
 import 'brace/theme/solarized_dark';
 class GameRoom extends Component {
   // HERE IS THE CONSTRUCTOR
@@ -23,7 +29,11 @@ class GameRoom extends Component {
       challengerTyping: '',
       meFinished: false,
       challengerFinished: false,
-      currentQuestionIndex: 0
+      currentQuestionIndex: 0,
+      room: this.props.match.url.substring(11),
+      answerError: null,
+      answerMessage: null,
+      message: null
     };
 
     this.socket = io.connect(
@@ -81,6 +91,12 @@ class GameRoom extends Component {
         });
       }
     });
+    this.socket.on('ANSWERED', answerObject => {
+      this.setState({
+        answerError: answerObject.answerError,
+        answerMessage: answerObject.answerMessage
+      });
+    });
     this.socket.on('RESET', incoming => {
       this.setState({
         meFinished: false,
@@ -104,7 +120,9 @@ class GameRoom extends Component {
         this.setState({
           currentQuestionIndex: newIndex,
           meFinished: false,
-          challengerFinished: false
+          challengerFinished: false,
+          meTyping: '',
+          challengerTyping: ''
         })
       ]).then(() => {
         this.props.dispatch(
@@ -128,6 +146,13 @@ class GameRoom extends Component {
       this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
     });
   };
+  componentWillReceiveProps(nextProps) {
+    const { answerError, answerMessage } = nextProps;
+    if (answerError !== this.state.answerError) {
+      let answerObj = { answerError, answerMessage };
+      this.socket.emit('ANSWERED', answerObj)
+    };
+  };
 // Socket Methods
   getPlayerArray() {
     this.socket.emit('PLAYERS', { username: this.props.username });
@@ -150,19 +175,44 @@ class GameRoom extends Component {
     };
   };
   sendFinished() {
-    this.socket.emit('FINISHED', { username: this.props.username });
-  }
+    if (this.state.meTyping.length === 0) {
+      this.setState({
+        message: 'Must have code to press Finished Button'  
+      });
+    } else {
+      let room = this.props.match.url.substring(
+        10);
+      this.socket.emit('FINISHED', { username: this.props.username });
+      this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex));
+      this.setState({ message: null });
+    } 
+  };
   sendReset = () => {
     this.socket.emit('RESET', this.props.username);
   };
   sendDeny = () => {
-    this.socket.emit('WRONG', this.props.username);
+    if (this.state.answerError === true) {
+      this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'correct'))
+      // dispatch I am correct by approving and get some points
+      this.socket.emit('WRONG', this.props.username);
+    } else {
+      this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
+      // dispatch I am wrong in my judgement I should lose points
+      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    }
   };
   sendApprove = () => {
-    this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    if (this.state.answerError === false) {
+      this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'correct'))
+      // dispatch I am correct by approving and get some points
+      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    } else {
+      this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
+      // dispatch I am wrong in my judgement I should lose points
+      this.socket.emit('WRONG', this.props.username);
+    }
   };
   onTyping(e) {
-    console.log('change', e);
     this.setState({meTyping: e})
     this.socket.emit('TYPING', {
       username: this.props.username,
@@ -218,6 +268,17 @@ class GameRoom extends Component {
     if (this.state.meSitting === true) {
       sitOrLeave = 'Stand';
     };
+    let roomMode = '';
+    if (this.state.room === 'jsQuestions') {
+      roomMode = 'javascript';
+    } else if (this.state.room === 'htmlQuestions') {
+      roomMode = 'html';
+    } else if (this.state.room === 'cssQuestions') {
+      roomMode = 'css';
+    } else if (this.state.room === 'dsaQuestions') {
+      roomMode = 'markdown';
+    }
+    let message = this.state.message;
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -257,6 +318,7 @@ class GameRoom extends Component {
                   Finished
                 </button>
               )}
+            {(this.state.answerMessage !== undefined) && <div className='message-column'>{message}</div>}
           </div>
         </div>
         <div className="my-text-editor">
@@ -264,20 +326,21 @@ class GameRoom extends Component {
           <AceEditor
             value={this.state.meTyping}
             onChange={e => this.onTyping(e)}
-            mode="javascript"
+            mode={roomMode}
             theme="solarized_dark"
             width="100%"
             height="70%"
             fontSize="16px"
             tabSize={2}
             editorProps={{ $blockScrolling: true }}
+            wrapEnabled={true}
           />
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
           <AceEditor
             value={this.state.challengerTyping}
-            mode="javascript"
+            mode={roomMode}
             readOnly={true}
             theme="solarized_dark"
             width="100%"
@@ -285,6 +348,7 @@ class GameRoom extends Component {
             fontSize="16px"
             tabSize={2}
             editorProps={{ $blockScrolling: true }}
+            wrapEnabled={true}
           />
         </div>
       </div>
@@ -294,7 +358,9 @@ class GameRoom extends Component {
 
 const mapStateToProps = state => ({
   username: state.auth.currentUser.username,
-  questions: state.questions.questions
+  questions: state.questions.questions,
+  answerError: state.answers.answerError,
+  answerMessage: state.answers.answerMessage
 });
 
 export default requiresLogin()(connect(mapStateToProps)(GameRoom));
