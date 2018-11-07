@@ -3,7 +3,8 @@ import {
 } from '../actions/answers';
 
 const initialState = {
-  answers: '',
+  answerError: null,
+  answerMessage: '',
   loading: false,
   error: null
 };
@@ -17,7 +18,8 @@ export default function queestionsReducer(state = initialState, action) {
   }
   else if (action.type === FETCH_ANSWERS_SUCCESS) {
     return Object.assign({}, state, {
-      answers: action.answer,
+      answerError: action.answer.error,
+      answerMessage: action.answer.message,
       loading: false,
       error: null
     });

@@ -18,17 +18,19 @@ export const fetchAnswersError = error => ({
   error
 });
 
-export const fetchAnswers = (questionType, answer, questionNum) => dispatch => {
+export const fetchAnswers = (questionType, answer, questionNum) => (dispatch, getState) => {
   dispatch(fetchAnswersRequest());
+  const authToken = getState().auth.authToken;
   return fetch (`${API_BASE_URL}/gameroom/answers${questionType}/${questionNum}`, {
     method: 'POST',
-    headers: {'content-type': 'application/json'},
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`},
     body: JSON.stringify({answer})
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       dispatch(fetchAnswersSuccess(res))})
     .catch(err => {
       dispatch(fetchAnswersError(err));
