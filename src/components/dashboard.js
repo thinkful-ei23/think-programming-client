@@ -11,7 +11,7 @@ class Dashboard extends Component {
     super(props);
       this.state = {
         totalUserCount: 0,
-        allUsers: {jsPlayers: [], htmlPlayers: [], cssPlayers: [], dsaPlayers: []}
+        allUsers: {}
       }
     this.socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
     
@@ -35,6 +35,7 @@ class Dashboard extends Component {
     this.sendNewUser();
     this.getAllUsers();
   }
+
   render() {
     let questionTypes = [ ['jsQuestions','JavaScript', 'jsPlayers'], ['htmlQuestions', 'HTML', 'htmlPlayers'], ['cssQuestions', 'CSS', 'cssPlayers'], ['dsaQuestions', 'Data Structures & Algorithms', 'dsaPlayers']];
     let rooms = questionTypes.map((questionArray, i) => {
