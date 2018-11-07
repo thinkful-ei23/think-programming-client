@@ -11,6 +11,9 @@ import { fetchAnswers } from '../actions/answers';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 import 'brace/mode/javascript';
+import 'brace/mode/css';
+import 'brace/mode/html';
+import 'brace/mode/markdown';
 import 'brace/theme/solarized_dark';
 class GameRoom extends Component {
   // HERE IS THE CONSTRUCTOR
@@ -24,7 +27,8 @@ class GameRoom extends Component {
       challengerTyping: '',
       meFinished: false,
       challengerFinished: false,
-      currentQuestionIndex: 0
+      currentQuestionIndex: 0,
+      room: this.props.match.url.substring(11)
     };
 
     this.socket = io.connect(
@@ -105,7 +109,9 @@ class GameRoom extends Component {
         this.setState({
           currentQuestionIndex: newIndex,
           meFinished: false,
-          challengerFinished: false
+          challengerFinished: false,
+          meTyping: '',
+          challengerTyping: ''
         })
       ]).then(() => {
         this.props.dispatch(
@@ -160,10 +166,19 @@ class GameRoom extends Component {
     this.socket.emit('RESET', this.props.username);
   };
   sendDeny = () => {
-    this.socket.emit('WRONG', this.props.username);
+    if (this.props.answers === true) {
+      this.socket.emit('WRONG', this.props.username);
+    } else {
+      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    }
   };
   sendApprove = () => {
-    this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    console.log(this.props.answers.error)
+    if (this.props.answers.error === false) {
+      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+    } else {
+      this.socket.emit('WRONG', this.props.username);
+    }
   };
   onTyping(e) {
     this.setState({meTyping: e})
@@ -221,6 +236,16 @@ class GameRoom extends Component {
     if (this.state.meSitting === true) {
       sitOrLeave = 'Stand';
     };
+    let roomMode = '';
+    if (this.state.room === 'jsQuestions') {
+      roomMode = 'javascript';
+    } else if (this.state.room === 'htmlQuestions') {
+      roomMode = 'html';
+    } else if (this.state.room === 'cssQuestions') {
+      roomMode = 'css';
+    } else if (this.state.room === 'dsaQuestions') {
+      roomMode = 'markdown';
+    }
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -267,20 +292,21 @@ class GameRoom extends Component {
           <AceEditor
             value={this.state.meTyping}
             onChange={e => this.onTyping(e)}
-            mode="javascript"
+            mode={roomMode}
             theme="solarized_dark"
             width="100%"
             height="70%"
             fontSize="16px"
             tabSize={2}
             editorProps={{ $blockScrolling: true }}
+            wrapEnabled={true}
           />
         </div>
         <div className="challenger-text-editor">
           <h4>Challenger's text editor</h4>
           <AceEditor
             value={this.state.challengerTyping}
-            mode="javascript"
+            mode={roomMode}
             readOnly={true}
             theme="solarized_dark"
             width="100%"
@@ -288,6 +314,7 @@ class GameRoom extends Component {
             fontSize="16px"
             tabSize={2}
             editorProps={{ $blockScrolling: true }}
+            wrapEnabled={true}
           />
         </div>
       </div>
@@ -297,7 +324,8 @@ class GameRoom extends Component {
 
 const mapStateToProps = state => ({
   username: state.auth.currentUser.username,
-  questions: state.questions.questions
+  questions: state.questions.questions,
+  answers: state.answers.answers
 });
 
 export default requiresLogin()(connect(mapStateToProps)(GameRoom));
