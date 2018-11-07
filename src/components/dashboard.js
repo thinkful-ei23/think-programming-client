@@ -35,6 +35,7 @@ class Dashboard extends Component {
     this.sendNewUser();
     this.getAllUsers();
   }
+
   render() {
     let questionTypes = [ ['jsQuestions','JavaScript', 'jsPlayers'], ['htmlQuestions', 'HTML', 'htmlPlayers'], ['cssQuestions', 'CSS', 'cssPlayers'], ['dsaQuestions', 'Data Structures & Algorithms', 'dsaPlayers']];
     let rooms = questionTypes.map((questionArray, i) => {
