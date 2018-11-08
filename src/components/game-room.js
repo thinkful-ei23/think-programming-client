@@ -49,14 +49,14 @@ class GameRoom extends Component {
           this.setState({ myTyping: incoming.input });
         } else {
           this.setState({ challengerTyping: incoming.input });
-        }
-      }
+        };
+      };
     });
 
     this.socket.on('PLAYERS', playerArray => {
       if (!this.isCancelled) {
         this.setState({ playerArray });
-      }
+      };
     });
 
     this.socket.on('LEAVE_GAME', playerArray => {
@@ -75,7 +75,7 @@ class GameRoom extends Component {
               meSitting: true
             });
           };
-        }
+        };
       });
    
     this.socket.on('STAND', incoming => {
@@ -84,8 +84,8 @@ class GameRoom extends Component {
           this.setState({
             meSitting: false
           });
-        }
-      }
+        };
+      };
     });
 
     this.socket.on('FINISHED', incoming => {
@@ -100,8 +100,8 @@ class GameRoom extends Component {
             meFinished: false,
             challengerFinished: true
           });
-        }
-      }
+        };
+      };
     });
     this.socket.on('ANSWERED', answerObject => {
       if (!this.isCancelled) {
@@ -109,7 +109,7 @@ class GameRoom extends Component {
           answerError: answerObject.answerError,
           answerMessage: answerObject.answerMessage
         });
-      }
+      };
     });
     this.socket.on('RESET', incoming => {
       if (!this.isCancelled) {
@@ -118,7 +118,7 @@ class GameRoom extends Component {
           challengerFinished: false,
           currentQuestionIndex: 0
         });
-      }
+      };
     });
     this.socket.on('WRONG', incoming => {
       if (!this.isCancelled) {
@@ -130,8 +130,8 @@ class GameRoom extends Component {
           this.setState({
             challengerFinished: false
           });
-        }
-      }
+        };
+      };
     });
     this.socket.on('APPROVE', newIndex => {
       if (!this.isCancelled) {
@@ -148,9 +148,9 @@ class GameRoom extends Component {
             fetchQuestions(this.props.match.params.value, newIndex)
           );
         });
-      }
+      };
     });
-  }
+  };
   // HERE ARE THE METHODS
   // Life Cycle - Methods
   componentDidMount() {
@@ -167,29 +167,29 @@ class GameRoom extends Component {
     })
     .then(() => {
       this.isCancelled = true;
-    })
+    });
   };
   componentWillReceiveProps(nextProps) {
     const { answerError, answerMessage } = nextProps;
     if (answerError !== this.state.answerError) {
       let answerObj = { answerError, answerMessage };
-      this.socket.emit('ANSWERED', answerObj)
+      this.socket.emit('ANSWERED', answerObj);
     };
   };
 // Socket Methods
   getPlayerArray() {
     this.socket.emit('PLAYERS', { username: this.props.username });
-  }
+  };
   leaveGame() {
     this.socket.emit('LEAVE_GAME', this.props.username);
     this.getPlayerArray();
-  }
+  };
   sendTyping(e) {
     this.socket.emit('TYPING', {
       username: this.props.username,
       input: e.currentTarget.value
     });
-  }
+  };
   sitStand = () => {
     if (this.state.meSitting === false) {
       this.socket.emit('SIT', { username: this.props.username });
@@ -208,7 +208,7 @@ class GameRoom extends Component {
       this.socket.emit('FINISHED', { username: this.props.username });
       this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex));
       this.setState({ message: null });
-    } 
+    }; 
   };
   sendReset = () => {
     this.socket.emit('RESET', this.props.username);
@@ -222,7 +222,7 @@ class GameRoom extends Component {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
       this.socket.emit('APPROVE', this.state.currentQuestionIndex);
-    }
+    };
   };
   sendApprove = () => {
     if (this.state.answerError === false) {
@@ -233,7 +233,7 @@ class GameRoom extends Component {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
       this.socket.emit('WRONG', this.props.username);
-    }
+    };
   };
   onTyping(e) {
     this.setState({meTyping: e})
@@ -248,7 +248,7 @@ class GameRoom extends Component {
     let winner = '';
     if (this.state.meFinished) {
       winner = this.props.username;
-    }
+    };
     if (this.state.challengerFinished) {
       winner = 'Challenger';
     };
@@ -300,7 +300,7 @@ class GameRoom extends Component {
       roomMode = 'css';
     } else if (this.state.room === 'dsaQuestions') {
       roomMode = 'markdown';
-    }
+    };
     let message = this.state.message;
     return (
       <div className="game-room">
