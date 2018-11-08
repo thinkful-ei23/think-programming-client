@@ -8,6 +8,7 @@
 }
 
 .about-us-header > h2{
+  display: inline-block;
   border: 10px solid #2BD9FC;
   padding: 0.5em 1em;
 }
@@ -19,7 +20,7 @@
 
 .about-us-content > p {
   margin: auto;
-  text-align: left;
+  text-align: center;
 }
 
 .about-us > .back {
