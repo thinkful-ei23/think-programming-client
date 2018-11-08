@@ -52,6 +52,9 @@ class Dashboard extends Component {
       <div className="dashboard fade">
         <h2>Challenge Rooms</h2>
         <h4>{this.state.totalUserCount} {coders} Online</h4>
+        <Link to="/mystats" className="my-stats-link">
+            My Stats
+        </Link>
         <div className="gamerooms">
           {rooms}
         </div>

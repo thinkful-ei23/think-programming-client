@@ -10,6 +10,7 @@ import RegisterPage from './components/registration-page';
 import LoginPage from './components/login-page';
 import AboutUsPage from './components/about-us';
 import GameRoom from './components/game-room';
+import MyStats from './components/my-stats';
 
 import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
@@ -54,6 +55,7 @@ export class App extends React.Component {
 				<Route exact path="/gameroom1/:value" component={GameRoom} />
 				<Route exact path="/gameroom2/:value" component={GameRoom} />
 				<Route exact path="/gameroom3/:value" component={GameRoom} />
+        <Route exact path='/mystats' component={MyStats}/>
       </div>
     );
   }

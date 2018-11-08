@@ -14,6 +14,7 @@ export const createUserStatsError = error => ({
     error
 });
 
+
 export const createUserStats = username => dispatch => {
     username = {username: username };
     dispatch(createUserStatsRequest());

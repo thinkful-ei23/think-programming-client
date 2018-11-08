@@ -13,6 +13,7 @@ import gameRoomReducer from './reducers/game-room';
 import questionsReducer from './reducers/questions';
 import answersReducer from './reducers/answers';
 import judgmentReducer from './reducers/judgment';
+import myStatsReducer from './reducers/my-stats';
 
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -25,7 +26,8 @@ const store = createStore(
         gameRoom: gameRoomReducer,
         questions: questionsReducer,
         answers: answersReducer,
-        judgement: judgmentReducer
+        judgement: judgmentReducer,
+        myStats: myStatsReducer
     }), composeWithDevTools(
     applyMiddleware(thunk))
 );
