@@ -5,29 +5,29 @@ import {
 const initialState = {
   answerError: null,
   answerMessage: '',
-  loading: false,
-  error: null
+  loading: false
 };
 
 export default function queestionsReducer(state = initialState, action) {
   if (action.type === FETCH_ANSWERS_REQUEST) {
     return Object.assign({}, state, {
       loading: true,
-      error: null
+      answerError: null,
+      answerMessage: ''
     });
   }
   else if (action.type === FETCH_ANSWERS_SUCCESS) {
     return Object.assign({}, state, {
       answerError: action.answer.error,
       answerMessage: action.answer.message,
-      loading: false,
-      error: null
+      loading: false
     });
   }
   else if (action.type === FETCH_ANSWERS_ERROR) {
     return Object.assign({}, state, {
       loading: false,
-      error: action.error
+      answerError: true,
+      answerMessage: action.error.message
     });
   }
   return state;
