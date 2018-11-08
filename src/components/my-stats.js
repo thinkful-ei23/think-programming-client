@@ -10,7 +10,7 @@ class MyStats extends React.Component {
   }
     render() {
       return (
-        <div className="home">
+        <div className="my-stats">
           <Link to="/dashboard" className="dashboard-link">
             Back to Dashboard
           </Link>
