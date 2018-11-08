@@ -55,12 +55,17 @@ class Dashboard extends Component {
       coders = 'Coders';
     }
     return (
-      <div className="dashboard fade">
+      <div className="dashboard">
         <h2>Challenge Rooms</h2>
-        <h4>{this.state.totalUserCount} {coders} Online</h4>
-        <Link to="/mystats" className="my-stats-link">
-            My Stats
-        </Link>
+        <div className="menu-bar">
+          <h4>{this.state.totalUserCount} {coders} Online</h4>
+          <Link to="/mystats" className="my-stats-link">
+              My Stats
+          </Link>
+          <Link to="/chatroom">
+              Chatroom
+          </Link>        
+        </div> 
         <div className="gamerooms">
           {rooms}
         </div>

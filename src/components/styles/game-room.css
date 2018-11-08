@@ -28,6 +28,10 @@
   grid-area: a;
 }
 
+.dashboard-link:hover {
+  color: #2BD9FC;
+}
+
 .game-room h2 {
   grid-area: b;
 }

@@ -12,6 +12,8 @@ import AboutUsPage from './components/about-us';
 import GameRoom from './components/game-room';
 import MyStats from './components/my-stats';
 
+import Chatroom from './components/chatroom';
+
 import { refreshAuthToken } from './actions/auth';
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -56,6 +58,7 @@ export class App extends React.Component {
 				<Route exact path="/gameroom2/:value" component={GameRoom} />
 				<Route exact path="/gameroom3/:value" component={GameRoom} />
         <Route exact path='/mystats' component={MyStats}/>
+        <Route exact path='/chatroom' component={Chatroom} />
       </div>
     );
   }

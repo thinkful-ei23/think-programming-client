@@ -1,4 +1,17 @@
 .my-stats {
   display: flex;
   flex-direction: column;
+  padding: 1em;
+}
+
+.my-stats-container {
+  background-color: #34495E;
+  color: #fff;
+  padding: 0 2em 2em 2em;
+  margin: auto;
+  margin-top: 1em; 
+}
+
+.dashboard-link:hover {
+  color: #2BD9FC;
 }
