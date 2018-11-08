@@ -16,12 +16,16 @@ class Dashboard extends Component {
     this.socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
     
     this.socket.on('USERS', userArray => {
-      let totalUsers = userArray.length;
-      this.setState({totalUserCount: totalUsers});
+      if (!this.isCancelled) { 
+        let totalUsers = userArray.length;
+        this.setState({totalUserCount: totalUsers});
+      }
     });
     
     this.socket.on('ALL_PLAYERS', incomingRoomObject => {
-      this.setState({allUsers: incomingRoomObject})
+      if (!this.isCancelled) {
+        this.setState({allUsers: incomingRoomObject})
+      }
     });
   }
   sendNewUser() {
@@ -34,7 +38,9 @@ class Dashboard extends Component {
     this.sendNewUser();
     this.getAllUsers();
   }
-
+  componentWillUnmount() {
+    this.isCancelled = true;
+  }
   render() {
     let questionTypes = [ ['jsQuestions','JavaScript', 'jsPlayers'], ['htmlQuestions', 'HTML', 'htmlPlayers'], ['cssQuestions', 'CSS', 'cssPlayers'], ['dsaQuestions', 'Data Structures & Algorithms', 'dsaPlayers']];
     let rooms = questionTypes.map((questionArray, i) => {

@@ -44,91 +44,111 @@ class GameRoom extends Component {
     );
 
     this.socket.on('TYPING', incoming => {
-      if (incoming.username === this.props.username) {
-        this.setState({ myTyping: incoming.input });
-      } else {
-        this.setState({ challengerTyping: incoming.input });
+      if (!this.isCancelled) {
+        if (incoming.username === this.props.username) {
+          this.setState({ myTyping: incoming.input });
+        } else {
+          this.setState({ challengerTyping: incoming.input });
+        }
       }
     });
 
     this.socket.on('PLAYERS', playerArray => {
-      this.setState({ playerArray });
+      if (!this.isCancelled) {
+        this.setState({ playerArray });
+      }
     });
 
     this.socket.on('LEAVE_GAME', playerArray => {
-      return Promise.all([
-        this.setState({ playerArray, currentQuestionIndex: 0 })
-      ]).then(() => {
-        this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
-      });
+      if (!this.isCancelled) {
+        return Promise.all([
+          this.setState({ playerArray, currentQuestionIndex: 0 })
+        ]).then(() => {
+          this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
+        });
+      };
     });
       this.socket.on('SIT', incoming => {
-        if ( incoming.username === this.props.username ) {
-          this.setState({
-            meSitting: true
-          });
-        };
+        if (!this.isCancelled) {
+          if ( incoming.username === this.props.username ) {
+            this.setState({
+              meSitting: true
+            });
+          };
+        }
       });
    
     this.socket.on('STAND', incoming => {
-      if (incoming.username === this.props.username) {
-        this.setState({
-          meSitting: false
-        });
+      if (!this.isCancelled) {
+        if (incoming.username === this.props.username) {
+          this.setState({
+            meSitting: false
+          });
+        }
       }
     });
 
     this.socket.on('FINISHED', incoming => {
-      if (incoming.username === this.props.username) {
-        this.setState({
-          meFinished: true,
-          challengerFinished: false
-        });
-      } else {
-        this.setState({
-          meFinished: false,
-          challengerFinished: true
-        });
+      if (!this.isCancelled) {
+        if (incoming.username === this.props.username) {
+          this.setState({
+            meFinished: true,
+            challengerFinished: false
+          });
+        } else {
+          this.setState({
+            meFinished: false,
+            challengerFinished: true
+          });
+        }
       }
     });
     this.socket.on('ANSWERED', answerObject => {
-      this.setState({
-        answerError: answerObject.answerError,
-        answerMessage: answerObject.answerMessage
-      });
-    });
-    this.socket.on('RESET', incoming => {
-      this.setState({
-        meFinished: false,
-        challengerFinished: false,
-        currentQuestionIndex: 0
-      });
-    });
-    this.socket.on('WRONG', incoming => {
-      if (this.state.meFinished) {
+      if (!this.isCancelled) {
         this.setState({
-          meFinished: false
-        });
-      } else if (this.state.challengerFinished) {
-        this.setState({
-          challengerFinished: false
+          answerError: answerObject.answerError,
+          answerMessage: answerObject.answerMessage
         });
       }
     });
-    this.socket.on('APPROVE', newIndex => {
-      return Promise.all([
+    this.socket.on('RESET', incoming => {
+      if (!this.isCancelled) {
         this.setState({
-          currentQuestionIndex: newIndex,
           meFinished: false,
           challengerFinished: false,
-          meTyping: '',
-          challengerTyping: ''
-        })
-      ]).then(() => {
-        this.props.dispatch(
-          fetchQuestions(this.props.match.params.value, newIndex)
-        );
-      });
+          currentQuestionIndex: 0
+        });
+      }
+    });
+    this.socket.on('WRONG', incoming => {
+      if (!this.isCancelled) {
+        if (this.state.meFinished) {
+          this.setState({
+            meFinished: false
+          });
+        } else if (this.state.challengerFinished) {
+          this.setState({
+            challengerFinished: false
+          });
+        }
+      }
+    });
+    this.socket.on('APPROVE', newIndex => {
+      if (!this.isCancelled) {
+        return Promise.all([
+          this.setState({
+            currentQuestionIndex: newIndex,
+            meFinished: false,
+            challengerFinished: false,
+            meTyping: '',
+            challengerTyping: ''
+          })
+        ]).then(() => {
+          this.props.dispatch(
+            fetchQuestions(this.props.match.params.value, newIndex)
+          );
+        });
+      }
     });
   }
   // HERE ARE THE METHODS
@@ -144,7 +164,10 @@ class GameRoom extends Component {
     return Promise.all([this.leaveGame()])
     .then(() => {
       this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
-    });
+    })
+    .then(() => {
+      this.isCancelled = true;
+    })
   };
   componentWillReceiveProps(nextProps) {
     const { answerError, answerMessage } = nextProps;
