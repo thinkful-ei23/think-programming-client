@@ -21,7 +21,6 @@ class Dashboard extends Component {
     });
     
     this.socket.on('ALL_PLAYERS', incomingRoomObject => {
-      console.log('getAllUsers')
       this.setState({allUsers: incomingRoomObject})
     });
   }
