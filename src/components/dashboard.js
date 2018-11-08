@@ -61,6 +61,9 @@ class Dashboard extends Component {
           <h4>{this.state.totalUserCount} {coders} Online</h4>
           <Link to="/mystats" className="my-stats-link">
               My Stats
+          </Link>
+          <Link to="/chatroom">
+              Chatroom
           </Link>        
         </div> 
         <div className="gamerooms">
