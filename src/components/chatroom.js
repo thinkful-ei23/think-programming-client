@@ -14,40 +14,31 @@ class Chatroom extends React.Component {
 		super(props);
 		this.state = {
 			message: '',
-			messageToBePosted: [],
-			messageFrom: ''
+			messageToBePosted: []
+			// messageFrom: ''
 		}
 		this.socket = io.connect(`${API_BASE_URL_SOCKET}/chatroom`);
 		
 		// Whenever the server emits 'new message', update the chat body
 		this.socket.on('new message', (message) => {
+			console.log('message: ', message);
 			this.addChatMessage(message);
 		});
 	};
 
 	// componentDidMount() {
-	// 	this.socket.emit('new message', this.state.message, this.props.name);
+	// 	this.socket.emit('get chat', this.state.message, this.props.name);
 	// };
 
-	addChatMessage(incoming){
-		// console.log('`addChatMessage` ran ', incoming);
-		this.setState({
-			messageToBePosted: [...this.state.messageToBePosted, incoming.message],
-			messageFrom: incoming.name
-		});
-	}
+	//1. method 'get chat' emit
+	//2. server - listen for 'get chat'
+	//3. 
 
-	createChatList(chat, key) {
-		return (
-			<li key={key}>
-				<span className="sender">
-					{this.state.messageFrom}: 
-				</span>
-				<span className="message">
-					{chat}
-				</span>
-			</li>
-		)
+	addChatMessage(incoming){
+		// console.log('`addChatMessage` ran ', incoming); // incoming object -> {name: '', message: ''}
+		this.setState({
+			messageToBePosted: incoming
+		});
 	};
 	
 	handleChange(e) {
@@ -71,8 +62,24 @@ class Chatroom extends React.Component {
 	}
 	
 	render() {
-		let chatEntries = this.state.messageToBePosted;
-		let listChat = chatEntries.map((msg, i) => this.createChatList(msg, i));
+		let chatEntries = this.state.messageToBePosted; // [{name: '', message: ''}]
+		// console.log('`chatEntries`: ', chatEntries);
+
+		// let listChat = chatEntries.map((msg, i) => this.createChatList(msg, i));
+		let listChat = chatEntries.map((msg, i) => {
+			// console.log('`msg`: ', msg);
+			return (
+				<li key={i}>
+					<span className="sender">
+						{msg.name}: 
+					</span>
+					<span className="message">
+						{msg.message}
+					</span>
+				</li>
+			)
+		});
+
 
 		return (
 			<div className="chatroom">
