@@ -43,9 +43,18 @@ class Dashboard extends Component {
   }
   render() {
     let questionTypes = [ ['jsQuestions','JavaScript', 'jsPlayers'], ['htmlQuestions', 'HTML', 'htmlPlayers'], ['cssQuestions', 'CSS', 'cssPlayers'], ['dsaQuestions', 'Data Structures & Algorithms', 'dsaPlayers']];
+    let disabledlink = '';
     let rooms = questionTypes.map((questionArray, i) => {
+      if (this.state.allUsers[questionArray[2]]) {
+        if (this.state.allUsers[questionArray[2]].length === 2) {
+          disabledlink = 'disabled-link';
+        }
+        else {
+          disabledlink = '';
+        }
+      }
       return (
-        <Link className={`room-link-container-${i}`} key={i} to={`/gameroom${i}/${questionArray[0]}`}>
+        <Link className={`room-link-container-${i} ${disabledlink}`} key={i} to={`/gameroom${i}/${questionArray[0]}`}>
           <p><span className="room-title">{questionArray[1]}</span><span className="users-ready">{this.state.allUsers[questionArray[2]] ? this.state.allUsers[questionArray[2]].length : 0} of 2 Players Ready</span></p>
         </Link>
       );
