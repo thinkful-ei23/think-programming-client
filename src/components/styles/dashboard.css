@@ -21,14 +21,14 @@
   padding: 0 1em;
 }
 
-.my-stats-link {
+.menu-bar-links {
   display: inline-block;
   text-decoration: none;
   padding: 0 1em;
   color: #000;
 }
 
-.my-stats-link:hover {
+.menu-bar-links:hover {
   color: #1CCAED;
 }
 
