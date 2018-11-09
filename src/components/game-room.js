@@ -62,7 +62,13 @@ class GameRoom extends Component {
     this.socket.on('LEAVE_GAME', playerArray => {
       if (!this.isCancelled) {
         return Promise.all([
-          this.setState({ playerArray, currentQuestionIndex: 0 })
+          this.setState({ 
+            playerArray, 
+            currentQuestionIndex: 0,
+            message: 'Challenger left, waiting for new player',
+            answerError: null,
+            answerMessage: null
+          })
         ]).then(() => {
           this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
         });
@@ -82,7 +88,9 @@ class GameRoom extends Component {
       if (!this.isCancelled) {
         if (incoming.username === this.props.username) {
           this.setState({
-            meSitting: false
+            meSitting: false,
+            answerError: null,
+            answerMessage: null
           });
         };
       };
@@ -230,9 +238,13 @@ class GameRoom extends Component {
     } else {
       let room = this.props.match.url.substring(
         10);
-      this.socket.emit('FINISHED', { username: this.props.username });
-      this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex));
-      this.setState({ message: null });
+      Promise.all([this.socket.emit('FINISHED', { username: this.props.username })])
+      .then(() => {
+        this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex))
+      })
+      .then(() => {
+        this.setState({ message: null });
+      });
     }; 
   };
   sendReset = () => {
@@ -269,6 +281,7 @@ class GameRoom extends Component {
   };
   // HERE IS THE RENDER METHOD
   render() {
+    console.log(this.state.answerError);
     // Variable Logic for rendering
     let winner = '';
     if (this.state.meFinished) {
