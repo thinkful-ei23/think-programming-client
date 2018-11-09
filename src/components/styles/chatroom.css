@@ -1,42 +1,91 @@
 .chatroom {
-    margin: auto;
-    padding: auto;
-    box-sizing: border-box;
+  margin: auto;
+  padding: auto;
 }
 
-.chatroom form {
-    background: #E6E6E6;
-    padding: 5px;
-    position: fixed;
-    bottom: 0;
-    width: 90%;
+.chatroom h3 {
+  text-align: center;
 }
 
-.chatroom form input {
-    border: 0;
-    padding: 10px;
-    width: 90%;
-    margin-right: .5%;
+.chatroom ul {
+  list-style: none;
+  word-wrap: break-word;
+
 }
 
-.chatroom form button {
-    width: 9%;
-    background: #34495E;
-    color: #E6E6E6;
-    border: none;
-    padding: 10px;
+.pages {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
-#messages {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.page {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 100%;
 }
 
-#messages li {
-    padding: 5px 10px;
+.chatArea {
+  height: 100%;
+  padding-bottom: 60px;
 }
 
-#messages li:nth-child(odd) {
-    background: #eee;
+.messages {
+  font-family:
+    "HelveticaNeue-Light",
+    "Helvetica Neue Light",
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    "Lucida Grande",
+    sans-serif;
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 10px 20px 10px 20px;
 }
+
+.messages li {
+  padding: 5px 10px;
+}
+
+.messages li:nth-child(odd) {
+  background: #eee;
+}
+
+.chat-form {
+  background: #E6E6E6;
+  padding: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin-left: -0.5em;
+}
+
+.chat-form input {
+  border: 0;
+  padding: 10px;
+  width: 83%;
+  margin: auto;
+}
+
+.chat-form button {
+  width: 17%;
+  background: #34495E;
+  color: #E6E6E6;
+  border: none;
+  padding: 0.7em;
+  margin: auto;
+}
+
+.chat-form button:hover {
+  background: #2E2E31;
+}
+
+.sender {
+  padding: 0 0.8em 0 0.2em;
+  font-weight: bold;
+  color: #34495E
+}
+

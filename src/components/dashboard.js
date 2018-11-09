@@ -59,10 +59,10 @@ class Dashboard extends Component {
         <h2>Challenge Rooms</h2>
         <div className="menu-bar">
           <h4>{this.state.totalUserCount} {coders} Online</h4>
-          <Link to="/mystats" className="my-stats-link">
+          <Link to="/mystats" className="menu-bar-links">
               My Stats
           </Link>
-          <Link to="/chatroom">
+          <Link to="/chatroom" className="menu-bar-links">
               Chatroom
           </Link>        
         </div> 
