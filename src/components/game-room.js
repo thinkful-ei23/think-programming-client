@@ -327,7 +327,10 @@ class GameRoom extends Component {
         <Link to="/dashboard" className="dashboard-link">
           Back to Dashboard
         </Link>
-        <h2>{this.props.match.params.value}</h2>
+        <div className="game-room-title-grid">
+          <h2>{this.props.match.params.value}</h2>
+          <p className='game-room-question-number'>{this.state.playerArray.length === 2 ? (` Question: ${(this.state.currentQuestionIndex + 1)}`) : ''}</p>
+        </div>
         <div className="question-container">
           <h3>{questionTitle}</h3>
           <p>{question}</p>
@@ -361,8 +364,8 @@ class GameRoom extends Component {
                   Finished
                 </button>
               )}
-            {(this.state.answerMessage !== undefined) && <div className='message-column'>{message}</div>}
           </div>
+          {(this.state.answerMessage !== undefined) && <div className='message-column'>{message}</div>}
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>
