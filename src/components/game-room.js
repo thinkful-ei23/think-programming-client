@@ -93,12 +93,14 @@ class GameRoom extends Component {
         if (incoming.username === this.props.username) {
           this.setState({
             meFinished: true,
-            challengerFinished: false
+            challengerFinished: false,
+            message: null
           });
         } else {
           this.setState({
             meFinished: false,
-            challengerFinished: true
+            challengerFinished: true,
+            message: null
           });
         };
       };
@@ -124,11 +126,13 @@ class GameRoom extends Component {
       if (!this.isCancelled) {
         if (this.state.meFinished) {
           this.setState({
-            meFinished: false
+            meFinished: false,
+            message: incoming.message
           });
         } else if (this.state.challengerFinished) {
           this.setState({
-            challengerFinished: false
+            challengerFinished: false,
+            message: 'challengers answer is incorrect, keep trying and press `Finished`'
           });
         };
       };
@@ -141,7 +145,8 @@ class GameRoom extends Component {
             meFinished: false,
             challengerFinished: false,
             meTyping: '',
-            challengerTyping: ''
+            challengerTyping: '',
+            message: this.state.answerMessage
           })
         ]).then(() => {
           this.props.dispatch(
@@ -237,7 +242,7 @@ class GameRoom extends Component {
     if (this.state.answerError === true) {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'correct'))
       // dispatch I am correct by approving and get some points
-      this.socket.emit('WRONG', this.props.username);
+      this.socket.emit('WRONG', {username: this.state.username, message: this.state.answerMessage});
     } else {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
@@ -252,7 +257,7 @@ class GameRoom extends Component {
     } else {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
-      this.socket.emit('WRONG', this.props.username);
+      this.socket.emit('WRONG', {username: this.props.username, message: this.state.answerMessage});
     };
   };
   onTyping(e) {
@@ -294,11 +299,11 @@ class GameRoom extends Component {
     } else if (this.state.meFinished) {
       questionTitle = `${
         this.props.username
-      } is Finished. Waiting For Challenger To Check Answer`;
+      }'s answer sent. Waiting For Challenger To Check Answer`;
       question = '';
     } else if (this.state.challengerFinished) {
       questionTitle =
-        'Challenger Has Finshed. Approve or Deny Their Answer';
+        'Challenger Has Finshed. Approve or Deny Their Answer to Continue';
       question = '';
     } else if (
       (this.props.questions !== undefined) &
@@ -322,6 +327,10 @@ class GameRoom extends Component {
       roomMode = 'markdown';
     };
     let message = this.state.message;
+    let fadeMessage = '';
+    if (message === 'Challenge completed') {
+      fadeMessage = 'fade-message';
+    }
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -365,7 +374,7 @@ class GameRoom extends Component {
                 </button>
               )}
           </div>
-          {(this.state.answerMessage !== undefined) && <div className='message-column'>{message}</div>}
+          {(this.state.answerMessage !== undefined) && <div className={`message-column ${fadeMessage}`}>{message}</div>}
         </div>
         <div className="my-text-editor">
           <h4>My text editor</h4>
