@@ -78,7 +78,9 @@ class GameRoom extends Component {
         if (!this.isCancelled) {
           if ( incoming.username === this.props.username ) {
             this.setState({
-              meSitting: true
+              meSitting: true,
+              answerError: null,
+              answerMessage: null
             });
           };
         };
@@ -102,18 +104,21 @@ class GameRoom extends Component {
           this.setState({
             meFinished: true,
             challengerFinished: false,
-            message: null
+            message: null,
+            answerError: null,
           });
         } else {
           this.setState({
             meFinished: false,
             challengerFinished: true,
-            message: null
+            message: null,
+            answerError: null,
           });
         };
       };
     });
     this.socket.on('ANSWERED', answerObject => {
+      console.log('ANSWER RECEIVED');
       if (!this.isCancelled) {
         this.setState({
           answerError: answerObject.answerError,
@@ -205,6 +210,7 @@ class GameRoom extends Component {
   componentWillReceiveProps(nextProps) {
     const { answerError, answerMessage } = nextProps;
     if (answerError !== this.state.answerError) {
+      console.log('Here is your problem');
       let answerObj = { answerError, answerMessage };
       this.socket.emit('ANSWERED', answerObj);
     };
