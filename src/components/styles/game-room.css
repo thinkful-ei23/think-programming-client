@@ -8,7 +8,7 @@
   height: 100vh;
   grid-template-areas: 
   "a"
-  "b"
+  "b" 
   "c"
   "f"
   "d"
@@ -31,10 +31,22 @@
 .dashboard-link:hover {
   color: #2BD9FC;
 }
-
-.game-room h2 {
+.game-room-title-grid {
   grid-area: b;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "f f g"
+  ;
 }
+.game-room .game-room-title-grid h2 {
+  grid-area: f;
+}
+
+.game-room-question-number {
+  grid-area: g;
+  margin: 0 auto;
+} 
 
 .game-room h2, h4 {
   margin: 0;
@@ -72,6 +84,10 @@
   padding: auto;
   text-transform: uppercase;
   color: #34495E
+}
+.message-column {
+  margin: auto;
+  color: red;
 }
 
 .verify-buttons {
