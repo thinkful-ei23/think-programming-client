@@ -70,3 +70,7 @@
   background-color: #1AD6FB;
   transition: 1s;
 }
+
+.disabled-link {
+  pointer-events: none;
+}

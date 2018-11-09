@@ -155,10 +155,30 @@ class GameRoom extends Component {
   // Life Cycle - Methods
   componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
-    this.getPlayerArray();
+    return Promise.all([this.getPlayerArray()])
+    .then(() => {
+      if (this.state.playerArray.length === 2) {
+        if (this.state.playerArray.indexOf(this.props.username) === -1) {
+          if (!this.isCancelled) {
+            this.props.history.push("/dashboard");
+          };
+        };
+      };
+    });
   };
   componentDidUpdate() {
-    this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray));
+    if (!this.isCancelled) {
+      return Promise.all([this.props.dispatch(inGameRoom(this.props.match.params.value, this.state.playerArray))])
+      .then(() => {
+        if (!this.isCancelled) {
+          if (this.state.playerArray.length === 2) {
+            if (this.state.playerArray.indexOf(this.props.username) === -1) {
+              this.props.history.push("/dashboard");
+            };
+          };
+        };
+      });
+    };
   };
   componentWillUnmount() {
     return Promise.all([this.leaveGame()])
