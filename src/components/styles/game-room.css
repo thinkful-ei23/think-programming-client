@@ -187,6 +187,30 @@
   background: rgb(161, 52, 52);
 }
 
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1
+  }
+  50% {
+    opacity: .66;
+  }
+  75% {
+    opacity: .33
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-message {
+  color: green;
+  opacity: 0;
+  animation-name: fadeOut;
+  animation-duration: 3s;
+}
 
 @media (min-width: 768px) {
   .game-room {
