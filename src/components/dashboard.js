@@ -55,7 +55,7 @@ class Dashboard extends Component {
       }
       return (
         <Link className={`room-link-container-${i} ${disabledlink}`} key={i} to={`/gameroom${i}/${questionArray[0]}`}>
-          <p><span className="room-title">{questionArray[1]}</span><span className="users-ready">{this.state.allUsers[questionArray[2]] ? this.state.allUsers[questionArray[2]].length : 0} of 2 Players Ready</span></p>
+          <p><span className="room-title">{questionArray[1]}</span><span className="users-ready">{this.state.allUsers[questionArray[2]] ? (this.state.allUsers[questionArray[2]].length === 2 ? `This room is full. Please wait or try another room` : `${this.state.allUsers[questionArray[2]].length} of 2 Players Ready`) : '0 of 2 Players Ready'}</span></p>
         </Link>
       );
     });
