@@ -118,7 +118,6 @@ class GameRoom extends Component {
       };
     });
     this.socket.on('ANSWERED', answerObject => {
-      console.log('ANSWER RECEIVED');
       if (!this.isCancelled) {
         this.setState({
           answerError: answerObject.answerError,
@@ -210,7 +209,6 @@ class GameRoom extends Component {
   componentWillReceiveProps(nextProps) {
     const { answerError, answerMessage } = nextProps;
     if (answerError !== this.state.answerError) {
-      console.log('Here is your problem');
       let answerObj = { answerError, answerMessage };
       this.socket.emit('ANSWERED', answerObj);
     };
@@ -264,14 +262,14 @@ class GameRoom extends Component {
     } else {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
-      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+      this.socket.emit('APPROVE', { currentIndex: this.state.currentQuestionIndex, room: this.state.room });
     };
   };
   sendApprove = () => {
     if (this.state.answerError === false) {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'correct'))
       // dispatch I am correct by approving and get some points
-      this.socket.emit('APPROVE', this.state.currentQuestionIndex);
+      this.socket.emit('APPROVE', { currentIndex: this.state.currentQuestionIndex, room: this.state.room });
     } else {
       this.props.dispatch(sendJudgment(this.props.match.url.substring(11), 'incorrect'))
       // dispatch I am wrong in my judgement I should lose points
@@ -287,7 +285,6 @@ class GameRoom extends Component {
   };
   // HERE IS THE RENDER METHOD
   render() {
-    console.log(this.state.answerError);
     // Variable Logic for rendering
     let winner = '';
     if (this.state.meFinished) {
