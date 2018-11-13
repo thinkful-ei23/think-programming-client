@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import tplogo from './images/logo/TP-logo.jpg';
 import './styles/header-bar.css';
 
-class HeaderBar extends Component {
+export class HeaderBar extends Component {
     		
 	socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
 	logOut() {

@@ -7,7 +7,7 @@ import RegistrationForm from './registration-form';
 import './styles/registration-page.css';
 import tplogo from './images/logo/TP-logo.jpg';
 
-class RegistrationPage extends React.Component {
+export class RegistrationPage extends React.Component {
     // If we are logged in (which happens automatically when registration
     // is successful) redirect to the user's dashboard
   render() {

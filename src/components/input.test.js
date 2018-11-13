@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App';
+import Input from './input';
 
-describe.only('<App />', () => {
+describe('<Input />', () => {
   it('Should render without crashing', () => {
-    shallow(<App />);
+    shallow(<Input />);
   });
 });

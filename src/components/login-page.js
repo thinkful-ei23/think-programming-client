@@ -6,7 +6,7 @@ import LoginForm from './login-form';
 import tplogo from './images/logo/TP-logo.jpg';
 import './styles/login-page.css';
 
-class LoginPage extends React.Component {
+export class LoginPage extends React.Component {
     // If we are logged in (which happens automatically when registration
     // is successful) redirect to the user's dashboard
     render() {

@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-dom';
 import './styles/landing-page.css';
 import logo from './images/logo/TP-title-logo.jpg'
 
-class LandingPage extends Component {
+export class LandingPage extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to="/dashboard" />;
