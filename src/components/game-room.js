@@ -144,7 +144,7 @@ class GameRoom extends Component {
         } else if (this.state.challengerFinished) {
           this.setState({
             challengerFinished: false,
-            message: 'challengers answer is incorrect, keep trying and press `Finished`'
+            message: "Challenger's answer is incorrect. Keep trying and press `Finished`"
           });
         };
       };
