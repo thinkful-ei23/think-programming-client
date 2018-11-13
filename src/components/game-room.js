@@ -16,7 +16,9 @@ import 'brace/mode/javascript';
 import 'brace/mode/css';
 import 'brace/mode/html';
 import 'brace/mode/markdown';
+import 'brace/theme/solarized_light';
 import 'brace/theme/solarized_dark';
+
 class GameRoom extends Component {
   // HERE IS THE CONSTRUCTOR
   constructor(props) {
@@ -320,7 +322,7 @@ class GameRoom extends Component {
     } else if (this.state.challengerFinished) {
       questionTitle =
         'Challenger Has Finshed. Approve or Deny Their Answer to Continue';
-      question = '';
+      question = 'Checkout the challengers text area and review their answer.  If you also think it is correct press `Approve`  and if not press `Try Again`. Remember You win or lose points based upon your judgement of the challengers answer!';
     } else if (
       (this.props.questions !== undefined) &
       (this.props.questions !== null)
@@ -392,13 +394,13 @@ class GameRoom extends Component {
           </div>
           {(this.state.answerMessage !== undefined) && <div className={`message-column ${fadeMessage}`}>{message}</div>}
         </div>
-        <div className="my-text-editor">
-          <h4>My text editor</h4>
+        <div className='challenger-text-editor'>
+          <h4>Challenger's text editor</h4>
           <AceEditor
-            value={this.state.meTyping}
-            onChange={e => this.onTyping(e)}
+            value={this.state.challengerTyping}
             mode={roomMode}
-            theme="solarized_dark"
+            readOnly={true}
+            theme='solarized_light'
             width="100%"
             height="70%"
             fontSize="16px"
@@ -407,13 +409,13 @@ class GameRoom extends Component {
             wrapEnabled={true}
           />
         </div>
-        <div className="challenger-text-editor">
-          <h4>Challenger's text editor</h4>
+        <div className='my-text-editor'>
+          <h4>My text editor</h4>
           <AceEditor
-            value={this.state.challengerTyping}
+            value={this.state.meTyping}
+            onChange={e => this.onTyping(e)}
             mode={roomMode}
-            readOnly={true}
-            theme="solarized_dark"
+            theme='solarized_dark'
             width="100%"
             height="70%"
             fontSize="16px"
