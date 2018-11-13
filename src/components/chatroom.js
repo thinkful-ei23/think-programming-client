@@ -9,7 +9,7 @@ import { API_BASE_URL_SOCKET } from '../config';
 import './styles/chatroom.css';
 
 
-class Chatroom extends React.Component {
+export class Chatroom extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
