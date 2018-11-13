@@ -6,7 +6,7 @@ import requiresLogin from './requires-login';
 
 import './styles/my-stats.css';
 
-export class MyStats extends React.Component {
+class MyStats extends React.Component {
   componentDidMount() {
     console.log(this.props.dispatch, 'dispatch');
     this.props.dispatch(fetchMyStats());
