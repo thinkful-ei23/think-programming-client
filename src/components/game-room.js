@@ -237,7 +237,7 @@ class GameRoom extends Component {
   sendFinished() {
     if (this.state.meTyping.length === 0) {
       this.setState({
-        message: 'Must have code to press Finished Button'  
+        message: 'Must have code to finish'  
       });
     } else {
       let room = this.props.match.url.substring(
