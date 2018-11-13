@@ -141,12 +141,12 @@
 }
 
 .my-text-editor {
-  grid-area: d;
+  grid-area: e;
   margin: 0.5em 0.5em 0 0.5em;
 }
 
 .challenger-text-editor {
-  grid-area: e;
+  grid-area: d;
   margin: 0.5em 0.5em 0 0.5em;
 }
 
@@ -186,7 +186,9 @@
 .btn-finished:hover {
   background: rgb(161, 52, 52);
 }
-
+.highlight {
+  background-color: yellow;
+}
 @keyframes fadeOut {
   0% {
     opacity: 1;
