@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { clearAuth } from '../actions/auth';
 import{ clearAuthToken } from "../local-storage";
 import { API_BASE_URL_SOCKET } from '../config';
@@ -10,6 +11,7 @@ import './styles/header-bar.css';
 export class HeaderBar extends Component {
     		
 	socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
+	
 	logOut() {
 		return Promise.all([
 			this.socket.emit('USER_EXIT', this.props.auth.currentUser.username)
@@ -19,6 +21,8 @@ export class HeaderBar extends Component {
 					clearAuthToken();
 		});
 	}
+
+
 	render() {
 		let logOutButton;
 		if (this.props.loggedIn) {
@@ -28,7 +32,9 @@ export class HeaderBar extends Component {
 		}
 		return (
 			<div className="header-bar">
-				<img src={tplogo} className="header-bar-img" alt="Think Programming Logo" />
+				<Link to="/dashboard">
+					<img src={tplogo} className="header-bar-img" alt="Think Programming Logo" />
+				</Link>
 				{logOutButton}
 			</div>
 		);
