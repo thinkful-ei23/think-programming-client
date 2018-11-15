@@ -22,7 +22,7 @@ Think Programming is a place for coders to hone skills and challenge other progr
 
 Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.
 
-Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!
+That's not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!
 
 
 ## Why?
