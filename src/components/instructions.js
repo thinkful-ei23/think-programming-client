@@ -6,7 +6,7 @@ import './styles/instructions.css';
 export default function Instructions() {
   return (
     <div className="instructions">
-      <Link to="/dashboard" className="back">back</Link>
+      {/* <Link to="/dashboard" className="back-links">back</Link> */}
       <div className="instructions-header">
         <h1>Instructions</h1>
       </div>

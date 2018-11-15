@@ -13,11 +13,13 @@ class MyStats extends React.Component {
     render() {
       return (
         <div className="my-stats">
-          <Link to="/dashboard" className="dashboard-link">
-            Back to Dashboard
-          </Link>
+          <div>
+            <Link to="/dashboard" className="back-links">
+              Back to Dashboard
+            </Link>
+          </div>
           <div className="my-stats-container">
-            <h1>{this.props.username} Stats</h1>
+            <h1>{this.props.username}'<span className='s'>s</span> Stats</h1>
             <div className='stats-container'>
               <div className='points-container'>
                 <p>Total Points: {this.props.myStats ?this.props.myStats.totalPoints : 0}</p>

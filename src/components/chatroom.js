@@ -95,7 +95,7 @@ export class Chatroom extends React.Component {
 
 		return (
 			<div className="chatroom">
-				<Link to="/dashboard" className="dashboard-link">
+				<Link to="/dashboard" className="back-links">
 					Back to Dashboard
 				</Link>
 				<h3>Chatroom - Welcome {this.props.name}!</h3>

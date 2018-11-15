@@ -7,11 +7,24 @@
 .my-stats-container {
   background-color: #34495E;
   color: #fff;
-  padding: 0 2em 2em 2em;
+  padding: 1em 2em 2em 2em;
   margin: auto;
   margin-top: 1em; 
+  text-align: center;
 }
 
 .dashboard-link:hover {
   color: #2BD9FC;
+}
+
+.stats-container {
+  text-align: left;
+}
+
+.points-container {
+  padding-top: 1em;
+}
+
+.s {
+  text-transform: lowercase;
 }

@@ -26,12 +26,14 @@
 
 .dashboard-link { 
   text-decoration: none;
+  color: #34495E;
   grid-area: a;
 }
 
 .dashboard-link:hover {
   color: #2BD9FC;
 }
+
 .game-room-title-grid {
   grid-area: b;
   display: grid;

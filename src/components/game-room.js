@@ -351,9 +351,11 @@ class GameRoom extends Component {
     }
     return (
       <div className="game-room">
-        <Link to="/dashboard" className="dashboard-link">
-          Back to Dashboard
-        </Link>
+        <div>
+          <Link to="/dashboard" className="back-links">
+            Back to Dashboard
+          </Link>
+        </div>
         <div className="game-room-title-grid">
           <h2>{this.props.match.params.value}</h2>
           <p className='game-room-question-number'>
