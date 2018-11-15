@@ -109,6 +109,9 @@ class Dashboard extends Component {
           <div id={this.state.displayToggle} className="dropdown-content">
             {listUsers}
           </div>
+          <Link to='/instructions' className='menu-bar-links'>
+              Instructions
+          </Link>
           <Link to="/mystats" className="menu-bar-links">
               My Stats
           </Link>

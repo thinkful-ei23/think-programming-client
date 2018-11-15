@@ -349,7 +349,6 @@ class GameRoom extends Component {
     if (message === 'Challenge completed') {
       fadeMessage = 'fade-message';
     }
-    console.log(this.props.questions)
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
