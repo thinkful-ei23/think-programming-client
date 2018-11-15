@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import './App.css';
 import { Route, withRouter } from 'react-router-dom';
 /*===Import Components===*/
 import HeaderBar from './components/header-bar';

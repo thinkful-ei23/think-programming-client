@@ -11,36 +11,66 @@ class Dashboard extends Component {
     super(props);
       this.state = {
         totalUserCount: 0,
-        allUsers: {}
+        allUsers: {},
+        displayToggle: '',
+        onlineUsers: []
       }
     this.socket = io.connect(`${API_BASE_URL_SOCKET}/dashboard`);
     
     this.socket.on('USERS', userArray => {
       if (!this.isCancelled) { 
         let totalUsers = userArray.length;
-        this.setState({totalUserCount: totalUsers});
+        this.setState({
+          totalUserCount: totalUsers,
+          onlineUsers: userArray
+        });
       }
     });
     
     this.socket.on('ALL_PLAYERS', incomingRoomObject => {
       if (!this.isCancelled) {
-        this.setState({allUsers: incomingRoomObject})
+        this.setState({
+          allUsers: incomingRoomObject
+        })
       }
     });
   }
+
   sendNewUser() {
     this.socket.emit('USERS', this.props.username)
   }
   getAllUsers() {
     this.socket.emit('ALL_PLAYERS', this.props.username) 
   }
+
+  receiveOnlineUsers() {
+    this.socket.emit('LIST_USERS')
+  }
+
   componentDidMount() {
     this.sendNewUser();
     this.getAllUsers();
+    this.receiveOnlineUsers();
   }
+  
   componentWillUnmount() {
     this.isCancelled = true;
+    this.receiveOnlineUsers();
   }
+
+  handleClick(e) {
+    e.preventDefault();
+    if (this.state.displayToggle === '') {
+      this.setState({
+        displayToggle: 'show'
+      });
+    } else {
+      this.setState({
+        displayToggle: ''
+      });
+    }
+  }
+
   render() {
     let questionTypes = [ ['jsQuestions','JavaScript', 'jsPlayers'], ['htmlQuestions', 'HTML', 'htmlPlayers'], ['cssQuestions', 'CSS', 'cssPlayers'], ['dsaQuestions', 'Data Structures & Algorithms', 'dsaPlayers']];
     let disabledlink = '';
@@ -63,11 +93,22 @@ class Dashboard extends Component {
     if (this.state.totalUserCount > 1) {
       coders = 'Coders';
     }
+
+    let onlineUsers = this.state.onlineUsers;
+    const listUsers = onlineUsers.map((onlineUser, i) => {
+      return (
+        <li key={i}>{onlineUser}</li>
+      )
+    });
+
     return (
       <div className="dashboard">
         <h2>Challenge Rooms</h2>
         <div className="menu-bar">
-          <h4>{this.state.totalUserCount} {coders} Online</h4>
+          <span className="user-count" onClick={(e) => this.handleClick(e)}>{this.state.totalUserCount} {coders} Online</span>
+          <div id={this.state.displayToggle} className="dropdown-content">
+            {listUsers}
+          </div>
           <Link to="/mystats" className="menu-bar-links">
               My Stats
           </Link>
