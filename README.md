@@ -18,7 +18,7 @@
 </p>
 
 ## What Are We
-A spot to challenge another coding enthusiest in a language or programing category to come up with the fastest and cleanest correct code.  When two players are ready, a question appears and a text area becomes activated allowing you to type your answer.  But watch out becuase you can see each others code as it being written!  
+A spot to challenge another coding enthusiest in a language or programming category to come up with the fastest and cleanest correct code.  When two players are ready, a question appears and a text area becomes activated allowing you to type your answer.  But watch out becuase you can see each others code as it being written!  
 
 When done click finish to lock the challengers text area and make them check your code and approve or deny their answer!  Think Programming can improve your muscle memory of fundemential coding.    
 
