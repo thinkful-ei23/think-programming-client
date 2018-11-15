@@ -105,7 +105,7 @@ class Dashboard extends Component {
       <div className="dashboard">
         <h2>Challenge Rooms</h2>
         <div className="menu-bar">
-          <span className="user-count" onClick={(e) => this.handleClick(e)}>{this.state.totalUserCount} {coders} Online</span>
+          <span className="menu-bar-links" onClick={(e) => this.handleClick(e)}>{this.state.totalUserCount} {coders} Online</span>
           <div id={this.state.displayToggle} className="dropdown-content">
             {listUsers}
           </div>
