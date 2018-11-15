@@ -18,11 +18,11 @@
 </p>
 
 ## What Is Think Programming
-&nbsp;&nbsp;Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.
+Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.
 
-&nbsp;&nbsp;Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.
+Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.
 
-&nbsp;&nbsp;Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!
+Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!
 
 
 ## Why?
@@ -33,16 +33,16 @@ Think Programming is the result of a three week group Full Stack build. Using th
 * decide on project idea
 * decide on tech stack to best fit idea
 * define user stories
-* design wireframes and user flow using adobe XD
+* design wireframes and user flow using Adobe XD
 * design product architecture  
 * Build trello breakdown: to promote team communication, set clear goals and set small manageable tasks
 * build React app and collaborate with github
 * build Node Express app and collaborate with github
-* deploy Client and Server to Heroku
-* enable Continuous Integration service with Travis CI
+* deploy client and server to Heroku
+* enable continuous integration service with Travis CI
 * start implementing key features
 * build logos using adobe illustrator
-* form basic css design using mobile first grids
+* mobile first css using css grid
 * basic README.md
 * complete MVP
 #### Week Two
