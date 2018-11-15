@@ -317,12 +317,12 @@ class GameRoom extends Component {
     } else if (this.state.meFinished) {
       questionTitle = `${
         this.props.username
-      }'s answer sent. Waiting For Challenger To Check Answer`;
+      }'s is finished! Waiting For Challenger To Check Answer!`;
       question = '';
     } else if (this.state.challengerFinished) {
       questionTitle =
-        'Challenger Has Finshed. Approve or Deny Their Answer to Continue';
-      question = 'Take a look at challenger\'s text editor and review their answer. If you also think it is correct, press `Approve` and if not, press `Try Again`. Remember - you win or lose points based upon your judgement of the challenger\'s answer!';
+        'Challenger Has Finshed. You must `Approve` or `Deny` Their Answer to Continue';
+      question = this.props.questions.question;
     } else if (
       (this.props.questions !== undefined) &
       (this.props.questions !== null)
