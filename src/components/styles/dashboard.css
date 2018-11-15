@@ -39,6 +39,7 @@
 
 /* Dropdown for user count */
 .dropdown-content {
+  cursor: default;
   display: none;
   position: absolute;
   background-color: #fff;
