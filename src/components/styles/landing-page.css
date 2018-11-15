@@ -47,8 +47,8 @@ body {
 }
 
 .btn:hover {
-  background: #1E5163;
-  transition: 0.3s;
+  background: rgb(55, 102, 122);
+  transition: 1s;
 }
 
 .btn-dark:hover {
@@ -69,13 +69,12 @@ body {
 .btn.aboutus {
   background: #fff;
   color: #333;
-  /* border: 1px solid #e7e7e7; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   padding: 1em 1.5em;
 }
 
 .btn.aboutus:hover {
-  background: rgb(0, 116, 158);
-  transition: 0.3s;
+  background: #676470;
+  transition: 0.5s;
   color: #fff;
 }

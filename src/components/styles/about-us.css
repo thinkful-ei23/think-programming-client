@@ -7,10 +7,16 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-.about-us-header > h2{
+.about-us-header > h2 {
   display: inline-block;
-  border: 10px solid #2BD9FC;
-  padding: 0.5em 1em;
+  border: 10px solid #E6E6E6;
+  padding: 0.5em 3em;
+}
+
+.about-us-header > h2:hover {
+  border: 10px solid #8b8a8f;
+  transition: 0.7s;
+  padding: 0.5em 3em;
 }
 
 .about-us-content {
@@ -21,6 +27,7 @@
 .about-us-content > p {
   margin: auto;
   text-align: center;
+  padding: 5%;
 }
 
 .about-us > .back {
