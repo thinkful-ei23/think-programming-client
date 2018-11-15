@@ -9,7 +9,7 @@ import AceEditor from 'react-ace';
 import { fetchQuestions  } from '../actions/questions';
 import { inGameRoom } from '../actions/game-room';
 import { fetchAnswers } from '../actions/answers';
-import { sendJudgment } from '../actions/judgement';
+import { sendJudgment, clearJudgmentReducer } from '../actions/judgement';
 import requiresLogin from './requires-login';
 import './styles/game-room.css';
 import 'brace/mode/javascript';
@@ -82,7 +82,12 @@ class GameRoom extends Component {
             this.setState({
               meSitting: true,
               answerError: null,
-              answerMessage: null
+              answerMessage: null,
+            });
+          }
+          else {
+            this.setState({
+              message: null
             });
           };
         };
@@ -102,21 +107,24 @@ class GameRoom extends Component {
 
     this.socket.on('FINISHED', incoming => {
       if (!this.isCancelled) {
-        if (incoming.username === this.props.username) {
-          this.setState({
-            meFinished: true,
-            challengerFinished: false,
-            message: null,
-            answerError: null,
-          });
-        } else {
-          this.setState({
-            meFinished: false,
-            challengerFinished: true,
-            message: null,
-            answerError: null,
-          });
-        };
+        return Promise.all([this.props.dispatch(clearJudgmentReducer())])
+        .then(() => {
+          if (incoming.username === this.props.username) {
+            this.setState({
+              meFinished: true,
+              challengerFinished: false,
+              message: null,
+              answerError: null,
+            });
+          } else {
+            this.setState({
+              meFinished: false,
+              challengerFinished: true,
+              message: null,
+              answerError: null,
+            });
+          };
+        });
       };
     });
     this.socket.on('ANSWERED', answerObject => {
@@ -146,7 +154,7 @@ class GameRoom extends Component {
         } else if (this.state.challengerFinished) {
           this.setState({
             challengerFinished: false,
-            message: "Challenger's answer is incorrect. Keep trying and press `Finished`"
+            message: "Challenger's answer was incorrect. Keep trying and press `Finished`"
           });
         };
       };
@@ -174,7 +182,7 @@ class GameRoom extends Component {
   // Life Cycle - Methods
   componentDidMount() {
     this.props.dispatch(fetchQuestions(this.props.match.params.value, 0));
-    return Promise.all([this.getPlayerArray()])
+    return Promise.all([this.getPlayerArray(), this.props.dispatch(clearJudgmentReducer())])
     .then(() => {
       if (this.state.playerArray.length === 2) {
         if (this.state.playerArray.indexOf(this.props.username) === -1) {
@@ -244,7 +252,9 @@ class GameRoom extends Component {
     } else {
       let room = this.props.match.url.substring(
         10);
-      Promise.all([this.socket.emit('FINISHED', { username: this.props.username })])
+      Promise.all([
+        this.socket.emit('FINISHED', { username: this.props.username })
+      ])
       .then(() => {
         this.props.dispatch(fetchAnswers(room, this.state.meTyping, this.state.currentQuestionIndex))
       })
@@ -315,13 +325,11 @@ class GameRoom extends Component {
       questionTitle = `Hi ${this.state.playerArray[0]}! Waiting for Challenger To Join`;
       question = '';
     } else if (this.state.meFinished) {
-      questionTitle = `${
-        this.props.username
-      }'s is finished! Waiting For Challenger To Check Answer!`;
+      questionTitle = 'You is finished! Wait For The Challenger To Review Your Answer!';
       question = '';
     } else if (this.state.challengerFinished) {
       questionTitle =
-        'Challenger Has Finshed. You must `Approve` or `Deny` Their Answer to Continue';
+        'Stop! Your Challenger Has Finshed! You must `Approve` or `Deny` Their Answer to Continue';
       question = this.props.questions.question;
     } else if (
       (this.props.questions !== undefined) &
@@ -344,10 +352,21 @@ class GameRoom extends Component {
     } else if (this.state.room === 'dsaQuestions') {
       roomMode = 'markdown';
     };
+    let redText = '';
     let message = this.state.message;
     let fadeMessage = '';
-    if (message === 'Challenge completed') {
-      fadeMessage = 'fade-message';
+    if (message) {
+      let correctAnswer = message.match(/(?:\+[^>]*\+)/g);
+      if (correctAnswer !== null && correctAnswer.length > 0) {
+       fadeMessage = 'fade-message';
+      }
+    }
+    
+    if (this.props.judgement !== null) {
+      message = this.props.judgement.message;
+      if (this.props.judgement.verdict === 'incorrect') {
+        redText = 'redText';
+      }
     }
     return (
       <div className="game-room">
@@ -357,7 +376,7 @@ class GameRoom extends Component {
         <div className="game-room-title-grid">
           <h2>{this.props.match.params.value}</h2>
           <p className='game-room-question-number'>
-            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)} of ${this.props.questions.total}`) : ''}
+            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)}/${this.props.questions.total}`) : ''}
           </p>
         </div>
         <div className="question-container">
@@ -394,7 +413,7 @@ class GameRoom extends Component {
                 </button>
               )}
           </div>
-          {(this.state.answerMessage !== undefined) && <div className={`message-column ${fadeMessage}`}>{message}</div>}
+          {(this.state.answerMessage !== undefined) && <div className={`message-column ${fadeMessage} ${redText}`}>{message}</div>}
         </div>
         <div className='challenger-text-editor'>
           <h4>Challenger's text editor</h4>
@@ -435,7 +454,8 @@ const mapStateToProps = state => ({
   username: state.auth.currentUser.username,
   questions: state.questions.questions,
   answerError: state.answers.answerError,
-  answerMessage: state.answers.answerMessage
+  answerMessage: state.answers.answerMessage,
+  judgement: state.judgement.judgement
 });
 
 export default requiresLogin()(connect(mapStateToProps)(GameRoom));

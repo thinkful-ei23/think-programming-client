@@ -7,14 +7,20 @@ export const sendJudgmentRequest = () => ({
 });
 
 export const SEND_JUDGMENT_SUCCESS = 'SEND_JUDGMENT_SUCCESS';
-export const sendJudgmentSuccess = () => ({
-  type: SEND_JUDGMENT_SUCCESS
+export const sendJudgmentSuccess = judgement => ({
+  type: SEND_JUDGMENT_SUCCESS,
+  judgement
 });
 
 export const SEND_JUDGMENT_ERROR = 'SEND_JUDGMENT_ERROR';
 export const sendJudgmentError = error => ({
   type: SEND_JUDGMENT_ERROR,
   error
+});
+
+export const CLEAR_JUDGMENT_REDUCER = 'CLEAR_JUDGMENT_REDUCER';
+export const clearJudgmentReducer = () => ({
+  type: CLEAR_JUDGMENT_REDUCER
 });
 
 export const sendJudgment = (questionType, answer) => (dispatch, getState) => {
