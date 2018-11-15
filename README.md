@@ -17,10 +17,56 @@
     </strong>
 </p>
 
-## What Are We
-A spot to challenge another coding enthusiest in a language or programming category to come up with the fastest and cleanest correct code.  When two players are ready, a question appears and a text area becomes activated allowing you to type your answer.  But watch out becuase you can see each others code as it being written!  
+## What Is Think Programming
+Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.
 
-When done click finish to lock the challengers text area and make them check your code and approve or deny their answer!  Think Programming can improve your muscle memory of fundemential coding.    
+Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.
+
+Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!
+
+
+## Why?
+Think Programming is the result of a three week group Full Stack build. Using the MERN Stack (Mongo-Express-React-Node) as well many other technologies we we experienced the full Software Development Life Cycle but for actual production deployment and maintenance.   Working with senior developers using the latest development stategies and holding daily standups we started with a small idea and put together a pretty expansive mobile first web application. Please see below for a glimpse into our process. 
+
+### Our Three Week Timeline
+#### Week One
+* decide on project idea
+* decide on tech stack to best fit idea
+* define user stories
+* design wireframes and user flow using Adobe XD
+* design product architecture  
+* Build trello breakdown: to promote team communication, set clear goals and set small manageable tasks
+* build React app and collaborate with github
+* build Node Express app and collaborate with github
+* deploy client and server to Heroku
+* enable continuous integration service with Travis CI
+* start implementing key features
+* build logos using adobe illustrator
+* mobile first css using css grid
+* basic README.md
+* complete MVP
+#### Week Two
+* develop thing program coding problem content
+* socket namespacing development
+* redux, and state management improvements
+* unit testing along the way
+* modularize code to improve collaboration
+* basic validation
+* crowd feedback to improve feature development and goals
+* tighten user experience
+* test, test, test!
+#### Week Three
+* key features wrap up
+* clean up UX and add needed features
+* Bug-fixing
+* validation improvements
+* complete mocha server testing
+* complete enzyme client testing: smoke-tests, component tests, redux testing
+* socket testing
+* test, test, test!
+* polish, polish, polish!
+* complete product ready to ship!
+
 
 ## Tech Used
 
@@ -33,6 +79,7 @@ When done click finish to lock the challengers text area and make them check you
 * Socket.io
 * Ace Editor
 * Enzyme
+* Jest
 * JavaScript
 * HTML5
 * CSS3
@@ -51,6 +98,11 @@ When done click finish to lock the challengers text area and make them check you
 * Github
 * TravisCI
 * Heroku
+* mlab
+
+### Other
+* Adobe XD
+* Adobe Illustrator
 
 ### Developers
 

@@ -317,12 +317,12 @@ class GameRoom extends Component {
     } else if (this.state.meFinished) {
       questionTitle = `${
         this.props.username
-      }'s answer sent. Waiting For Challenger To Check Answer`;
+      }'s is finished! Waiting For Challenger To Check Answer!`;
       question = '';
     } else if (this.state.challengerFinished) {
       questionTitle =
-        'Challenger Has Finshed. Approve or Deny Their Answer to Continue';
-      question = 'Take a look at challenger\'s text editor and review their answer. If you also think it is correct, press `Approve` and if not, press `Try Again`. Remember - you win or lose points based upon your judgement of the challenger\'s answer!';
+        'Challenger Has Finshed. You must `Approve` or `Deny` Their Answer to Continue';
+      question = this.props.questions.question;
     } else if (
       (this.props.questions !== undefined) &
       (this.props.questions !== null)
@@ -349,6 +349,7 @@ class GameRoom extends Component {
     if (message === 'Challenge completed') {
       fadeMessage = 'fade-message';
     }
+    console.log(this.props.questions)
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -357,7 +358,7 @@ class GameRoom extends Component {
         <div className="game-room-title-grid">
           <h2>{this.props.match.params.value}</h2>
           <p className='game-room-question-number'>
-            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)}`) : ''}
+            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)} of ${this.props.questions.total}`) : ''}
           </p>
         </div>
         <div className="question-container">

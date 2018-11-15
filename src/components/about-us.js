@@ -10,15 +10,10 @@ export default function AboutUs() {
         <h2>About Us</h2>
       </div>
       <div className="about-us-content">
-        <p>
-          Think Programming is a code type-racing game to improve your skills to
-          be a more efficient coder, whether you are an experienced or beginner
-          software engineer. One way to improve is to practice writing more lines
-          of code. Why not learn and have competitive fun at the same time?
-          Everyone loves friendly competition. We help you display your coding
-          prowess by competing against other coders in real time.{' '}
-        </p>
-        <br />
+        <p>Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.</p>
+        <p>Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.</p>
+        <p> Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!</p>
+        <p>Join Think Programming today and improve your fundamental coding muscle memory skills!</p>
       </div>
       <Link to="/" className="back">
         Back
