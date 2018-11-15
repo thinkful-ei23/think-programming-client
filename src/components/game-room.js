@@ -154,7 +154,7 @@ class GameRoom extends Component {
         } else if (this.state.challengerFinished) {
           this.setState({
             challengerFinished: false,
-            message: "Challenger's answer was incorrect. Keep trying and press `Finished`"
+            // message: "Challenger's answer was incorrect. Keep trying and press `Finished`"
           });
         };
       };
@@ -364,6 +364,10 @@ class GameRoom extends Component {
     
     if (this.props.judgement !== null) {
       message = this.props.judgement.message;
+      let correctAnswer = message.match(/(?:\+[^>]*\+)/g);
+      if (correctAnswer !== null && correctAnswer.length > 0) {
+       fadeMessage = 'fade-message';
+      }
       if (this.props.judgement.verdict === 'incorrect') {
         redText = 'redText';
       }

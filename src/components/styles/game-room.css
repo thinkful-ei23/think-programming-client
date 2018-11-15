@@ -214,7 +214,7 @@
   color: green;
   opacity: 0;
   animation-name: fadeOut;
-  animation-duration: 5s;
+  animation-duration: 7s;
 }
 .redText {
   color: red;
