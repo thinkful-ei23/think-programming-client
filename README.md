@@ -17,10 +17,20 @@
     </strong>
 </p>
 
-## What Are We
-A spot to challenge another coding enthusiest in a language or programming category to come up with the fastest and cleanest correct code.  When two players are ready, a question appears and a text area becomes activated allowing you to type your answer.  But watch out becuase you can see each others code as it being written!  
+## What Is Think Programming
+<p>Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.</p>
+<p>Think Programming is designed for coders of all levels.  Choose a language or software category then connect with another Think Programmer and race to be the first to solve live coding challenges.</p>
+<p> Thats not all! At Think Programming, cheating is allowed! Be careful to write your answer as fast as possible and press `finished` because your opponent can see your code as you type and may be stealing your mojo!  But this works both ways! If you are stuck, this isn't school anymore, feel free to steal ideas from your challengers code!</p>
+<p>Join Think Programming today and improve your fundamental coding muscle memory skills!</p>
 
-When done click finish to lock the challengers text area and make them check your code and approve or deny their answer!  Think Programming can improve your muscle memory of fundemential coding.    
+## Why?
+Think Programming is the result of a three week group Full Stack build. It is made using the MERN Stack (Mongo-Express-React-Node) as well many other technologies.   Working with senior developers using the latest development stategies we started with a small idea and put together a pretty expansive mobile first web application.
+
+### Our Three Week Timeline
+#### Day 1
+this is to test the readme
+
+
 
 ## Tech Used
 
@@ -33,6 +43,7 @@ When done click finish to lock the challengers text area and make them check you
 * Socket.io
 * Ace Editor
 * Enzyme
+* Jest
 * JavaScript
 * HTML5
 * CSS3
