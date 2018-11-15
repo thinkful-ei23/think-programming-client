@@ -1,18 +1,17 @@
-.home {
+.home-register {
   display: grid;
-  grid-template-columns: repeat(3);
-  grid-auto-rows: minmax(100px, auto);
-  min-height: 100vh;
+  min-height: 70vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 35% 5% 60%;
   margin: 0;
   text-align: center;
 }
 
-.login-h2 {
+.register-h2 {
   margin: auto;
   font-weight: 500;
 }
 
-img {
-  width: 120px;
-  /* margin: 1em 0; */
+.register-h2 > img {
+  width: 130px;
 }

@@ -11,9 +11,11 @@ body {
 
 .landing {
   display: grid;
-  min-height: 100vh;
+  min-height: 90vh;
   margin: 0;
   text-align: center;
+  grid-template-columns: 1fr;
+  grid-template-rows: 60% 10% 30%;
 }
 
 .landing img {
@@ -62,7 +64,7 @@ body {
 }
 
 .directory {
-  padding: 3em;
+  padding: 0;
   margin: auto;
 }
 

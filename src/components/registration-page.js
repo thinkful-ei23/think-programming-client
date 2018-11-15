@@ -19,14 +19,13 @@ export class RegistrationPage extends React.Component {
       registrationError = this.props.error.message
     }
     return (
-      <div className="home">
-        <div className='login-h2'>
+      <div className="home-register">
+        <div className='register-h2'>
           <img src={tplogo} alt="Think Programming" />
           <h2>Let's Register!</h2>
         </div>
-        <RegistrationForm /> 
-
         <div className='registration-error'>{registrationError}</div>
+        <RegistrationForm /> 
       </div>
     );
   }

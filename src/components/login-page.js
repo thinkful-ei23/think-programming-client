@@ -18,13 +18,13 @@ export class LoginPage extends React.Component {
         loginError = this.props.error.message
       }
       return (
-        <div className="home">
+        <div className="home-login">
           <div className='login-h2'>
             <img src={tplogo} alt="Think Programming" />
             <h2>Let's Sign In!</h2>
           </div>
-          <LoginForm /> 
           <div className='login-error'>{loginError}</div>  
+          <LoginForm /> 
         </div>
       );
     }
