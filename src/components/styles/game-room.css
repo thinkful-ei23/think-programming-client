@@ -20,7 +20,8 @@
 }
 
 .challenger-text-editor {
-  grid-area: e;  
+  grid-area: e; 
+  pointer-events: none; 
 }
 
 .dashboard-link { 

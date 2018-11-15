@@ -349,6 +349,7 @@ class GameRoom extends Component {
     if (message === 'Challenge completed') {
       fadeMessage = 'fade-message';
     }
+    console.log(this.props.questions)
     return (
       <div className="game-room">
         <Link to="/dashboard" className="dashboard-link">
@@ -357,7 +358,7 @@ class GameRoom extends Component {
         <div className="game-room-title-grid">
           <h2>{this.props.match.params.value}</h2>
           <p className='game-room-question-number'>
-            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)}`) : ''}
+            {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)} of ${this.props.questions.total}`) : ''}
           </p>
         </div>
         <div className="question-container">
