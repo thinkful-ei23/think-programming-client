@@ -5,7 +5,7 @@ import { clearAuth } from '../actions/auth';
 import{ clearAuthToken } from "../local-storage";
 import { API_BASE_URL_SOCKET } from '../config';
 import io from "socket.io-client";
-import tplogo from './images/logo/TP-logo.jpg';
+import tplogo from './images/logo/TP-logo.png';
 import './styles/header-bar.css';
 
 export class HeaderBar extends Component {

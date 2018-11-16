@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import LoginForm from './login-form';
-import tplogo from './images/logo/TP-logo.jpg';
+import tplogo from './images/logo/TP-logo.png';
 import './styles/login-page.css';
 
 export class LoginPage extends React.Component {

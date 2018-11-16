@@ -1,6 +1,6 @@
 body {
   font-family: 'Lora', serif;
-  height: 100%;
+  height: 120vh;
  }
  
  h1, h2 {
@@ -11,17 +11,28 @@ body {
 
 .landing {
   display: grid;
-  min-height: 100vh;
+  min-height: 85vh;
   margin: 0;
   text-align: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 60% 10% 30% 10%;
+  grid-template-rows: 40% 20% 20% 20%;
 }
 
 .landing img {
   margin-top: 5em;
   width: 200px;
   margin: auto;
+  margin-bottom: 1em;
+}
+
+.app-name {
+  border: none;
+  font-weight: 500;
+}
+
+.app-name:hover {
+  border: none;
+  background: none;
 }
 
 .btn {
@@ -73,7 +84,7 @@ body {
   font-weight: 800;
   text-decoration: none;
   background: none;
-  font-weight: normal;
+  font-weight: 600;
   text-align: center;
   color: #333;
   padding: 0em 1.5em;
