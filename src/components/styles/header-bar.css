@@ -6,6 +6,13 @@
 .header-bar-img {
   margin: 0.5em 1em;
   width:  40px;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+.header-bar-img:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 
 .logout {
