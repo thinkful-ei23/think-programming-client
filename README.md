@@ -84,7 +84,7 @@ Think Programming is the result of a three week group Full Stack build. Using th
 * Redux-Form
 * Redux-Thunk
 * Socket.io
-* Ace Editor
+* React Ace
 * Enzyme
 * Jest
 * JavaScript
