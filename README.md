@@ -17,6 +17,13 @@
     </strong>
 </p>
 
+```
+Demo Account
+
+Username: demo
+password: demopassword
+```
+
 ## What Is Think Programming
 Think Programming is a place for coders to hone skills and challenge other programming enthusiasts to write clean accurate code.
 
@@ -77,7 +84,7 @@ Think Programming is the result of a three week group Full Stack build. Using th
 * Redux-Form
 * Redux-Thunk
 * Socket.io
-* Ace Editor
+* React Ace
 * Enzyme
 * Jest
 * JavaScript
@@ -93,7 +100,8 @@ Think Programming is the result of a three week group Full Stack build. Using th
 * Bcryptjs
 * JWT
 * Socket.io
-
+* Mocha
+* Chai
 ### Deployment
 * Github
 * TravisCI
