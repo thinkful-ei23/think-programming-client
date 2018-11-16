@@ -15,7 +15,7 @@
 }
 .instructions-content {
   flex: 10;
-  margin: 1em 0;
+  margin: 2em 0;
 }
 .back-second {
   flex: 1;
@@ -24,13 +24,14 @@ h1 {
   display: inline-block;
   border: 10px solid #E6E6E6;
   text-align: center;
-  padding: 10px;
+  padding: 10px 30px;
   margin: 0 auto;
 }
 
 h1:hover {
-  border: 10px solid #8b8a8f;
+  border: 10px solid #2BD9FC;
   transition: 0.7s;
+  cursor: default;
 }
 
 ul {
@@ -41,21 +42,20 @@ ul li {
   text-align: left;
   margin: 0 0 10px 0;
 }
-.back {
-  display: inline-block;
-  width: fit-content;
+
+.back-center {
+  margin: auto;
+  text-align: center;
+  padding: 0.5em 2em;
   background: #fff;
   color: #666;
   border: 1px solid #666;
   border-radius: 0;
+  text-decoration: none;
 }
-.back:hover, .back-second:hover  {
-  color: #000;
-  background-color: rgb(209, 209, 209);
-  border: 1px solid #000;
+
+.back-center:hover {
+  color: #2BD9FC;
+  border: 1px solid #2BD9FC;
   transition: 1s;
-}
-.back-center {
-  margin: auto;
-  text-align: center;
 }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { API_BASE_URL_SOCKET } from '../config';
 import io from "socket.io-client";
 import requiresLogin from './requires-login';
+import Footer from './footer';
 import './styles/dashboard.css';
 
 class Dashboard extends Component {
@@ -122,6 +123,7 @@ class Dashboard extends Component {
         <div className="gamerooms">
           {rooms}
         </div>
+        <Footer />
       </div>
     );
   }

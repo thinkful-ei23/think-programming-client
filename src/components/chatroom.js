@@ -95,10 +95,14 @@ export class Chatroom extends React.Component {
 
 		return (
 			<div className="chatroom">
-				<Link to="/dashboard" className="back-links">
-					Back to Dashboard
-				</Link>
-				<h3>Chatroom - Welcome {this.props.name}!</h3>
+				<div>
+					<Link to="/dashboard" className="back-links">
+						Back to Dashboard
+					</Link>
+				</div>
+				<div className="chatroom-header">
+					<h3>Chatroom - Welcome {this.props.name}!</h3>
+				</div>
 				<ul id="scrollId" className="pages">
 					<li className="chat page">
 						<div className="chatArea">
@@ -106,17 +110,19 @@ export class Chatroom extends React.Component {
 								{listChat}
 							</ul>
 						</div>
-						<form onSubmit={(e) => this.handleSubmit(e)}
-						className="chat-form">
-							<input 
-								id="m" 
-								onChange={(e) => this.handleChange(e)}
-								value={this.state.message} 
-								autoComplete="off" 
-								type="text"
-							/>
-							<button>Send</button>
-						</form>
+						<div>
+							<form onSubmit={(e) => this.handleSubmit(e)}
+							className="chat-form">
+								<input 
+									id="m" 
+									onChange={(e) => this.handleChange(e)}
+									value={this.state.message} 
+									autoComplete="off" 
+									type="text"
+								/>
+								<button>Send</button>
+							</form>
+						</div>
 					</li>
 				</ul>
 			</div>

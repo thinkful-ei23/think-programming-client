@@ -3,7 +3,7 @@ body {
   height: 100%;
  }
  
- h1, h2, .btn.aboutus {
+ h1, h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
@@ -11,11 +11,11 @@ body {
 
 .landing {
   display: grid;
-  min-height: 90vh;
+  min-height: 100vh;
   margin: 0;
   text-align: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 60% 10% 30%;
+  grid-template-rows: 60% 10% 30% 10%;
 }
 
 .landing img {
@@ -49,8 +49,8 @@ body {
 }
 
 .btn:hover {
-  background: rgb(55, 102, 122);
-  transition: 1s;
+  background: #fc362b;
+  transition: 0.3s;
 }
 
 .btn-dark:hover {
@@ -69,17 +69,78 @@ body {
 }
 
 .btn.aboutus {
-  background: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  background: none;
+  font-weight: normal;
+  text-align: center;
   color: #333;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  padding: 1em 1.5em;
+  padding: 0em 1.5em;
+  margin: 0;
+  position: relative;
 }
 
+
 .btn.aboutus:hover {
-  background: #676470;
-  transition: 0.5s;
+  transition: 1s;
   color: #fff;
 }
+
+
+.btn.aboutus:before {
+  content: "";
+  background: #f78a04;
+  position: absolute;
+  font-weight: bold;
+  width: 100%;
+  height: 0px;
+  bottom: -20px;
+  left: 0px;
+  border-radius: 30px;
+  transform: scaleX(0);
+  animation: 1.4s forwards no-hover-v linear;
+  animation-fill-mode: forwards;
+  z-index: -1;
+}
+.btn.aboutus:hover:before,
+.btn.aboutus:focus:before {
+  animation: .5s forwards hover-v linear;
+  animation-fill-mode: forwards;
+}
+@keyframes hover-v {
+  0% {
+      transform: scaleX(0);
+      height: 5px;
+     }
+  45% {   
+      transform: scaleX(1.05);
+      height: 5px;
+     }
+  55% {height: 5px;}
+  100% {
+      transform: scaleX(1.05);
+      height: 3.8rem;
+     }
+}
+/* @keyframes no-hover-v {
+  0% {
+      transform: scaleX(1.05);
+      height: 3.8rem;
+     }
+  45% {height: 5px;}
+  55% {   
+      transform: scaleX(1.05);
+      height: 5px;
+      opacity: 1;
+     }
+  
+  100% {
+      transform: scaleX(0);
+      height: 5px;
+      opacity: .02;
+     }
+} */
 
 .back-links {
   display: inline-block;

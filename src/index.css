@@ -2,8 +2,9 @@
   box-sizing: border-box; 
 }
 
-body {
+html, body {
   font-family: 'Lora', serif;
+  height: 100%;
  }
  
  h1, h2 {

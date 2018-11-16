@@ -14,9 +14,10 @@
 }
 
 .about-us-header > h2:hover {
-  border: 10px solid #8b8a8f;
+  border: 10px solid #2BD9FC;
   transition: 0.7s;
   padding: 0.5em 3em;
+  cursor: default;
 }
 
 .about-us-content {
@@ -32,6 +33,7 @@
 
 .about-us > .back {
   margin: auto;
+  padding: 0.5em 2em;
   background: #fff;
   color: #666;
   border: 1px solid #666;
@@ -39,7 +41,7 @@
 }
 
 .about-us > .back:hover  {
-  color: #000;
-  border: 1px solid #000;
+  color: #2BD9FC;
+  border: 1px solid #2BD9FC;
   transition: 1s;
 }

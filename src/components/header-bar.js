@@ -22,7 +22,6 @@ export class HeaderBar extends Component {
 		});
 	}
 
-
 	render() {
 		let logOutButton;
 		if (this.props.loggedIn) {
@@ -32,9 +31,11 @@ export class HeaderBar extends Component {
 		}
 		return (
 			<div className="header-bar">
-				<Link to="/dashboard">
-					<img src={tplogo} className="header-bar-img" alt="Think Programming Logo" />
-				</Link>
+				<div>
+					<Link to="/dashboard">
+						<img src={tplogo} className="header-bar-img" alt="Think Programming Logo" />
+					</Link>
+				</div>
 				{logOutButton}
 			</div>
 		);

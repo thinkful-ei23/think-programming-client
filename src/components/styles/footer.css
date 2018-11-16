@@ -1,0 +1,15 @@
+.footer {
+  background: #fff;
+  height: 3.5em;
+  bottom: -3em;
+  position: relative;
+  width: 100%;
+  z-index: -1;
+  border-top: 1px solid #cecece;
+}
+
+.footer p {
+  padding: auto;
+  text-align: center;
+  color: #34495E;
+}

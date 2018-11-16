@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import requiresLogin from './requires-login';
 
 import './styles/instructions.css';
 
-export default function Instructions() {
+export function Instructions() {
   return (
     <div className="instructions">
-      {/* <Link to="/dashboard" className="back-links">back</Link> */}
       <div className="instructions-header">
         <h1>Instructions</h1>
       </div>
@@ -48,9 +49,11 @@ export default function Instructions() {
           <li>You can check your stats by clicking the 'My Stats' link on the dashboard.</li>
         </ul>
       </div>
-      <Link to="/dashboard" className="back back-center">
-        back
+      <Link to="/dashboard" className="back-center">
+        Back
       </Link>
     </div>
   );
 }
+
+export default requiresLogin()(connect()(Instructions));

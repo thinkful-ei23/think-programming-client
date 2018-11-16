@@ -3,14 +3,23 @@
   min-height: 90vh;
   grid-template-columns: 1fr;
   grid-template-rows: 8% 8% 80%;
-  margin: auto;  
+  margin: auto;
+
+  /* disabled highlighting */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+          supported by Chrome and Opera */
 }
 
 .dashboard > h2 {
   margin: auto 0;
   padding: auto;
   text-align: center;
-
+  cursor: default;
 }
 
 .menu-bar {
@@ -67,7 +76,7 @@
 }
 
 .menu-bar-links:hover {
-  color: #1CCAED;
+  color: #f78a04;
 }
 
 .menu-bar-links:before {
@@ -77,7 +86,7 @@
   height: 2px;
   bottom: -3px;
   left: 0;
-  background-color: #1CCAED;
+  background-color: #fc9e2b;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);

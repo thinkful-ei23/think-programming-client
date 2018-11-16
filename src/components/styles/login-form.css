@@ -14,14 +14,15 @@ input[type=password] {
   font-size: 0.7em;
   display: inline-block;
   text-decoration: none;
-  padding: 0.5em 2em;
-  margin: 1em 0;
+  /* padding: 0.5em 2em; */
+  margin: 1em 2.5em;
   border-radius: 30px;
   color: #2A2A2C;
+  
 }
 
 .back:hover {
-  color: #1E5163;
+  color: #f71004;
   transition: 0.3s;
 }
 
