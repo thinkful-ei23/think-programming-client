@@ -3,17 +3,18 @@
 }
 
 body {
-  background-image: url("components/images/background/computers-developer-development-1181275-white.png");
+  /* background-image: url("components/images/background/computers-developer-development-1181275-white.png");
   background-repeat: no-repeat;
   height: 120vh;
   background-position: center;
   background-size: auto 300%;
+  margin: 0; */
   margin: 0;
 }
 
 html, body {
   font-family: 'Lora', serif;
-  height: 100%;
+  height: 70vh;
  }
  
  h1, h2 {
