@@ -2,7 +2,7 @@
 .game-room {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 5% 5% 38% 14% 25% 25%;
+  grid-template-rows: 5% 5% 31% 14% 25% 25%;
   margin: 0 auto;
   padding: 5px;
   height: 100vh;
@@ -214,7 +214,24 @@
   color: green;
   opacity: 0;
   animation-name: fadeOut;
-  animation-duration: 3s;
+  animation-duration: 7s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-question {
+  opacity: 1;
+  animation-name: fadeIn;
+  animation-duration: 5s;
+}
+.redText {
+  color: red;
 }
 
 @media (min-width: 768px) {
