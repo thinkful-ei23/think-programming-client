@@ -305,6 +305,7 @@ class GameRoom extends Component {
     if (this.state.challengerFinished) {
       winner = 'Challenger';
     };
+    let fadeInMessage = '';
     let questionTitle = '';
     let question = '';
     if (this.state.playerArray.length < 1) {
@@ -335,6 +336,7 @@ class GameRoom extends Component {
       (this.props.questions !== undefined) &
       (this.props.questions !== null)
     ) {
+      fadeInMessage = 'fade-in-question';
       questionTitle = this.props.questions.title;
       question = this.props.questions.question;
     };
@@ -385,7 +387,7 @@ class GameRoom extends Component {
             {this.state.playerArray.length === 2 ? (`Question: ${(this.state.currentQuestionIndex + 1)}/${this.props.questions.total}`) : ''}
           </p>
         </div>
-        <div className="question-container">
+        <div className={`question-container ${fadeInMessage}`}>
           <h3>{questionTitle}</h3>
           <p>{question}</p>
         </div>

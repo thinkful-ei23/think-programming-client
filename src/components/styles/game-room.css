@@ -216,6 +216,20 @@
   animation-name: fadeOut;
   animation-duration: 7s;
 }
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-in-question {
+  opacity: 1;
+  animation-name: fadeIn;
+  animation-duration: 5s;
+}
 .redText {
   color: red;
 }
