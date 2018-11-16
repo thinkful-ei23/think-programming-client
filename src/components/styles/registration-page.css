@@ -1,6 +1,6 @@
 .home-register {
   display: grid;
-  min-height: 70vh;
+  min-height: 90vh;
   grid-template-columns: 1fr;
   grid-template-rows: 35% 5% 60%;
   margin: 0;

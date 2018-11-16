@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import RegistrationForm from './registration-form';
 
 import './styles/registration-page.css';
-import tplogo from './images/logo/TP-logo.jpg';
+import tplogo from './images/logo/TP-logo.png';
 
 export class RegistrationPage extends React.Component {
     // If we are logged in (which happens automatically when registration

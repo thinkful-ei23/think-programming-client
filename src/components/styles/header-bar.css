@@ -1,11 +1,12 @@
 .header-bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr); 
+  /* background-color: rgb(255, 255, 255, 0.5); */
 }
 
 .header-bar-img {
   margin: 0.5em 1em;
-  width:  40px;
+  width:  50px;
   -webkit-transition: -webkit-transform .8s ease-in-out;
           transition:         transform .8s ease-in-out;
 }
@@ -21,9 +22,10 @@
   padding: 0;
   margin: 0;
   border: none;
+  background-color: rgb(255, 255, 255, .05);
 }
 
 .logout:hover {
-  background-color: #dddddd;
+  background-color: #D3DFE2;
   transition: 1s;
 }
