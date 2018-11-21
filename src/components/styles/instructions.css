@@ -5,6 +5,7 @@
   font-family: 'Montserrat', sans-serif;
   margin: 0 1em;
   background: white;
+  
 }
 .back {
   flex: 1;
@@ -16,7 +17,9 @@
 }
 .instructions-content {
   flex: 10;
-  margin: 2em 0;
+  margin: 2em 10%;
+  display: inline-block;
+  width: fit-content;
 }
 .back-second {
   flex: 1;
@@ -59,4 +62,19 @@ ul li {
   color: #2BD9FC;
   border: 1px solid #2BD9FC;
   transition: 1s;
+}
+@media (min-width: 600px) {
+  .instructions-content{
+    margin: 2em 20%;
+  }
+}
+@media (min-width: 850px) {
+  .instructions-content{
+    margin: 2em 23%;
+  }
+}
+@media (min-width: 1000px) {
+  .instructions-content{
+    margin: 2em 26%;
+  }
 }
