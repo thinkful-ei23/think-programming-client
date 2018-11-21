@@ -1,0 +1,82 @@
+.demo {
+  height: 130px;
+  border: 2px solid #34495E;
+  border-radius: 2px;
+  color: #34495E;
+  background-color: rgb(214, 216, 219);
+  display: inline-block;
+  margin: 0 auto;
+  width: 200px;
+  font-family: 'Montserrat', sans-serif;
+  /* padding: 5px 7px 0px 7px; */
+  text-align: center;
+  line-height: 60%;
+  justify-content: center;
+  opacity: 1;
+  animation-name: fadeInDemo;
+  animation-duration: 4s;
+}
+@keyframes fadeInDemo {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.demo-header {
+  font-weight: 700;
+  font-size: 1.1em;
+  padding: 5px 0;
+  margin: 5px;
+  border-bottom: 2px solid #34495E;
+}
+.demo-grid-container {
+  background-color: white;
+  border: 1px solid #34495E;
+  border-radius: 2px;
+  text-align: left;
+  height: 90px;
+  width: 190px;
+  display: inline-grid;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr 1fr 2.5% 1fr 1fr;
+  grid-template-areas: "demo-one-one demo-two-one" "demo-one-one demo-two-two" "demo-break demo-break" "demo-one-two demo-two-three" "demo-one-two demo-two-four";
+}
+.demo-one-one { 
+  grid-area: demo-one-one;
+  justify-self: center;
+  align-self: center; 
+  /* background-color: #03C6F7; */
+}
+.demo-two-one { 
+  grid-area: demo-two-one; 
+  align-self: center; 
+  /* background-color: #03C6F7; */
+}
+.demo-two-two { 
+  grid-area: demo-two-two;
+  align-self: center;
+  /* background-color: #03C6F7; */
+}
+.demo-one-two { 
+  grid-area: demo-one-two;
+  justify-self: center;
+  align-self: center; 
+}
+.demo-two-three { 
+  grid-area: demo-two-three;
+  align-self: center; 
+}
+.demo-two-four { 
+  grid-area: demo-two-four;
+  align-self: center;  
+}
+.demo-break {
+  grid-area: demo-break;
+  background-color: #34495E;
+}
+.demo-p-bold {
+  font-weight: 700;
+}
+

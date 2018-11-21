@@ -18,9 +18,12 @@
 </p>
 
 ```
-Demo Account
+Demo Accounts
 
-Username: demo
+Username: demo1
+password: demopassword
+
+Username: demo2
 password: demopassword
 ```
 

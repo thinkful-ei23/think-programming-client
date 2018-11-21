@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import LoginForm from './login-form';
+import Demo from './demo';
 import tplogo from './images/logo/TP-logo.png';
 import './styles/login-page.css';
 
@@ -23,7 +24,8 @@ export class LoginPage extends React.Component {
             <img src={tplogo} alt="Think Programming" />
             <h2>Let's Sign In!</h2>
           </div>
-          <div className='login-error'>{loginError}</div>  
+          <div className='login-error'>{loginError}</div>
+          <Demo /> 
           <LoginForm /> 
         </div>
       );
