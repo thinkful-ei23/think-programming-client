@@ -1,13 +1,14 @@
 body {
   font-family: 'Lora', serif;
   height: 120vh;
- }
- 
- h1, h2 {
+}
+
+h1,
+h2 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   text-transform: uppercase;
- }
+}
 
 .landing {
   display: grid;
@@ -39,7 +40,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   display: inline-block;
-  background: #03C6F7;
+  background: #03c6f7;
   color: white;
   text-decoration: none;
   padding: 0.8em 2em;
@@ -51,7 +52,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   display: inline-block;
-  background: #1E5163;
+  background: #1e5163;
   color: white;
   text-decoration: none;
   padding: 0.8em 2em;
@@ -78,7 +79,18 @@ body {
   padding: 0;
   margin: auto;
 }
-
+.oneliner {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-decoration: none;
+  background: none;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+  padding: 0em 1.5em;
+  margin: 0;
+  position: relative;
+}
 .btn.aboutus {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
@@ -92,15 +104,13 @@ body {
   position: relative;
 }
 
-
 .btn.aboutus:hover {
   transition: 1s;
   color: #fff;
 }
 
-
 .btn.aboutus:before {
-  content: "";
+  content: '';
   background: #f78a04;
   position: absolute;
   font-weight: bold;
@@ -116,23 +126,25 @@ body {
 }
 .btn.aboutus:hover:before,
 .btn.aboutus:focus:before {
-  animation: .5s forwards hover-v linear;
+  animation: 0.5s forwards hover-v linear;
   animation-fill-mode: forwards;
 }
 @keyframes hover-v {
   0% {
-      transform: scaleX(0);
-      height: 5px;
-     }
-  45% {   
-      transform: scaleX(1.05);
-      height: 5px;
-     }
-  55% {height: 5px;}
+    transform: scaleX(0);
+    height: 5px;
+  }
+  45% {
+    transform: scaleX(1.05);
+    height: 5px;
+  }
+  55% {
+    height: 5px;
+  }
   100% {
-      transform: scaleX(1.05);
-      height: 3.8rem;
-     }
+    transform: scaleX(1.05);
+    height: 3.8rem;
+  }
 }
 /* @keyframes no-hover-v {
   0% {
@@ -163,12 +175,12 @@ body {
 }
 
 .back-links:hover {
-  color: #8C8C8C;
+  color: #8c8c8c;
   transition: 0.5s;
 }
 
 .back-links:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 2px;
