@@ -38,6 +38,9 @@ That's not all! At Think Programming, cheating is allowed! Be careful to write y
 ## Why?
 Think Programming is the result of a three week group Full Stack build. Using the MERN Stack (Mongo-Express-React-Node) as well many other technologies we we experienced the full Software Development Life Cycle but for actual production deployment and maintenance.   Working with senior developers using the latest development stategies and holding daily standups we started with a small idea and put together a pretty expansive mobile first web application. Please see below for a glimpse into our process. 
 
+
+
+
 ### Our Three Week Timeline
 #### Week One
 * decide on project idea
