@@ -39,84 +39,76 @@ That's not all! At Think Programming, cheating is allowed! Be careful to write y
 Think Programming is the result of a three week group Full Stack build. Using the MERN Stack (Mongo-Express-React-Node) as well many other technologies we we experienced the full Software Development Life Cycle but for actual production deployment and maintenance.   Working with senior developers using the latest development stategies and holding daily standups we started with a small idea and put together a pretty expansive mobile first web application. Please see below for a glimpse into our process. 
 
 
+## Mobile Screenshots
 
+<div align='center'><img width=100% src="https://github.com/thinkful-ei23/think-programming-server/blob/master/assets/Think-Programming-Mobile-Screenshots.png?raw=true" alt="Mobile Screenshots"><div>
+
+<br>
+
+## Tablet and Desktop Screenshots
+
+<div align='center'><img width=100% src="https://github.com/thinkful-ei23/think-programming-server/blob/master/assets/Think-Programming-Tablet-Desktop-Screenshots.png?raw=true" alt="Tablet and Desktop Screenshots"><div>
+
+<br>
+
+## Features
+
+<div align='center'><img width=100% src="https://github.com/thinkful-ei23/think-programming-server/blob/master/assets/Think-Programming-Features.png?raw=true" alt="Features"><div>
 
 ### Our Three Week Timeline
 #### Week One
-* decide on project idea
-* decide on tech stack to best fit idea
-* define user stories
-* design wireframes and user flow using Adobe XD
-* design product architecture  
-* Build trello breakdown: to promote team communication, set clear goals and set small manageable tasks
-* build React app and collaborate with github
-* build Node Express app and collaborate with github
-* deploy client and server to Heroku
-* enable continuous integration service with Travis CI
-* start implementing key features
-* build logos using adobe illustrator
-* mobile first css using css grid
-* basic README.md
-* complete MVP
+
+<ul align='left'>
+<li>decide on project idea</li>
+<li>decide on tech stack to best fit idea</li>
+<li>define user stories</li>
+<li>design wireframes and user flow using Adobe XD</li>
+<li>design product architecture</li>
+<li>Build trello breakdown: to promote team communication, set clear goals and set small manageable tasks</li>
+<li>build React app and collaborate with github</li>
+<li>build Node Express app and collaborate with github</li>
+<li>deploy client and server to Heroku</li>
+<li>enable continuous integration service with Travis CI</li>
+<li>start implementing key features</li>
+<li>build logos using adobe illustrator</li>
+<li>mobile first css using css grid</li>
+<li>basic README.md</li>
+<li>complete MVP</li>
+</ul>
+
 #### Week Two
-* develop thing program coding problem content
-* socket namespacing development
-* redux, and state management improvements
-* unit testing along the way
-* modularize code to improve collaboration
-* basic validation
-* crowd feedback to improve feature development and goals
-* tighten user experience
-* test, test, test!
+
+<ul align='left'>
+<li>develop thing program coding problem content</li>
+<li>socket namespacing development</li>
+<li>redux, and state management improvements</li>
+<li>unit testing along the way</li>
+<li>modularize code to improve collaboration</li>
+<li>basic validation</li>
+<li>crowd feedback to improve feature development and goals</li>
+<li>tighten user experience</li>
+<li>test, test, test!</li>
+</ul>
+
 #### Week Three
-* key features wrap up
-* clean up UX and add needed features
-* Bug-fixing
-* validation improvements
-* complete mocha server testing
-* complete enzyme client testing: smoke-tests, component tests, redux testing
-* socket testing
-* test, test, test!
-* polish, polish, polish!
-* complete product ready to ship!
+
+<ul align='left'> 
+<li>key features wrap up</li>
+<li>clean up UX and add needed features</li>
+<li>Bug-fixing</li>
+<li>validation improvements</li>
+<li>complete mocha server testing</li>
+<li>complete enzyme client testing: smoke-tests, component tests, redux testing</li>
+<li>socket testing</li>
+<li>test, test, test!</li>
+<li>polish, polish, polish!</li>
+<li>complete product ready to ship!</li>
+</ul>
 
 
 ## Tech Used
 
-### Front-End
-* React
-* Redux
-* Redux-Router
-* Redux-Form
-* Redux-Thunk
-* Socket.io
-* React Ace
-* Enzyme
-* Jest
-* JavaScript
-* HTML5
-* CSS3
-
-### Back-End
-* Node.js
-* Express.js
-* Mongoose
-* mLab
-* Passport
-* Bcryptjs
-* JWT
-* Socket.io
-* Mocha
-* Chai
-### Deployment
-* Github
-* TravisCI
-* Heroku
-* mlab
-
-### Other
-* Adobe XD
-* Adobe Illustrator
+<div align='center'><img width=100% src="https://github.com/thinkful-ei23/think-programming-server/blob/master/assets/Think-Programming-Tech.png?raw=true" alt="Tech Used"><div>
 
 ### Developers
 
