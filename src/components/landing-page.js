@@ -15,7 +15,7 @@ export class LandingPage extends Component {
       <div className="landing">
         <img src={logo} alt={'Think Programming'} />
         <h1 className="app-name">Think Programming</h1>
-        <h3 className="oneliner">Challenge another coder and see who wins!</h3>
+        <h3 className="oneliner">Live Player vs Player Coding Challenges!</h3>
         <div className="whoarewe">
           <Link to="/aboutus" className="btn aboutus">
             About Us
