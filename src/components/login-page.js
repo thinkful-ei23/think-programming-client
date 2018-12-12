@@ -26,7 +26,7 @@ export class LoginPage extends React.Component {
           </div>
           <div className='login-error'>{loginError}</div>
           <Demo /> 
-          <LoginForm /> 
+          <LoginForm className="login-form-container"/> 
         </div>
       );
     }

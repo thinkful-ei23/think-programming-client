@@ -1,13 +1,11 @@
 .home-login {
-  display: grid;
-  min-height: 90vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: 45% 5% 50%;
-  margin: 0;
+
+  margin: auto;
   text-align: center;
 }
 
 .login-h2 {
+  padding: 3em;
   margin: auto;
   font-weight: 500;
 }
@@ -19,3 +17,27 @@
 .login-h2 img {
   width: 140px;
 }
+
+
+
+/* .home-login {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 45% 5% 25% 35%;
+  margin: 0;
+  text-align: center;
+} */
+
+/* .login-h2 {
+  margin: auto;
+  font-weight: 500;
+}
+
+.login-h2 h2 {
+  margin: 1em 0 0 0;
+}
+
+.login-h2 img {
+  width: 140px;
+} */
